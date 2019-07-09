@@ -11,10 +11,21 @@
   box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.7);
   box-sizing: border-box;
   height: 180px;
+  margin: 0 4%;
   padding: 30px;
   position: relative;
-  width: 800px;
-  top: -50px; }
+  width: 800px; }
+  @media (max-width: 37.5em) {
+    .seach-dialog {
+      top: -120px; } }
+  @media (min-width: 70em) {
+    .seach-dialog {
+      top: -50px; } }
   .seach-dialog label {
-    font-size: 1.5em;
     font-weight: bold; }
+    @media (max-width: 37.5em) {
+      .seach-dialog label {
+        font-size: 1.3em; } }
+    @media (min-width: 70em) {
+      .seach-dialog label {
+        font-size: 1.5em; } }

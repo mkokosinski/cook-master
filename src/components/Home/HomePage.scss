@@ -1,4 +1,6 @@
-.home-bg{
+@import '../style//mobileBreakPoints.scss';
+
+.home-bg {
     align-items: center;
     background: url('../../assets/img/bg-img.png') no-repeat;
     background-position: 0 -200px;
@@ -7,18 +9,33 @@
     min-height: calc(100vh - 100px);
 }
 
-.seach-dialog{
+.seach-dialog {
     background: #f3f3f3;
     box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.7);
     box-sizing: border-box;
     height: 180px;
+    margin: 0 4%;
     padding: 30px;
     position: relative;
     width: 800px;
-    top: -50px;
 
-    label{
-        font-size: 1.5em;
+    @include media(mobile) {
+        top: -120px;
+    }
+
+    @include media(desktop) {
+        top: -50px;
+    }
+
+    label {
         font-weight: bold;
+
+        @include media(mobile) {
+            font-size: 1.3em;
+        }
+
+        @include media(desktop) {
+            font-size: 1.5em;
+        }
     }
 }

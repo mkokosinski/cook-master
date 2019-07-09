@@ -1,3 +1,5 @@
+@import '../style//mobileBreakPoints.scss';
+
 .search-input {
     align-items: stretch;
     border: 1px solid rgba(0, 0, 0, 0.5);
@@ -9,11 +11,21 @@
 
     input {
         border: none;
-        border-radius: 20px 0 0 20px;
+
         box-sizing: border-box;
-        flex-basis: 93%;
+
         outline: none;
         padding: 10px 20px;
+
+        @include media(mobile) {
+            border-radius: 20px;
+            flex-basis: 100%;
+        }
+
+        @include media(desktop) {
+            border-radius: 20px 0 0 20px;
+            flex-basis: 93%;
+        }
 
         &:focus {
             box-shadow: 0 0 5px rgba(100, 150, 255, 0.7);
@@ -29,16 +41,25 @@
         box-sizing: border-box;
         cursor: pointer;
         display: flex;
-        flex-basis: 7%;
+
         justify-content: center;
         position: relative;
         user-select: none;
         transition: filter 100ms;
 
-        &:hover{
+        @include media(mobile) {
+            display: none;
+        }
+
+        @include media(desktop) {
+            flex-basis: 7%;
+        }
+
+        &:hover {
             filter: brightness(105%);
         }
-        &:active{
+
+        &:active {
             filter: brightness(95%);
         }
     }

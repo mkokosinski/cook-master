@@ -13,19 +13,14 @@ import tipsIco from '../../assets/img/chef.svg'
 import recipesIco from '../../assets/img/recipe-book.svg'
 
 const Navbar = ({ location }) => {
-  const [hamburger, setHamburger] = useState({
-    isOpen: false
-  })
-
+  const [burgerIsOpen, setBurgerIsOpen] = useState(false)
   const toggleBurger = () => {
-    setHamburger({
-      isOpen: !hamburger.isOpen
-    })
+    setBurgerIsOpen(!burgerIsOpen)
   }
   return (
     <>
       <nav>
-        <NavLink className="nav-logo" to='/'>
+        <NavLink onClick={burgerIsOpen ? toggleBurger : null} className="nav-logo" to='/'>
           <img src={logo} alt="Logo" />
         </NavLink>
         <div className="nav-buttons-container">
@@ -42,18 +37,20 @@ const Navbar = ({ location }) => {
             </div>
             <div className="nav-btn__txt">Przepisy</div>
           </NavLink>
-          <NavLink className="nav-btn--SignIn" to='/'>Zaloguj</NavLink>
+          <NavLink className="nav-btn--SignIn" to='/' >Zaloguj</NavLink>
         </div>
-        <Burger onClick={toggleBurger} isOpen={hamburger.isOpen} />
+        <Burger onClick={toggleBurger} isOpen={burgerIsOpen} />
       </nav>
-      <div className={`toggle-menu ${hamburger.isOpen ? 'open' : ''}`}>
-        <ul>
-          <li>t1</li>
-          <li>t2</li>
-          <li>t3</li>
-          <li>t4</li>
-          <li>t5</li>
-        </ul>
+      <div className={`toggle-menu ${burgerIsOpen && 'open'}`}>
+            <NavLink onClick={toggleBurger} className="nav-btn" activeClassName='nav-btn--active' to='/Porady'>
+              Porady
+            </NavLink>
+            <NavLink onClick={toggleBurger} className="nav-btn" activeClassName='nav-btn--active' to='/Przepisy'>
+              Przepisy
+            </NavLink>
+            <NavLink onClick={toggleBurger} className="nav-btn" activeClassName='nav-btn--active' to='/'>
+              Zaloguj
+            </NavLink>
       </div>
     </>
   );
