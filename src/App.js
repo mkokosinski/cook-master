@@ -7,7 +7,7 @@ import {
 
 
 import firebase from './firebase'
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/HomePage';
 import Porady from './components/Tips/TipsPage';
 import Przepisy from './components/Recipes/RecipesPage';

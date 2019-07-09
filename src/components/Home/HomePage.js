@@ -1,10 +1,23 @@
 import React from 'react'
-import SearchInput from '../SearchInput';
+import SearchInput from '../SearchInput/SearchInput'
+import './HomePage.scss'
 
 const Home = () => {
-    return ( 
-        <SearchInput />
-     );
+    return (
+        <>
+            <div className="home-bg">
+                <div className="seach-dialog">
+                    <form action="">
+                        <label htmlFor="seachInput">
+                            Wpisz co Cię interesuje:
+                        </label>
+                        <SearchInput />
+                    </form>
+                </div>
+            </div>
+
+        </>
+    );
 }
- 
+
 export default Home;
