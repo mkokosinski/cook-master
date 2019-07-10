@@ -1,38 +1,47 @@
 @import '../style//mobileBreakPoints.scss';
 
-.home-bg {
-    align-items: center;
-    background: url('../../assets/img/bg-img.png') no-repeat;
-    background-position: 0 -200px;
-    display: flex;
-    justify-content: center;
-    min-height: calc(100vh - 100px);
-}
-
-.seach-dialog {
-    margin: 0 4%;
-    padding: 30px;
-    width: 800px;
-
-    @include media(mobile) {
-        height: 160px;
-        top: -70px;
+.home {
+    position: absolute;
+    width: 100%;
+    
+    &-bg {
+        position: absolute;
+        overflow: hidden;
+        width: 100%;
     }
 
-    @include media(desktop) {
-        height: 180px;
-        top: -50px;
-    }
-
-    label {
-        font-weight: bold;
+    .seach-dialog {
+        margin: 200px auto;
+        padding: 30px;
+        width: 800px;
 
         @include media(mobile) {
-            font-size: 1.3em;
+            height: 160px;
+            top: -70px;
         }
 
         @include media(desktop) {
-            font-size: 1.5em;
+            height: 180px;
+            top: -50px;
         }
+
+        label {
+            font-weight: bold;
+
+            @include media(mobile) {
+                font-size: 1.3em;
+            }
+
+            @include media(desktop) {
+                font-size: 1.5em;
+            }
+        }
+    }
+
+    .news{
+        display: grid;
+        grid-template: 1fr/1fr 1fr;
+        grid-gap: 20px;
+        padding: 20px;
     }
 }

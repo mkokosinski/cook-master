@@ -19,30 +19,16 @@ a {
     position: relative;
 }
 
-.btn {
+.btn{
     background: transparent;
     border: none;
     cursor: pointer;
     transition: 150ms;
-}
 
-.btn:hover {
-    filter: brightness(110%);
-}
-
-.btn:active {
-    filter: brightness(90%);
-}
-
-::-webkit-scrollbar {
-    width: .6em;
-}
-
-::-webkit-scrollbar-track {
-    background: #e2e2e2;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: darkgrey;
-    outline: 1px solid rgb(216, 216, 216);
+    &:hover{
+        filter: brightness(110%);
+    }
+    &:active{
+        filter: brightness(90%);
+    }
 }

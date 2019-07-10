@@ -1,0 +1,26 @@
+.mobile-menu {
+  animation: expand-down 500ms ease forwards;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  transition: 200ms ease;
+  transform-origin: top center;
+  transform: scaleY(0);
+  visibility: hidden;
+  z-index: 999; }
+  .mobile-menu.open {
+    transform: scaleY(1);
+    visibility: visible; }
+  .mobile-menu .nav-btn {
+    background: white;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    padding: 20px;
+    text-align: center; }
+    .mobile-menu .nav-btn:hover {
+      filter: brightness(110%); }
+  .mobile-menu-bg {
+    background: rgba(0, 0, 0, 0.2);
+    height: 100%; }

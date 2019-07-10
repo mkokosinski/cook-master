@@ -1,28 +1,32 @@
-.home-bg {
-  align-items: center;
-  background: url("../../assets/img/bg-img.png") no-repeat;
-  background-position: 0 -200px;
-  display: flex;
-  justify-content: center;
-  min-height: calc(100vh - 100px); }
-
-.seach-dialog {
-  margin: 0 4%;
-  padding: 30px;
-  width: 800px; }
-  @media (max-width: 37.5em) {
-    .seach-dialog {
-      height: 160px;
-      top: -70px; } }
-  @media (min-width: 70em) {
-    .seach-dialog {
-      height: 180px;
-      top: -50px; } }
-  .seach-dialog label {
-    font-weight: bold; }
+.home {
+  position: absolute;
+  width: 100%; }
+  .home-bg {
+    position: absolute;
+    overflow: hidden;
+    width: 100%; }
+  .home .seach-dialog {
+    margin: 200px auto;
+    padding: 30px;
+    width: 800px; }
     @media (max-width: 37.5em) {
-      .seach-dialog label {
-        font-size: 1.3em; } }
+      .home .seach-dialog {
+        height: 160px;
+        top: -70px; } }
     @media (min-width: 70em) {
-      .seach-dialog label {
-        font-size: 1.5em; } }
+      .home .seach-dialog {
+        height: 180px;
+        top: -50px; } }
+    .home .seach-dialog label {
+      font-weight: bold; }
+      @media (max-width: 37.5em) {
+        .home .seach-dialog label {
+          font-size: 1.3em; } }
+      @media (min-width: 70em) {
+        .home .seach-dialog label {
+          font-size: 1.5em; } }
+  .home .news {
+    display: grid;
+    grid-template: 1fr/1fr 1fr;
+    grid-gap: 20px;
+    padding: 20px; }
