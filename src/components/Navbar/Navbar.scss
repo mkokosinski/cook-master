@@ -7,17 +7,16 @@ nav {
     display: flex;
     height: 100px;
 
-
-    @include media(desktop) {
-        padding: 0 10%;
-        position: relative;
-        z-index: 1;
-    }
-
     @include media(mobile) {
         align-items: center;
         justify-content: flex-end;
         padding: 0 3%;
+    }
+
+    @include media(phablet) {
+        padding: 0 10%;
+        position: relative;
+        z-index: 1;
     }
 
     .nav-logo {
@@ -25,14 +24,14 @@ nav {
         display: flex;
         justify-content: center;
 
-        @include media(desktop) {
-            height: 100px;
-            flex-basis: 20%;
-        }
-
         @include media(mobile) {
             flex-basis: 80%;
             height: 90%;
+        }
+
+        @include media(phablet) {
+            height: 100px;
+            flex-basis: 20%;
         }
 
         img {
@@ -41,14 +40,14 @@ nav {
     }
 
     .nav-buttons-container {
-        @include media(desktop) {
+        @include media(mobile) {
+            display: none;
+        }
+
+        @include media(phablet) {
             display: flex;
             flex-basis: 80%;
             justify-content: flex-end;
-        }
-
-        @include media(mobile) {
-            display: none;
         }
 
         .nav-btn {
@@ -131,36 +130,4 @@ nav {
         }
     }
 
-}
-
-.toggle-menu {
-    animation: expand-down 500ms ease forwards;
-    align-items: stretch;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.7);
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    width: 100%;
-    transition: 200ms ease;
-    transform-origin: top center;
-    transform: scaleY(0);
-    visibility: hidden;
-    z-index: 999;
-
-    &.open {
-        transform: scaleY(1);
-        visibility: visible;
-    }
-
-    .nav-btn {
-        background: white;
-        border-top: 1px solid rgba(0, 0, 0, .2);
-        cursor: pointer;
-        padding: 20px;
-        text-align: center;
-
-        &:hover {
-            filter: brightness(110%);
-        }
-    }
 }

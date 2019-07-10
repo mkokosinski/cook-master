@@ -10,20 +10,17 @@
 }
 
 .seach-dialog {
-    background: #f3f3f3;
-    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.7);
-    box-sizing: border-box;
-    height: 180px;
     margin: 0 4%;
     padding: 30px;
-    position: relative;
     width: 800px;
 
     @include media(mobile) {
-        top: -120px;
+        height: 160px;
+        top: -70px;
     }
 
     @include media(desktop) {
+        height: 180px;
         top: -50px;
     }
 

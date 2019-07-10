@@ -7,19 +7,16 @@
   min-height: calc(100vh - 100px); }
 
 .seach-dialog {
-  background: #f3f3f3;
-  box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.7);
-  box-sizing: border-box;
-  height: 180px;
   margin: 0 4%;
   padding: 30px;
-  position: relative;
   width: 800px; }
   @media (max-width: 37.5em) {
     .seach-dialog {
-      top: -120px; } }
+      height: 160px;
+      top: -70px; } }
   @media (min-width: 70em) {
     .seach-dialog {
+      height: 180px;
       top: -50px; } }
   .seach-dialog label {
     font-weight: bold; }

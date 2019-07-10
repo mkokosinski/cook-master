@@ -4,38 +4,38 @@ nav {
   color: white;
   display: flex;
   height: 100px; }
-  @media (min-width: 70em) {
-    nav {
-      padding: 0 10%;
-      position: relative;
-      z-index: 1; } }
   @media (max-width: 37.5em) {
     nav {
       align-items: center;
       justify-content: flex-end;
       padding: 0 3%; } }
+  @media (min-width: 37.5em) {
+    nav {
+      padding: 0 10%;
+      position: relative;
+      z-index: 1; } }
   nav .nav-logo {
     align-items: center;
     display: flex;
     justify-content: center; }
-    @media (min-width: 70em) {
-      nav .nav-logo {
-        height: 100px;
-        flex-basis: 20%; } }
     @media (max-width: 37.5em) {
       nav .nav-logo {
         flex-basis: 80%;
         height: 90%; } }
+    @media (min-width: 37.5em) {
+      nav .nav-logo {
+        height: 100px;
+        flex-basis: 20%; } }
     nav .nav-logo img {
       height: 70%; }
-  @media (min-width: 70em) {
+  @media (max-width: 37.5em) {
+    nav .nav-buttons-container {
+      display: none; } }
+  @media (min-width: 37.5em) {
     nav .nav-buttons-container {
       display: flex;
       flex-basis: 80%;
       justify-content: flex-end; } }
-  @media (max-width: 37.5em) {
-    nav .nav-buttons-container {
-      display: none; } }
   nav .nav-buttons-container .nav-btn {
     align-items: center;
     display: flex;
@@ -93,28 +93,3 @@ nav {
         nav .burger .burger-lines:before {
           background-color: black;
           width: 3em; } }
-
-.toggle-menu {
-  animation: expand-down 500ms ease forwards;
-  align-items: stretch;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.7);
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  width: 100%;
-  transition: 200ms ease;
-  transform-origin: top center;
-  transform: scaleY(0);
-  visibility: hidden;
-  z-index: 999; }
-  .toggle-menu.open {
-    transform: scaleY(1);
-    visibility: visible; }
-  .toggle-menu .nav-btn {
-    background: white;
-    border-top: 1px solid rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    padding: 20px;
-    text-align: center; }
-    .toggle-menu .nav-btn:hover {
-      filter: brightness(110%); }

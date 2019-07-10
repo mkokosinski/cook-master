@@ -6,7 +6,7 @@ const Home = () => {
     return (
         <>
             <div className="home-bg">
-                <div className="seach-dialog">
+                <div className="card seach-dialog">
                     <form action="">
                         <label htmlFor="seachInput">
                             Wpisz co Cię interesuje:

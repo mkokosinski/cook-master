@@ -11,6 +11,7 @@ import './Navbar.scss'
 import logo from '../../assets/img/logo.png'
 import tipsIco from '../../assets/img/chef.svg'
 import recipesIco from '../../assets/img/recipe-book.svg'
+import MobileMenu from './MobileMenu';
 
 const Navbar = ({ location }) => {
   const [burgerIsOpen, setBurgerIsOpen] = useState(false)
@@ -41,17 +42,7 @@ const Navbar = ({ location }) => {
         </div>
         <Burger onClick={toggleBurger} isOpen={burgerIsOpen} />
       </nav>
-      <div className={`toggle-menu ${burgerIsOpen && 'open'}`}>
-            <NavLink onClick={toggleBurger} className="nav-btn" activeClassName='nav-btn--active' to='/Porady'>
-              Porady
-            </NavLink>
-            <NavLink onClick={toggleBurger} className="nav-btn" activeClassName='nav-btn--active' to='/Przepisy'>
-              Przepisy
-            </NavLink>
-            <NavLink onClick={toggleBurger} className="nav-btn" activeClassName='nav-btn--active' to='/'>
-              Zaloguj
-            </NavLink>
-      </div>
+     <MobileMenu toggleBurger={toggleBurger} burgerIsOpen={burgerIsOpen}/>
     </>
   );
 }

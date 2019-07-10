@@ -22,7 +22,7 @@
             flex-basis: 100%;
         }
 
-        @include media(desktop) {
+        @include media(phablet) {
             border-radius: 20px 0 0 20px;
             flex-basis: 93%;
         }
@@ -51,7 +51,7 @@
             display: none;
         }
 
-        @include media(desktop) {
+        @include media(phablet) {
             flex-basis: 7%;
         }
 

@@ -15,7 +15,7 @@
       .search-input input {
         border-radius: 20px;
         flex-basis: 100%; } }
-    @media (min-width: 70em) {
+    @media (min-width: 37.5em) {
       .search-input input {
         border-radius: 20px 0 0 20px;
         flex-basis: 93%; } }
@@ -36,7 +36,7 @@
     @media (max-width: 37.5em) {
       .search-input .magnifier {
         display: none; } }
-    @media (min-width: 70em) {
+    @media (min-width: 37.5em) {
       .search-input .magnifier {
         flex-basis: 7%; } }
     .search-input .magnifier:hover {
