@@ -105,13 +105,17 @@ const Porady = () => {
     const [lastId, setLastId] = useState(0)
     const [hasMore, setHasMore] = useState(true)
     const loadMore = () => {
+        const newCards = cards;
         if (dummyCards.some(card => card.id > lastId)) {
-            setCards([...cards, dummyCards[lastId]]);
+            newCards.push(dummyCards[lastId]);
             setLastId(lastId + 1);
         }
         else {
             setHasMore(false);
         }
+
+        setCards(newCards);
+
     }
 
     return (

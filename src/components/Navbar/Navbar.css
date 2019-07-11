@@ -4,12 +4,12 @@ nav {
   color: white;
   display: flex;
   height: 100px; }
-  @media (max-width: 37.5em) {
+  @media (max-width: 50em) {
     nav {
       align-items: center;
       justify-content: flex-end;
       padding: 0 3%; } }
-  @media (min-width: 37.5em) {
+  @media (min-width: 50em) {
     nav {
       padding: 0 10%;
       position: relative;
@@ -18,20 +18,20 @@ nav {
     align-items: center;
     display: flex;
     justify-content: center; }
-    @media (max-width: 37.5em) {
+    @media (max-width: 50em) {
       nav .nav-logo {
         flex-basis: 80%;
         height: 90%; } }
-    @media (min-width: 37.5em) {
+    @media (min-width: 50em) {
       nav .nav-logo {
         height: 100px;
         flex-basis: 20%; } }
     nav .nav-logo img {
       height: 70%; }
-  @media (max-width: 37.5em) {
+  @media (max-width: 50em) {
     nav .nav-buttons-container {
       display: none; } }
-  @media (min-width: 37.5em) {
+  @media (min-width: 50em) {
     nav .nav-buttons-container {
       display: flex;
       flex-basis: 80%;
@@ -83,7 +83,7 @@ nav {
   nav .burger {
     display: none;
     justify-content: center; }
-    @media (max-width: 37.5em) {
+    @media (max-width: 50em) {
       nav .burger {
         display: flex;
         flex-basis: 10%;

@@ -4,8 +4,13 @@
     background: #f8f8f8;
     padding: 16px;
 
+
+
     .search-input {
-        border: 1px solid rgba(0, 0, 0, 0.2);
+        @include media(desktop) {
+            margin: 20px 100px 0;
+
+        }
     }
 
     .grid {
@@ -30,6 +35,7 @@
         .card {
             @include media(mobile) {
                 grid-column: span 2;
+
                 &:nth-child(2),
                 &:nth-child(3) {
                     grid-column: span 1;
@@ -40,6 +46,7 @@
 
             @include media(phablet) {
                 grid-column: span 2;
+
                 &:nth-child(2),
                 &:nth-child(3) {
                     grid-column: span 1;

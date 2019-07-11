@@ -7,13 +7,13 @@ nav {
     display: flex;
     height: 100px;
 
-    @include media(mobile) {
+    @include media(tablet-down) {
         align-items: center;
         justify-content: flex-end;
         padding: 0 3%;
     }
 
-    @include media(phablet) {
+    @include media(tablet) {
         padding: 0 10%;
         position: relative;
         z-index: 1;
@@ -24,12 +24,12 @@ nav {
         display: flex;
         justify-content: center;
 
-        @include media(mobile) {
+        @include media(tablet-down) {
             flex-basis: 80%;
             height: 90%;
         }
 
-        @include media(phablet) {
+        @include media(tablet) {
             height: 100px;
             flex-basis: 20%;
         }
@@ -40,11 +40,11 @@ nav {
     }
 
     .nav-buttons-container {
-        @include media(mobile) {
+        @include media(tablet-down) {
             display: none;
         }
 
-        @include media(phablet) {
+        @include media(tablet) {
             display: flex;
             flex-basis: 80%;
             justify-content: flex-end;
@@ -116,7 +116,7 @@ nav {
         display: none;
         justify-content: center;
 
-        @include media(mobile) {
+        @include media(tablet-down) {
             display: flex;
             flex-basis: 10%;
             font-size: 8px;
