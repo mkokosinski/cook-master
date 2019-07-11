@@ -11,7 +11,6 @@
     visibility: hidden;
     z-index: 999;
 
-
     &.open {
         transform: scaleY(1);
         visibility: visible;
@@ -32,5 +31,11 @@
     &-bg {
         background: rgba(0, 0, 0, 0.2);
         height: 100%;
+        opacity: 0;
+    }
+
+    &.open &-bg {
+        opacity: 1;
+        transition: 500ms ease-out;
     }
 }

@@ -3,7 +3,7 @@
 .home {
     position: absolute;
     width: 100%;
-    
+
     &-bg {
         position: absolute;
         overflow: hidden;
@@ -11,9 +11,8 @@
     }
 
     .seach-dialog {
-        margin: 200px auto;
+        margin: 200px 20px;
         padding: 30px;
-        width: 800px;
 
         @include media(mobile) {
             height: 160px;
@@ -22,7 +21,9 @@
 
         @include media(desktop) {
             height: 180px;
+            margin: 200px auto;
             top: -50px;
+            width: 800px;
         }
 
         label {
@@ -38,7 +39,7 @@
         }
     }
 
-    .news{
+    .news {
         display: grid;
         grid-template: 1fr/1fr 1fr;
         grid-gap: 20px;

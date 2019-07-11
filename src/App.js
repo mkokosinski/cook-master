@@ -11,6 +11,7 @@ import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/HomePage';
 import Porady from './components/Tips/TipsPage';
 import Przepisy from './components/Recipes/RecipesPage';
+import Footer from './components/Footer/Footer'
 
 
 
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/" component={Home} exact/>
         <Route path="/Porady" component={Porady} />
         <Route path="/Przepisy" component={Przepisy} />
+        <Footer />
       </div>
     </Router>
   );

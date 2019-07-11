@@ -1,48 +1,20 @@
 .App {
-    /* background: #f5f5f5; */
-    height: 100%;
-    margin: 0;
-    min-height: 100vh;
-    padding: 0;
-}
+  /* background: #f5f5f5; */
+  height: 100%;
+  margin: 0;
+  min-height: 100vh;
+  padding: 0; }
 
 a {
-    color: initial;
-    text-decoration: none;
-}
-
-.card {
-    background: white;
-    box-shadow: 0 3px 4px -3px rgba(0, 0, 0, 0.7);
-    box-sizing: border-box;
-    padding: 10px;
-    position: relative;
-}
+  color: initial;
+  text-decoration: none; }
 
 .btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    transition: 150ms;
-}
-
-.btn:hover {
-    filter: brightness(110%);
-}
-
-.btn:active {
-    filter: brightness(90%);
-}
-
-::-webkit-scrollbar {
-    width: .6em;
-}
-
-::-webkit-scrollbar-track {
-    background: #e2e2e2;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: darkgrey;
-    outline: 1px solid rgb(216, 216, 216);
-}
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: 150ms; }
+  .btn:hover {
+    filter: brightness(110%); }
+  .btn:active {
+    filter: brightness(90%); }
