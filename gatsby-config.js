@@ -1,8 +1,14 @@
 module.exports = {
   siteMetadata: {
+<<<<<<< HEAD
     title: `Gatsby Default Starter`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
+=======
+    title: `Kuchmistrz`,
+    description: `The best app for junior chefes`,
+    author: `@masterknightMK`,
+>>>>>>> 6290cad18a1ff0c067baf40bcbdb4614f6b2a5c5
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -27,6 +33,10 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+<<<<<<< HEAD
+=======
+    `gatsby-plugin-sass`,
+>>>>>>> 6290cad18a1ff0c067baf40bcbdb4614f6b2a5c5
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
