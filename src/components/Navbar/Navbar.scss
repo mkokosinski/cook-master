@@ -1,0 +1,133 @@
+@import '../style//mobileBreakPoints.scss';
+
+nav {
+    background: white;
+    box-shadow: 0 1px 5px -2px rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    height: 100px;
+
+    @include media(tablet-down) {
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0 3%;
+    }
+
+    @include media(tablet) {
+        padding: 0 10%;
+        position: relative;
+        z-index: 1;
+    }
+
+    .nav-logo {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+
+        @include media(tablet-down) {
+            flex-basis: 80%;
+            height: 90%;
+        }
+
+        @include media(tablet) {
+            height: 100px;
+            flex-basis: 20%;
+        }
+
+        img {
+            height: 70%;
+        }
+    }
+
+    .nav-buttons-container {
+        @include media(tablet-down) {
+            display: none;
+        }
+
+        @include media(tablet) {
+            display: flex;
+            flex-basis: 80%;
+            justify-content: flex-end;
+        }
+
+        .nav-btn {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 120px;
+
+            &:hover {
+                background: #39bf00;
+                transition: 200ms;
+
+                .nav-btn__ico,
+                .nav-btn__txt {
+                    filter: invert(1);
+                }
+            }
+
+            &--active {
+                background: #32a800;
+                transition: 200ms;
+
+                .nav-btn__ico,
+                .nav-btn__txt {
+                    filter: invert(1);
+                }
+            }
+
+
+            &--SignIn {
+                align-items: center;
+                align-self: center;
+                background: #36d61d;
+                background: -moz-linear-gradient(-45deg, #36d61d 0%, #0faf35 100%);
+                background: -webkit-linear-gradient(-45deg, #36d61d 0%, #0faf35 100%);
+                background: linear-gradient(135deg, #36d61d 0%, #0faf35 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#36d61d', endColorstr='#0faf35', GradientType=1);
+                border: 1px solid #36d61d;
+                border-radius: 30px;
+                color: white;
+                display: flex;
+                justify-content: center;
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#48ff23', endColorstr='#2bc920', GradientType=1);
+                font-weight: bold;
+                height: 40px;
+                line-height: 1em;
+                margin-left: 30px;
+                transition: 200ms;
+                width: 140px;
+
+                &:hover {
+                    cursor: pointer;
+                    filter: brightness(105%);
+                }
+
+                &:active {
+                    filter: brightness(95%);
+                    transition: 100ms;
+                }
+            }
+        }
+    }
+
+    .burger {
+        display: none;
+        justify-content: center;
+
+        @include media(tablet-down) {
+            display: flex;
+            flex-basis: 10%;
+            font-size: 8px;
+
+            .burger-lines,
+            .burger-lines:after,
+            .burger-lines:before {
+                background-color: black;
+                width: 3em;
+            }
+        }
+    }
+
+}

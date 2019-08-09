@@ -1,0 +1,44 @@
+.tips-page {
+  background: #f8f8f8;
+  padding: 16px; }
+  @media (min-width: 70em) {
+    .tips-page .search-input {
+      margin: 20px 100px 0; } }
+  .tips-page .grid {
+    display: grid;
+    grid-gap: 16px; }
+    @media (max-width: 37.5em) {
+      .tips-page .grid {
+        grid-template-columns: 1fr 1fr;
+        margin-top: 20px; } }
+    @media (min-width: 37.5em) {
+      .tips-page .grid {
+        grid-template-columns: 1fr 1fr;
+        margin-top: 40px; } }
+    @media (min-width: 64em) {
+      .tips-page .grid {
+        grid-template-columns: repeat(9, 1fr);
+        grid-template-rows: 300px 300px 1fr; } }
+    @media (max-width: 37.5em) {
+      .tips-page .grid .card {
+        grid-column: span 2; }
+        .tips-page .grid .card:nth-child(2), .tips-page .grid .card:nth-child(3) {
+          grid-column: span 1;
+          height: 200px;
+          margin-bottom: 30px; } }
+    @media (min-width: 37.5em) {
+      .tips-page .grid .card {
+        grid-column: span 2; }
+        .tips-page .grid .card:nth-child(2), .tips-page .grid .card:nth-child(3) {
+          grid-column: span 1;
+          height: 200px;
+          margin-bottom: 30px; } }
+    @media (min-width: 64em) {
+      .tips-page .grid .card {
+        grid-column: span 3; }
+        .tips-page .grid .card:first-child {
+          grid-column: span 7;
+          grid-row: span 2; }
+        .tips-page .grid .card:nth-child(2), .tips-page .grid .card:nth-child(3) {
+          grid-column: span 2;
+          height: 100%; } }
