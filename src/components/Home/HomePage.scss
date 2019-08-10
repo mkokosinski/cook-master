@@ -1,0 +1,48 @@
+@import '../style//mobileBreakPoints.scss';
+.home {
+    width: 100%;
+
+    &-bg {
+        left: 0;
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        width: 100%;
+    }
+
+    .seach-dialog {
+        margin: 200px 20px;
+        padding: 30px;
+
+        @include media(mobile) {
+            height: 160px;
+            top: -70px;
+        }
+
+        @include media(desktop) {
+            height: 180px;
+            margin: 200px auto;
+            top: -50px;
+            width: 800px;
+        }
+
+        label {
+            font-weight: bold;
+
+            @include media(mobile) {
+                font-size: 1.3em;
+            }
+
+            @include media(desktop) {
+                font-size: 1.5em;
+            }
+        }
+    }
+
+    .news {
+        display: grid;
+        grid-template: 1fr/1fr 1fr;
+        grid-gap: 20px;
+        padding: 20px;
+    }
+}

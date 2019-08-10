@@ -1,21 +1,17 @@
 @import '../style//mobileBreakPoints.scss';
 
 .tips-page {
-    background: #f8f8f8;
     padding: 16px;
-
-
 
     .search-input {
         @include media(desktop) {
-            margin: 20px 100px 0;
-
+            margin: 20px 300px 0;
         }
     }
 
     .grid {
         display: grid;
-        grid-gap: 16px;
+        grid-gap: 32px;
 
         @include media(mobile) {
             grid-template-columns: 1fr 1fr;

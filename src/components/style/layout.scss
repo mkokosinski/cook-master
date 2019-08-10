@@ -1,0 +1,46 @@
+@import './mobileBreakPoints.scss';
+html, body {
+  background: #f8f8f8;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  padding: 0;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+a {
+  color: initial;
+  text-decoration: none;
+}
+
+main{
+  @include media(laptop){
+    max-width: 90vw;
+    margin: 0  auto;
+  }
+}
+
+
+.btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: 150ms;
+
+  &:hover {
+      filter: brightness(110%);
+  }
+
+  &:active {
+      filter: brightness(90%);
+  }
+}

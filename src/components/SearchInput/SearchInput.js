@@ -1,87 +1,58 @@
-import React, { useState } from 'react';
-import Autosuggest from 'react-autosuggest';
+import React, { useState, useEffect } from "react"
+import Autosuggest from "react-autosuggest"
+import { Tips } from "../../api"
+import magnifier from "../../images/magnifier.svg"
+import "./SearchInput.scss"
+import { Link } from 'gatsby';
 
-import './SearchInput.scss'
-import magnifier from '../../images/magnifier.svg'
-
-
-const suggestions = [
-  {
-    text: 'Apple'
-  },
-  {
-    text: 'App'
-  },
-  {
-    text: 'Banana'
-  },
-  {
-    text: 'Cherry'
-  },
-  {
-    text: 'Grapefruit'
-  },
-  {
-    text: 'Lemon'
-  }
-];
-
-// const getSuggestions = value => {
-//   const inputValue = value.trim().toLowerCase();
-//   const inputLength = inputValue.length;
-
-//   return inputLength === 0 ? [] : languages.filter(lang =>
-//     lang.name.toLowerCase().slice(0, inputLength) === inputValue
-//   );
-// };
-
-const getSuggestionValue = suggestion => suggestion.text;
+const getSuggestionValue = suggestion => suggestion.title
 
 const renderSuggestion = suggestion => (
-  <div>
-    {suggestion.text}
-  </div>
-);
-
-const getSuggestions = value => {
-  const inputValue = value.trim().toLowerCase();
-  const inputLength = inputValue.length;
-
-  return inputLength === 0 ? [] : suggestions.filter(lang =>
-    lang.text.toLowerCase().slice(0, inputLength) === inputValue
-  );
-};
-
-
+<Link to={suggestion.link}>{suggestion.title}</Link>
+)
 const SearchInput = () => {
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState("")
   const [prp, setPrp] = useState([])
+  const [suggestions, setSuggestions] = useState([])
 
-  const onChange = (event, { newValue })=>{
+  useEffect(() => {
+    Tips.getTipsTitleList().then(list => {
+      setSuggestions(list)
+    })
+  }, [])
+
+  const onChange = (event, { newValue }) => {
     setValue(newValue)
   }
 
+  const getSuggestions = value => {
+    const inputValue = value.trim().toLowerCase()
+    const inputLength = inputValue.length
+
+    return inputLength === 0
+      ? []
+      : suggestions.filter(
+          lang => lang.title.toLowerCase().slice(0, inputLength) === inputValue
+        )
+  }
 
   const inputProps = {
-    placeholder: 'Type a programming language',
+    placeholder: "Type a programming language",
     value,
-    onChange
-  };
+    onChange,
+  }
 
   const onSuggestionsFetchRequested = ({ value }) => {
-    console.log('elo',value);
-    
-    setPrp(getSuggestions(value));
-  };
+    setPrp(getSuggestions(value))
+  }
 
   const onSuggestionsClearRequested = () => {
-    setPrp([]);
-  };
+    setPrp([])
+  }
 
   return (
     <div className="search-input">
-
-
+      {console.log(suggestions)}
       <Autosuggest
         suggestions={prp}
         onSuggestionsFetchRequested={onSuggestionsFetchRequested}
@@ -89,11 +60,8 @@ const SearchInput = () => {
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
-        className='test'
+        className="test"
       />
-
-
-
 
       {/* <input type="text"
         name="searchInput"
@@ -103,8 +71,7 @@ const SearchInput = () => {
         <img src={magnifier} alt="S" />
       </div>
     </div>
-  );
+  )
 }
 
-export default SearchInput;
-
+export default SearchInput

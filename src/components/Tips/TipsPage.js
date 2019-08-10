@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './Tips.scss'
 import Card, { CardType } from '../Cards/Card';
 import SearchInput from '../SearchInput/SearchInput';
@@ -9,91 +9,91 @@ const dummyContent = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. I
 const dummyCards = [
     {
         id: 1,
-        img: 'http://fakeimg.pl/200x200?font=lobster',
+        img: 'http://unsplash.it/800/800',
         title: 'ELO ELO',
         content: dummyContent,
         type: CardType.twoSide
     },
     {
         id: 2,
-        img: 'http://fakeimg.pl/200x200?font=lobster',
+        img: 'http://unsplash.it/400/400',
         title: 'ELO ELO',
         content: dummyContent,
         type: CardType.min
     },
     {
         id: 3,
-        img: 'http://fakeimg.pl/200x200?font=lobster',
+        img: 'http://unsplash.it/400/400',
         title: 'ELO ELO',
         content: dummyContent,
         type: CardType.min
     },
     {
         id: 4,
-        img: 'http://fakeimg.pl/200x200?font=lobster',
+        img: 'http://unsplash.it/200/200',
         title: 'ELO ELO',
         content: dummyContent,
         type: CardType.twoSide
     },
     {
         id: 5,
-        img: 'http://fakeimg.pl/200x200?font=lobster',
+        img: 'http://unsplash.it/200/200',
         title: 'ELO ELO',
         content: dummyContent,
         type: CardType.twoSide
     },
     {
         id: 6,
-        img: 'http://fakeimg.pl/200x200?font=lobster',
+        img: 'http://unsplash.it/200/200',
         title: 'ELO ELO',
         content: dummyContent,
         type: CardType.twoSide
     },
     {
         id: 7,
-        img: 'http://fakeimg.pl/200x200?font=lobster',
+        img: 'http://unsplash.it/200/200',
         title: 'ELO ELO',
         content: dummyContent,
         type: CardType.twoSide
     },
     {
         id: 8,
-        img: 'http://fakeimg.pl/200x200?font=lobster',
+        img: 'http://unsplash.it/200/200',
         title: 'ELO ELO',
         content: dummyContent,
         type: CardType.twoSide
     },
     {
         id: 9,
-        img: 'http://fakeimg.pl/200x200?font=lobster',
+        img: 'http://unsplash.it/200/200',
         title: 'ELO ELO',
         content: dummyContent,
         type: CardType.twoSide
     },
     {
         id: 10,
-        img: 'http://fakeimg.pl/200x200?font=lobster',
+        img: 'http://unsplash.it/200/200',
         title: 'ELO ELO',
         content: dummyContent,
         type: CardType.twoSide
     },
     {
         id: 11,
-        img: 'http://fakeimg.pl/200x200?font=lobster',
+        img: 'http://unsplash.it/200/200',
         title: 'ELO ELO',
         content: dummyContent,
         type: CardType.twoSide
     },
     {
         id: 12,
-        img: 'http://fakeimg.pl/200x200?font=lobster',
+        img: 'http://unsplash.it/200/200',
         title: 'ELO ELO',
         content: dummyContent,
         type: CardType.twoSide
     },
     {
         id: 13,
-        img: 'http://fakeimg.pl/200x200?font=lobster',
+        img: 'http://unsplash.it/200/200',
         title: 'ELO ELO',
         content: dummyContent,
         type: CardType.twoSide
