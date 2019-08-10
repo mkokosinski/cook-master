@@ -14,6 +14,7 @@ console.log(config);
 console.log(activeEnv);
 
 module.exports = {
+  pathPrefix: "/cook-master",
   siteMetadata: {
     title: `Kuchmistrz`,
     description: `The best app for junior chefes`,
