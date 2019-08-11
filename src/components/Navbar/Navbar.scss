@@ -6,7 +6,9 @@ nav {
     color: white;
     display: flex;
     height: 100px;
-
+    position: relative;
+    z-index: 1;
+    
     @include media(tablet-down) {
         align-items: center;
         justify-content: flex-end;
@@ -15,8 +17,6 @@ nav {
 
     @include media(tablet) {
         padding: 0 10%;
-        position: relative;
-        z-index: 1;
     }
 
     .nav-logo {
