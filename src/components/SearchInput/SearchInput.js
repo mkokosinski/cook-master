@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Autosuggest from "react-autosuggest"
-import { Tips } from "../../api"
+import { getAutoCompleteList } from "../../services/api"
 import magnifier from "../../images/magnifier.svg"
 import "./SearchInput.scss"
 import { Link } from 'gatsby';
@@ -16,7 +16,7 @@ const SearchInput = () => {
   const [suggestions, setSuggestions] = useState([])
 
   useEffect(() => {
-    Tips.getTipsTitleList().then(list => {
+    getAutoCompleteList().then(list => {
       setSuggestions(list)
     })
   }, [])
