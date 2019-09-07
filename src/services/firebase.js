@@ -1,5 +1,3 @@
-import { async } from "q"
-
 // import { firebase } from '@firebase/app';
 // import '@firebase/firestore';
 
@@ -29,21 +27,10 @@ export const getFirestore = async () => {
   const lazyFirestore = await import("@firebase/firestore")
   return getFirebase(lazyApp.firebase).firestore()
 }
-// class Firebase {
-//   constructor() {
-//     firebase.initializeApp(config);
-//     this.store = firebase.firestore;
-//     this.auth = firebase.auth;
-//   }
 
-//   getSnap = async (collectionName) =>{
-//     const collect = await this.store().collection(collectionName).get();
-//     return collect.docs.map(doc => doc.data());
-//   }
+export const getStorage = async () => {
+  const lazyApp = await import("@firebase/app")
+  const lazyStorage = await import("@firebase/storage")
+  return getFirebase(lazyApp.firebase).storage;
 
-//   tips = () => {
-//     return  this.getSnap('Tips');
-//   }
-// }
-
-// export default new Firebase();
+}

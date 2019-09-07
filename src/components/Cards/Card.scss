@@ -113,6 +113,7 @@
         transform: translateY($squareSize);
         transform-origin: bottom center;
         transition: 400ms ease-out;
+        width: 100%;
         visibility: collapse;
 
         &.is-mouse-over {
