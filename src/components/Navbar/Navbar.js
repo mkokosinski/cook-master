@@ -12,6 +12,7 @@ import logo from '../../images/logo.png'
 import tipsIco from '../../images/chef.svg'
 import recipesIco from '../../images/recipe-book.svg'
 import MobileMenu from './MobileMenu';
+import { isLoggedIn } from '../../services/auth'
 
 const Navbar = ({ location }) => {
   const [burgerIsOpen, setBurgerIsOpen] = useState(false)
@@ -38,7 +39,12 @@ const Navbar = ({ location }) => {
             </div>
             <div className="nav-btn__txt">Przepisy</div>
           </Link>
-          <Link className="nav-btn--SignIn" to='/' >Zaloguj</Link>
+          {
+            isLoggedIn() ?
+            <Link className="nav-btn--SignIn" to='/' >Profil</Link> 
+            :
+            <Link className="nav-btn--SignIn" to='/' >Zaloguj</Link> 
+          }
         </div>
         <Burger onClick={toggleBurger} isOpen={burgerIsOpen} />
       </nav>

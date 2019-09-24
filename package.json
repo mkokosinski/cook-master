@@ -7,6 +7,7 @@
   "dependencies": {
     "@animated-burgers/burger": "^1.1.2",
     "@animated-burgers/burger-rotate": "^1.1.2",
+    "@reach/router": "^1.2.1",
     "classnames": "^2.2.6",
     "firebase": "^6.3.5",
     "firebase-admin": "^8.3.0",
