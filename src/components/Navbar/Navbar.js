@@ -22,18 +22,18 @@ const Navbar = ({ location }) => {
   return (
     <>
       <nav>
-        <Link onClick={burgerIsOpen ? toggleBurger : null} className="nav-logo" to='/'>
+        <Link onClick={burgerIsOpen ? toggleBurger : null} className="nav-logo" to='/app/'>
           <img src={logo} alt="Logo" />
         </Link>
         <div className="nav-buttons-container">
-          <Link className="nav-btn" activeClassName='nav-btn--active' to='/Tips'>
+          <Link className="nav-btn" activeClassName='nav-btn--active' to='/app/Tips'>
             <div className="nav-btn__ico">
               <img src={tipsIco} alt="Ico" />
             </div>
             <div className="nav-btn__txt">Porady</div>
           </Link>
 
-          <Link activeClassName='nav-btn--active' className="nav-btn" to='/Recipes'>
+          <Link activeClassName='nav-btn--active' className="nav-btn" to='/app/Recipes'>
             <div className="nav-btn__ico">
               <img src={recipesIco} alt="Ico" />
             </div>
@@ -41,9 +41,9 @@ const Navbar = ({ location }) => {
           </Link>
           {
             isLoggedIn() ?
-            <Link className="nav-btn--SignIn" to='/' >Profil</Link> 
+            <Link className="nav-btn--SignIn" to='/app/' >Profil</Link> 
             :
-            <Link className="nav-btn--SignIn" to='/' >Zaloguj</Link> 
+            <Link className="nav-btn--SignIn" to='/app/' >Zaloguj</Link> 
           }
         </div>
         <Burger onClick={toggleBurger} isOpen={burgerIsOpen} />

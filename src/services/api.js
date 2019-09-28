@@ -44,7 +44,6 @@ export const getAutoCompleteList = async () => {
 export const getTips = async () => {
   const firestore = await getFirestore()
   const tips = await getSnap(firestore, "Tips")
-  console.log(tips[0].Category.path)
 
   return tips.map(tip => ({
     id: tip.id,

@@ -1,17 +1,14 @@
-let activeEnv = process.env.ACTIVE_ENV;
+let activeEnv = process.env.ACTIVE_ENV
 
 if (!activeEnv) {
-  activeEnv = "development";
+  activeEnv = "development"
 }
 
 require("dotenv").config({
   path: `.env.${activeEnv}`,
-});
+})
 
-const config = require('gatsby-plugin-config');
-
-console.log(config);
-console.log(activeEnv);
+const config = require("gatsby-plugin-config")
 
 module.exports = {
   pathPrefix: "/cook-master",
@@ -24,7 +21,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-env-variables`,
       options: {
-        whitelist: ["MY_VAR", "MY_OTHER_VAR"]
+        whitelist: ["MY_VAR", "MY_OTHER_VAR"],
       },
     },
     `gatsby-plugin-react-helmet`,
@@ -35,6 +32,14 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `recipes`,
+        path: `${__dirname}/src/pages/recipes`,
+      },
+    },
+    "gatsby-transformer-remark",
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -51,20 +56,9 @@ module.exports = {
     },
     `gatsby-plugin-sass`,
     {
-      resolve: 'gatsby-source-firestore',
-      options: {
-        credential: require("./firebase.json"),
-        types: [
-          {
-            type: 'Tip',
-            collection: 'tips',
-            map: doc => ({
-              title: doc.Title,
-            }),
-          }
-        ],
-      },
-    }
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: { prefixes: [`/app/*`] },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

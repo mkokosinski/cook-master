@@ -1,15 +1,21 @@
 import React, { Component } from "react"
 import { navigate } from "gatsby"
 import { isLoggedIn } from "../services/auth"
+
 class PrivateRoute extends Component {
+
   componentDidMount() {
     const { location } = this.props
-    let noOnLoginPage = location.pathname !== `/login`
+    let noOnLoginPage = location.pathname !== `app/login`
+    console.log('Elo');
+    console.log(isLoggedIn());
+    
     if (!isLoggedIn() && noOnLoginPage) {
-      navigate("/login")
+      navigate("app/login")
       return null
     }
   }
+
   render() {
     const { component: Component, ...rest } = this.props
     return <Component {...rest} />

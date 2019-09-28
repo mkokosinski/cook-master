@@ -52,7 +52,6 @@ const SearchInput = () => {
 
   return (
     <div className="search-input">
-      {console.log(suggestions)}
       <Autosuggest
         suggestions={prp}
         onSuggestionsFetchRequested={onSuggestionsFetchRequested}
