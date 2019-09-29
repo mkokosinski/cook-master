@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[8],{191:function(n,e,a){"use strict";a.r(e);var t=a(0),o=a.n(t),u=a(199);a(222),a(236),a(228),a(229),a(22);e.default=function(){return o.a.createElement(u.a,null,"Siemkako")}}}]);
+//# sourceMappingURL=component---src-pages-app-js-270cfd42d93fefa54ed6.js.map
