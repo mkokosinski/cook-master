@@ -1,0 +1,3 @@
+[submodule "PrivateRoute"]
+	path = PrivateRoute
+	url = https://github.com/mkokosinski/cook-master.git
