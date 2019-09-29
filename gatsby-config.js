@@ -1,5 +1,5 @@
 let activeEnv = process.env.ACTIVE_ENV
-
+console.clear();
 if (!activeEnv) {
   activeEnv = "development"
 }
@@ -58,6 +58,36 @@ module.exports = {
     {
       resolve: `gatsby-plugin-create-client-paths`,
       options: { prefixes: [`/app/*`] },
+    },
+    {
+      resolve: 'gatsby-source-firestore',
+      options: {
+        credential: require("./firebase.json"),
+        types: [{
+            type: 'Categories',
+            collection: 'Categories',
+            map: doc => 
+              {
+                return {
+                  Name: doc.Name,
+                }
+            },
+          },
+        {
+            type: 'Tips',
+            collection: 'Tips',
+            map: doc => 
+              {
+                return {
+                  Category__NODE: doc.Category.id,
+                  Desc: doc.Desc,
+                  Img: doc.Img,
+                  Title: doc.Title
+                }
+            },
+          },
+        ],
+      },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
