@@ -1,18 +1,6 @@
 [
     {
-        "path": "/404/",
-        "matchPath": "/*"
-    },
-    {
         "path": "/app/",
         "matchPath": "/app/*"
-    },
-    {
-        "path": "/",
-        "matchPath": "/*"
-    },
-    {
-        "path": "/404.html",
-        "matchPath": "/*"
     }
 ]
