@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[8],{191:function(e,a,t){"use strict";t.r(a);var n=t(0),p=t.n(n),c=t(199),r=t(222),l=t(236),o=t(228),u=t(229),i=t(22);a.default=function(){return p.a.createElement(c.a,null,p.a.createElement(i.Router,null,p.a.createElement(r.a,{exact:!0,path:"app/"}),p.a.createElement(l.a,{exact:!0,path:"app/Tips"}),p.a.createElement(o.a,{exact:!0,path:"app/Recipes",component:u.a})))}}}]);
+//# sourceMappingURL=component---src-pages-app-js-978736f160c1c7aedc8e.js.map
