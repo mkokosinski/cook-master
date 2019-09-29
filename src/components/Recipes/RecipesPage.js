@@ -5,19 +5,6 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 const Przepisy = () => {
   const data = useStaticQuery(graphql`
     query {
-      allMarkdownRemark {
-        edges {
-          node {
-            frontmatter {
-              title
-            }
-            html
-            fields {
-              slug
-            }
-          }
-        }
-      }
       allTips {
         edges {
           node {
@@ -31,7 +18,7 @@ const Przepisy = () => {
       }
     }
   `)
-  const recipes = data.allMarkdownRemark.edges
+  // const recipes = data.allMarkdownRemark.edges
   const tips = data.allTips.edges
   return (
     <>
@@ -51,7 +38,7 @@ const Przepisy = () => {
           />
         </label>
       </div>
-      <div>
+      {/* <div>
         {recipes.map(recipe => (
           <div key={recipe.node.frontmatter.title}>
             <Link to={`/Recipes/${recipe.node.fields.slug}`}>
@@ -63,7 +50,7 @@ const Przepisy = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
       <div>
         TIPS:
         <div>

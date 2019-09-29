@@ -26,7 +26,6 @@
     "gatsby-source-firestore": "^1.0.3",
     "gatsby-transformer-remark": "^2.6.26",
     "gatsby-transformer-sharp": "^2.2.6",
-    "gh-pages": "^2.1.1",
     "loaders.css": "^0.1.2",
     "lodash": "^4.17.15",
     "node-sass": "^4.12.0",
@@ -40,6 +39,7 @@
   },
   "devDependencies": {
     "dotenv": "^8.0.0",
+    "gh-pages": "^2.1.1",
     "prettier": "^1.18.2"
   },
   "keywords": [

@@ -21,47 +21,47 @@ module.exports.onCreatePage = async ({ page, actions }) => {
   }
 }
 
-module.exports.onCreateNode = ({ node, actions }) => {
-  const { createNodeField } = actions
-  if (node.internal.type === "MarkdownRemark") {
-    const slug = path.basename(node.fileAbsolutePath, ".md")
+// module.exports.onCreateNode = ({ node, actions }) => {
+//   const { createNodeField } = actions
+//   if (node.internal.type === "MarkdownRemark") {
+//     const slug = path.basename(node.fileAbsolutePath, ".md")
 
-    createNodeField({
-      node,
-      name: "slug",
-      value: slug,
-    })
-  }
-}
+//     createNodeField({
+//       node,
+//       name: "slug",
+//       value: slug,
+//     })
+//   }
+// }
 
-module.exports.createPages  = async({ graphql, actions }) => {
-  const { createPage } = actions
-  const recipeTemplate = path.resolve(
-    "src/components/Recipes/RecipeTemplate.js"
-  )
-  const query = await graphql(`
-    query {
-      allMarkdownRemark {
-        edges {
-          node {
-            fields {
-              slug
-            }
-          }
-        }
-      }
-    }
-  `)
-  const edges = query.data.allMarkdownRemark.edges;
-  edges.forEach(edge => {
-    createPage({
-      component: recipeTemplate,
-      path: `/Recipes/${edge.node.fields.slug}`,
-      context: {
-        slug: edge.node.fields.slug
-      }
-    })
-  });
+// module.exports.createPages  = async({ graphql, actions }) => {
+//   const { createPage } = actions
+//   const recipeTemplate = path.resolve(
+//     "src/components/Recipes/RecipeTemplate.js"
+//   )
+//   const query = await graphql(`
+//     query {
+//       allMarkdownRemark {
+//         edges {
+//           node {
+//             fields {
+//               slug
+//             }
+//           }
+//         }
+//       }
+//     }
+//   `)
+//   const edges = query.data.allMarkdownRemark.edges;
+//   edges.forEach(edge => {
+//     createPage({
+//       component: recipeTemplate,
+//       path: `/Recipes/${edge.node.fields.slug}`,
+//       context: {
+//         slug: edge.node.fields.slug
+//       }
+//     })
+//   });
     
     
-}
+// }
