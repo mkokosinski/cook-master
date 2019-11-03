@@ -5,8 +5,6 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 exports.__esModule = true;
 exports.default = exports.publicLoader = exports.setLoader = exports.ProdLoader = exports.BaseLoader = void 0;
 
-require("core-js/modules/es7.promise.finally");
-
 var _prefetch = _interopRequireDefault(require("./prefetch"));
 
 var _emitter = _interopRequireDefault(require("./emitter"));
@@ -29,7 +27,6 @@ const createPageDataUrl = path => {
 const doFetch = (url, method = `GET`) => new Promise((resolve, reject) => {
   const req = new XMLHttpRequest();
   req.open(method, url, true);
-  req.withCredentials = true;
 
   req.onreadystatechange = () => {
     if (req.readyState == 4) {
@@ -107,7 +104,7 @@ const loadPageDataJson = loadObj => {
 };
 
 const doesConnectionSupportPrefetch = () => {
-  if (`connection` in navigator) {
+  if (`connection` in navigator && typeof navigator.connection !== `undefined`) {
     if ((navigator.connection.effectiveType || ``).includes(`2g`)) {
       return false;
     }
@@ -164,7 +161,7 @@ class BaseLoader {
   }
 
   loadPageDataJson(rawPath) {
-    const pagePath = (0, _findPath.cleanPath)(rawPath);
+    const pagePath = (0, _findPath.findPath)(rawPath);
 
     if (this.pageDataDb.has(pagePath)) {
       return Promise.resolve(this.pageDataDb.get(pagePath));
@@ -184,7 +181,7 @@ class BaseLoader {
 
 
   loadPage(rawPath) {
-    const pagePath = (0, _findPath.cleanPath)(rawPath);
+    const pagePath = (0, _findPath.findPath)(rawPath);
 
     if (this.pageDb.has(pagePath)) {
       const page = this.pageDb.get(pagePath);
@@ -196,18 +193,6 @@ class BaseLoader {
     }
 
     const inFlight = this.loadPageDataJson(pagePath).then(result => {
-      if (result.notFound) {
-        // if request was a 404, we should fallback to findMatchPath.
-        let foundMatchPatch = (0, _findPath.findMatchPath)(pagePath);
-
-        if (foundMatchPatch && foundMatchPatch !== pagePath) {
-          return this.loadPage(foundMatchPatch).then(pageResources => {
-            this.pageDb.set(pagePath, this.pageDb.get(foundMatchPatch));
-            return pageResources;
-          });
-        }
-      }
-
       if (result.status === `error`) {
         return {
           status: `error`
@@ -251,8 +236,13 @@ class BaseLoader {
 
         return pageResources;
       });
-    }).finally(() => {
+    }) // prefer duplication with then + catch over .finally to prevent problems in ie11 + firefox
+    .then(response => {
       this.inFlightDb.delete(pagePath);
+      return response;
+    }).catch(err => {
+      this.inFlightDb.delete(pagePath);
+      throw err;
     });
     this.inFlightDb.set(pagePath, inFlight);
     return inFlight;
@@ -260,7 +250,7 @@ class BaseLoader {
 
 
   loadPageSync(rawPath) {
-    const pagePath = (0, _findPath.cleanPath)(rawPath);
+    const pagePath = (0, _findPath.findPath)(rawPath);
 
     if (this.pageDb.has(pagePath)) {
       return this.pageDb.get(pagePath).payload;
@@ -302,18 +292,10 @@ class BaseLoader {
       return false;
     }
 
-    const realPath = (0, _findPath.cleanPath)(pagePath); // Todo make doPrefetch logic cacheable
+    const realPath = (0, _findPath.findPath)(pagePath); // Todo make doPrefetch logic cacheable
     // eslint-disable-next-line consistent-return
 
-    this.doPrefetch(realPath).then(pageData => {
-      if (!pageData) {
-        const matchPath = (0, _findPath.findMatchPath)(realPath);
-
-        if (matchPath && matchPath !== realPath) {
-          return this.prefetch(matchPath);
-        }
-      }
-
+    this.doPrefetch(realPath).then(() => {
       if (!this.prefetchCompleted.has(pagePath)) {
         this.apiRunner(`onPostPrefetchPathname`, {
           pathname: pagePath
@@ -333,7 +315,7 @@ class BaseLoader {
   }
 
   getResourceURLsForPathname(rawPath) {
-    const pagePath = (0, _findPath.cleanPath)(rawPath);
+    const pagePath = (0, _findPath.findPath)(rawPath);
     const page = this.pageDataDb.get(pagePath);
 
     if (page) {
@@ -345,7 +327,7 @@ class BaseLoader {
   }
 
   isPageNotFound(rawPath) {
-    const pagePath = (0, _findPath.cleanPath)(rawPath);
+    const pagePath = (0, _findPath.findPath)(rawPath);
     const page = this.pageDb.get(pagePath);
     return page && page.notFound === true;
   }

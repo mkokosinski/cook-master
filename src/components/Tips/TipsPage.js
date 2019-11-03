@@ -5,103 +5,7 @@ import SearchInput from "../SearchInput/SearchInput"
 import InfiniteScroll from "react-infinite-scroller"
 import Loader from "../Loader/BallLoader"
 import { getTips } from "../../services/api"
-
-// const dummyContent =
-//   "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum laboriosam dolorem quod laborum rerum eum repellendus ratione sapiente, rem ea."
-
-// const dummyCards = [
-//   {
-//     id: 1,
-//     img: "http://fakeimg.pl/200x200?font=lobster",
-//     title: "ELO ELO",
-//     content: dummyContent,
-//     type: CardType.twoSide,
-//   },
-//   {
-//     id: 2,
-//     img: "http://fakeimg.pl/200x200?font=lobster",
-//     title: "ELO ELO",
-//     content: dummyContent,
-//     type: CardType.min,
-//   },
-//   {
-//     id: 3,
-//     img: "http://fakeimg.pl/200x200?font=lobster",
-//     title: "ELO ELO",
-//     content: dummyContent,
-//     type: CardType.min,
-//   },
-//   {
-//     id: 4,
-//     img: "http://fakeimg.pl/200x200?font=lobster",
-//     title: "ELO ELO",
-//     content: dummyContent,
-//     type: CardType.twoSide,
-//   },
-//   {
-//     id: 5,
-//     img: "http://fakeimg.pl/200x200?font=lobster",
-//     title: "ELO ELO",
-//     content: dummyContent,
-//     type: CardType.twoSide,
-//   },
-//   {
-//     id: 6,
-//     img: "http://fakeimg.pl/200x200?font=lobster",
-//     title: "ELO ELO",
-//     content: dummyContent,
-//     type: CardType.twoSide,
-//   },
-//   {
-//     id: 7,
-//     img: "http://fakeimg.pl/200x200?font=lobster",
-//     title: "ELO ELO",
-//     content: dummyContent,
-//     type: CardType.twoSide,
-//   },
-//   {
-//     id: 8,
-//     img: "http://fakeimg.pl/200x200?font=lobster",
-//     title: "ELO ELO",
-//     content: dummyContent,
-//     type: CardType.twoSide,
-//   },
-//   {
-//     id: 9,
-//     img: "http://fakeimg.pl/200x200?font=lobster",
-//     title: "ELO ELO",
-//     content: dummyContent,
-//     type: CardType.twoSide,
-//   },
-//   {
-//     id: 10,
-//     img: "http://fakeimg.pl/200x200?font=lobster",
-//     title: "ELO ELO",
-//     content: dummyContent,
-//     type: CardType.twoSide,
-//   },
-//   {
-//     id: 11,
-//     img: "http://fakeimg.pl/200x200?font=lobster",
-//     title: "ELO ELO",
-//     content: dummyContent,
-//     type: CardType.twoSide,
-//   },
-//   {
-//     id: 12,
-//     img: "http://fakeimg.pl/200x200?font=lobster",
-//     title: "ELO ELO",
-//     content: dummyContent,
-//     type: CardType.twoSide,
-//   },
-//   {
-//     id: 13,
-//     img: "http://fakeimg.pl/200x200?font=lobster",
-//     title: "ELO ELO",
-//     content: dummyContent,
-//     type: CardType.twoSide,
-//   },
-// ]
+import Img from "../../images/cat.jpg"
 
 const tipsPageCardsSkeleton = [CardType.twoSide, CardType.min, CardType.min]
 const Porady = () => {
@@ -157,7 +61,7 @@ const Porady = () => {
         {tips.map((tip, index) => (
           <Card
             type={getCardType(index)}
-            img={tip.img}
+            img={Img}
             content={tip.content}
             title={tip.title}
             key={index}

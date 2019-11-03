@@ -1,5 +1,5 @@
 let activeEnv = process.env.ACTIVE_ENV
-console.clear();
+console.clear()
 if (!activeEnv) {
   activeEnv = "development"
 }
@@ -39,9 +39,9 @@ module.exports = {
         path: `${__dirname}/src/pages/recipes`,
       },
     },
-    "gatsby-transformer-remark",
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    'gatsby-plugin-sharp', 
+    'gatsby-transformer-sharp',
+    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -60,30 +60,29 @@ module.exports = {
       options: { prefixes: [`/app/*`] },
     },
     {
-      resolve: 'gatsby-source-firestore',
+      resolve: "gatsby-source-firestore",
       options: {
         credential: require("./firebase.json"),
-        types: [{
-            type: 'Categories',
-            collection: 'Categories',
-            map: doc =>
-              {
-                return {
-                  Name: doc.Name,
-                }
+        types: [
+          {
+            type: "Categories",
+            collection: "Categories",
+            map: doc => {
+              return {
+                Name: doc.Name,
+              }
             },
           },
-        {
-            type: 'Tips',
-            collection: 'Tips',
-            map: doc =>
-              {
-                return {
-                  Category__NODE: doc.Category.id,
-                  Desc: doc.Desc,
-                  Img: doc.Img,
-                  Title: doc.Title
-                }
+          {
+            type: "Tips",
+            collection: "Tips",
+            map: doc => {
+              return {
+                Category__NODE: doc.Category.id,
+                Desc: doc.Desc,
+                Img: doc.Img,
+                Title: doc.Title,
+              }
             },
           },
         ],
