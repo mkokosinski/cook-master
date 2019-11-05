@@ -34,8 +34,6 @@ const Card = ({ type, title, img, content, link }) => {
   //     }
   //   `)
 
-  console.log("data", data, img)
-
   const [isMouseOver, setIsMouseOver] = useState("")
   const onMouseOver = () => {
     setIsMouseOver("is-mouse-over")

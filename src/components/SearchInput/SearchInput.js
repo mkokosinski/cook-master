@@ -37,7 +37,7 @@ const SearchInput = () => {
   }
 
   const inputProps = {
-    placeholder: "Type a programming language",
+    placeholder: "Szukasz profesjonalnej porady czy przepisu?",
     value,
     onChange,
   }

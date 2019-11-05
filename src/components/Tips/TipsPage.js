@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import {graphql, useStaticQuery} from 'gatsby'
+import { graphql, useStaticQuery } from "gatsby"
 
 import "./Tips.scss"
 import Card, { CardType } from "../Cards/Card"
@@ -11,37 +11,40 @@ import Img from "../../images/cat.jpg"
 const tipsPageCardsSkeleton = [CardType.twoSide, CardType.min, CardType.min]
 const Porady = () => {
   const [cards, setCards] = useState([])
-  const [lastId, setLastId] = useState(0)
+  const [limit, setLimit] = useState(5)
   const [hasMore, setHasMore] = useState(true)
+  const [renderedCards, setRenderedCards] = useState([])
+  const span = 5
 
   const tipsQuery = useStaticQuery(graphql`
-  query {
-    allTips {
-      edges {
-        node {
-          Desc
-          Img
-          Title
-          id
-          Category__NODE
+    {
+      allTips {
+        totalCount
+        edges {
+          node {
+            Desc
+            Img
+            Title
+            id
+            Category__NODE
+          }
         }
       }
     }
-  }
   `)
 
-  const {node:tips} = tipsQuery.allTips.edges;
-
   const loadMore = () => {
-    const newCards = cards
-    console.log(tips[0]);
-    if (tips.some(card => card.id > lastId)) {
-      newCards.push(tips[lastId])
-      setLastId(card.id)
+    let {edges: tips,totalCount} = tipsQuery.allTips
+    tips = [...tips,...tips,...tips,...tips]
+    totalCount=24
+
+    if (limit <= totalCount+span) {
+      setCards([...cards, ...tips.slice(limit - span, limit)])
+      console.log("Cards", cards)
+      setLimit(limit + span)
     } else {
       setHasMore(false)
     }
-    setCards(newCards)
   }
 
   const getCardType = index => {
@@ -53,7 +56,6 @@ const Porady = () => {
     }
   }
 
-  const egdes = [...tipsQuery.allTips.edges, ...tipsQuery.allTips.edges, ...tipsQuery.allTips.edges]
   return (
     <div className="tips-page">
       <SearchInput />
@@ -64,16 +66,16 @@ const Porady = () => {
         loadMore={loadMore}
         hasMore={hasMore}
         initialLoad={true}
-        threshold={0}
+        threshold={200}
         loader={<Loader />}
       >
-        {cards.map((tip, index) => (
+        {cards.map(({ node: tip }, index) => (
           <Card
             type={getCardType(index)}
             img={Img}
-            content={tip.node.Desc}
-            title={tip.node.Title}
-            key={index}
+            content={tip.Desc}
+            title={tip.Title}
+            key={index + tip.id}
           />
         ))}
       </InfiniteScroll>

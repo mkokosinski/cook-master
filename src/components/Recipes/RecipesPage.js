@@ -1,6 +1,6 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { uploadImg } from "../../services/api"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 
 const Przepisy = () => {
   const data = useStaticQuery(graphql`
