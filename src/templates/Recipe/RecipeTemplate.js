@@ -21,7 +21,7 @@ export const query = graphql`
   }
 `
 const Recipe = ({ data, location }) => {
-  const { name, img, desc } = data.tip
+  const { name, img, desc } = data.recipe
   return (
     <Layout>
       <div className={styles.container}>

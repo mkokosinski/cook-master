@@ -33,12 +33,12 @@ const Przepisy = ({ location }) => {
   `)
 
   const loadMore = () => {
-    let { edges: tips, totalCount } = recipeQuery.allRecipe
-    tips = [...tips, ...tips, ...tips, ...tips]
+    let { edges: recipes, totalCount } = recipeQuery.allRecipe
+    recipes = [...recipes, ...recipes, ...recipes, ...recipes]
     totalCount = 24
 
     if (limit <= totalCount + span) {
-      setCards([...cards, ...tips.slice(limit - span, limit)])
+      setCards([...cards, ...recipes.slice(limit - span, limit)])
       setLimit(limit + span)
     } else {
       setHasMore(false)
