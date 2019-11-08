@@ -10,7 +10,7 @@ const MobileMenu = ({ burgerIsOpen, toggleBurger }) => {
         onClick={toggleBurger}
         className="nav-btn"
         activeClassName="nav-btn--active"
-        to="/Tips"
+        to="/app/Tips"
       >
         Porady
       </Link>
@@ -18,7 +18,7 @@ const MobileMenu = ({ burgerIsOpen, toggleBurger }) => {
         onClick={toggleBurger}
         className="nav-btn"
         activeClassName="nav-btn--active"
-        to="/Recipes"
+        to="/app/Recipes"
       >
         Przepisy
       </Link>

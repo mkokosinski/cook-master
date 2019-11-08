@@ -1,48 +1,62 @@
-@import '../style//mobileBreakPoints.scss';
+@import "../style//mobileBreakPoints.scss";
 .home {
+  width: 100%;
+
+  &-bg {
+    left: 0;
+    position: absolute;
+    overflow: hidden;
+    top: 100px;
     width: 100%;
 
-    &-bg {
-        left: 0;
-        position: absolute;
-        overflow: hidden;
-        top: 0;
-        width: 100%;
+    @include media(laptop) {
+      top: 60px;
+    }
+  }
+
+  .seach-dialog {
+    margin: 200px 20px 40px;
+    padding: 30px;
+
+    @include media(mobile) {
+      height: 160px;
+      top: -70px;
     }
 
-    .seach-dialog {
-        margin: 200px 20px;
-        padding: 30px;
-
-        @include media(mobile) {
-            height: 160px;
-            top: -70px;
-        }
-
-        @include media(desktop) {
-            height: 180px;
-            margin: 200px auto;
-            top: -50px;
-            width: 800px;
-        }
-
-        label {
-            font-weight: bold;
-
-            @include media(mobile) {
-                font-size: 1.3em;
-            }
-
-            @include media(desktop) {
-                font-size: 1.5em;
-            }
-        }
+    @include media(desktop) {
+      height: 180px;
+      margin: 200px auto;
+      top: -40px;
+      width: 800px;
     }
 
-    .news {
-        display: grid;
-        grid-template: 1fr/1fr 1fr;
-        grid-gap: 20px;
-        padding: 20px;
+    label {
+      font-weight: bold;
+
+      @include media(mobile) {
+        font-size: 1.3em;
+      }
+
+      @include media(desktop) {
+        font-size: 1.5em;
+      }
     }
+  }
+
+  .news {
+    display: grid;
+    grid-template: 1fr/1fr 1fr;
+    grid-gap: 20px;
+    overflow: hidden;
+    padding: 20px;
+
+    @include media(desktop) {
+      height: auto;
+    }
+
+    .card {
+      height: 400px;
+      overflow: hidden;
+    }
+  }
 }
