@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { graphql, useStaticQuery } from "gatsby"
 
 import styles from "./RecipePage.module.scss"
-import Card, { CardType } from "../Cards/Card"
+import SimpleCard from "../Cards/SimpleCard"
 import SearchInput from "../SearchInput/SearchInput"
 import InfiniteScroll from "react-infinite-scroller"
 import Loader from "../Loader/BallLoader"
@@ -58,13 +58,12 @@ const Przepisy = ({ location }) => {
         loader={<Loader />}
       >
         {cards.map(({ node: recipe }, index) => (
-          <Card
-            type={CardType.min}
+          <SimpleCard
             img={recipe.img}
             content={recipe.desc}
             title={recipe.name}
             key={index + recipe.id}
-            link={"/Recipes/" + recipe.name}
+            link={"/Recipe/" + recipe.name}
           />
         ))}
       </InfiniteScroll>

@@ -1,38 +1,75 @@
 import React, { useState, useEffect } from "react"
 import Autosuggest from "react-autosuggest"
-import { getAutoCompleteList } from "../../services/api"
 import magnifier from "../../images/magnifier.svg"
 import "./SearchInput.scss"
-import { Link } from 'gatsby';
+import { Link, useStaticQuery, graphql } from "gatsby"
 
-const getSuggestionValue = suggestion => suggestion.title
+const getSuggestionValue = suggestion => suggestion.label
 
-const renderSuggestion = suggestion => (
-<Link to={suggestion.link}>{suggestion.title}</Link>
-)
 const SearchInput = () => {
   const [value, setValue] = useState("")
   const [prp, setPrp] = useState([])
   const [suggestions, setSuggestions] = useState([])
+  const query = useStaticQuery(graphql`
+    {
+      allTip {
+        edges {
+          node {
+            label: Title
+          }
+        }
+      }
+      allRecipe {
+        edges {
+          node {
+            label: name
+          }
+        }
+      }
+    }
+  `)
 
   useEffect(() => {
-    getAutoCompleteList().then(list => {
-      setSuggestions(list)
-    })
+    getAutoCompleteList()
   }, [])
 
+  const getAutoCompleteList = () => {
+    const tips = query.allTip.edges.map(egde => ({
+      category: "Tips",
+      label: egde.node.label,
+    }))
+
+    const recipes = query.allRecipe.edges.map(egde => ({
+      category: "Recipes",
+      label: egde.node.label,
+    }))
+    console.log(tips)
+    console.log(recipes)
+    console.log([...tips, ...recipes])
+    setSuggestions([...tips, ...recipes])
+    return [...tips, ...recipes]
+  }
+
+  const renderSuggestion = suggestion => (
+    <Link to={`${suggestion.category}/${suggestion.label}`}>
+      {suggestion.label}
+    </Link>
+  )
+
   const onChange = (event, { newValue }) => {
+    console.log(newValue);
+    
     setValue(newValue)
   }
 
   const getSuggestions = value => {
     const inputValue = value.trim().toLowerCase()
     const inputLength = inputValue.length
-
     return inputLength === 0
       ? []
       : suggestions.filter(
-          lang => lang.title.toLowerCase().slice(0, inputLength) === inputValue
+          suggestion =>
+            suggestion.label.toLowerCase().slice(0, inputLength) === inputValue
         )
   }
 
