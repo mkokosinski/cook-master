@@ -1,0 +1,23 @@
+.container {
+  margin: 10px auto 20px;
+  width: 90vw;
+  position: relative;
+
+  .cardContainer {
+    background-color: white;
+    box-shadow: 0 2px 4px -3px rgba(0, 0, 0, 0.5);
+  }
+  .content {
+    padding: 20px;
+
+    .metaData {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .desc {
+      padding: 20px;
+    }
+  }
+}

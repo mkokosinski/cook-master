@@ -1,0 +1,74 @@
+@import "../style//mobileBreakPoints.scss";
+
+.recipePage {
+  padding: 16px;
+
+  .searchInput {
+    @include media(desktop) {
+      margin: 20px 300px 0;
+    }
+  }
+
+  .grid {
+    display: grid;
+    grid-gap: 32px;
+
+    @include media(mobile) {
+      grid-template-columns: 1fr 1fr;
+      margin-top: 20px;
+    }
+
+    @include media(phablet) {
+      grid-template-columns: 1fr 1fr;
+      margin-top: 40px;
+    }
+
+    @include media(laptop) {
+      grid-template-columns: repeat(9, 1fr);
+      grid-template-rows: 300px 300px 1fr;
+    }
+  }
+
+  :global {
+    .card {
+      @include media(mobile) {
+        grid-column: span 2;
+
+        &:nth-child(n + 2) {
+          grid-column: span 1;
+          height: 200px;
+          margin-bottom: 30px;
+        }
+      }
+
+      @include media(phablet) {
+        grid-column: span 2;
+
+        &:nth-child(n + 2) {
+          grid-column: span 1;
+          height: 200px;
+          margin-bottom: 30px;
+        }
+      }
+
+      @include media(laptop) {
+        grid-column: span 3;
+
+        &:first-child {
+          grid-column: span 7;
+          grid-row: span 2;
+        }
+
+        &:nth-child(n + 2) {
+          grid-column: span 2;
+          height: 100%;
+        }
+
+        &:nth-child(n + 4) {
+          grid-column: span 3;
+          max-height: 300px;
+        }
+      }
+    }
+  }
+}

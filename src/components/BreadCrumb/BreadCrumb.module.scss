@@ -1,0 +1,19 @@
+:global {
+  .ant-breadcrumb {
+    margin: 5px 0 10px;
+    span:last-child {
+      .ant-breadcrumb-separator {
+        display: none;
+      }
+    }
+  }
+}
+
+.breadcrumb > span:not(:last-child) {
+  .breadcrumbItem {
+    transition: color 150ms;
+    &:hover {
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+}

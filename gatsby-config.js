@@ -53,12 +53,12 @@ module.exports = {
       options: { prefixes: [`/app/*`] },
     },
     {
-      resolve: "gatsby-source-firestore",
+      resolve: "@martinreiche/gatsby-firestore",
       options: {
         credential: require("./firebase.json"),
         types: [
           {
-            type: "Categories",
+            type: "Category",
             collection: "Categories",
             map: doc => {
               return {
@@ -67,7 +67,7 @@ module.exports = {
             },
           },
           {
-            type: "Tips",
+            type: "Tip",
             collection: "Tips",
             map: doc => {
               return {
@@ -77,6 +77,20 @@ module.exports = {
                 Title: doc.Title,
               }
             },
+          },
+          {
+            type: "Recipe",
+            collection: "Recipes",
+            map: doc => ({
+              ...doc
+            }),
+            subCollections:[{
+              type: `Step`,
+                collection: `steps`,
+                map: doc => ({
+                    ...doc
+                  })
+            }]
           },
         ],
       },

@@ -7,18 +7,18 @@ import SearchInput from "../SearchInput/SearchInput"
 import InfiniteScroll from "react-infinite-scroller"
 import Loader from "../Loader/BallLoader"
 import Img from "../../images/cat.jpg"
+import BreadCrumb from "../BreadCrumb/BreadCrumb"
 
 const tipsPageCardsSkeleton = [CardType.twoSide, CardType.min, CardType.min]
-const Porady = () => {
+const Porady = ({ location }) => {
   const [cards, setCards] = useState([])
   const [limit, setLimit] = useState(5)
   const [hasMore, setHasMore] = useState(true)
-  const [renderedCards, setRenderedCards] = useState([])
   const span = 5
 
   const tipsQuery = useStaticQuery(graphql`
     {
-      allTips {
+      allTip {
         totalCount
         edges {
           node {
@@ -34,11 +34,11 @@ const Porady = () => {
   `)
 
   const loadMore = () => {
-    let {edges: tips,totalCount} = tipsQuery.allTips
-    tips = [...tips,...tips,...tips,...tips]
-    totalCount=24
+    let { edges: tips, totalCount } = tipsQuery.allTip
+    tips = [...tips, ...tips, ...tips, ...tips]
+    totalCount = 24
 
-    if (limit <= totalCount+span) {
+    if (limit <= totalCount + span) {
       setCards([...cards, ...tips.slice(limit - span, limit)])
       console.log("Cards", cards)
       setLimit(limit + span)
@@ -58,6 +58,7 @@ const Porady = () => {
 
   return (
     <div className="tips-page">
+      <BreadCrumb pathname={location.pathname} />
       <SearchInput />
       {/* <div className="grid"> */}
 
@@ -76,6 +77,7 @@ const Porady = () => {
             content={tip.Desc}
             title={tip.Title}
             key={index + tip.id}
+            link={"/Tips/" + tip.Title}
           />
         ))}
       </InfiniteScroll>

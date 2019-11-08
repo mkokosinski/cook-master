@@ -1,70 +1,76 @@
-import React from "react"
-import { uploadImg } from "../../services/api"
-import { useStaticQuery, graphql } from "gatsby"
+import React, { useState, useEffect } from "react"
+import { graphql, useStaticQuery } from "gatsby"
 
-const Przepisy = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      allTips {
+import styles from "./RecipePage.module.scss"
+import Card, { CardType } from "../Cards/Card"
+import SearchInput from "../SearchInput/SearchInput"
+import InfiniteScroll from "react-infinite-scroller"
+import Loader from "../Loader/BallLoader"
+import BreadCrumb from "../BreadCrumb/BreadCrumb"
+
+const Przepisy = ({ location }) => {
+  const [cards, setCards] = useState([])
+  const [limit, setLimit] = useState(5)
+  const [hasMore, setHasMore] = useState(true)
+  const span = 5
+
+  const recipeQuery = useStaticQuery(graphql`
+    {
+      allRecipe {
         edges {
           node {
-            Img
-            Title
-            Desc
-            id
-            Category__NODE
+            name
+            childrenStep {
+              desc
+              id
+              img
+              step
+            }
           }
         }
       }
     }
   `)
-  // const recipes = data.allMarkdownRemark.edges
-  const tips = data.allTips.edges
+
+  const loadMore = () => {
+    let { edges: tips, totalCount } = recipeQuery.allRecipe
+    tips = [...tips, ...tips, ...tips, ...tips]
+    totalCount = 24
+
+    if (limit <= totalCount + span) {
+      setCards([...cards, ...tips.slice(limit - span, limit)])
+      setLimit(limit + span)
+    } else {
+      setHasMore(false)
+    }
+  }
+
   return (
-    <>
-      <div>
-        <label htmlFor="ima">
-          Wyślij plik
-          <input
-            style={{ opacity: 0 }}
-            type="file"
-            name="ima"
-            id="ima"
-            onChange={e => {
-              uploadImg(e).then(res => {
-                console.log(res)
-              })
-            }}
+    <div className={styles.recipePage}>
+      <BreadCrumb pathname={location.pathname} />
+      <SearchInput />
+      <InfiniteScroll
+        className={styles.grid}
+        loadMore={loadMore}
+        hasMore={hasMore}
+        initialLoad={true}
+        threshold={200}
+        loader={<Loader />}
+      >
+        {cards.map(({ node: recipe }, index) => (
+          <Card
+            type={CardType.min}
+            img={recipe.img}
+            content={recipe.desc}
+            title={recipe.name}
+            key={index + recipe.id}
+            link={"/Recipes/" + recipe.name}
           />
-        </label>
-      </div>
-      {/* <div>
-        {recipes.map(recipe => (
-          <div key={recipe.node.frontmatter.title}>
-            <Link to={`/Recipes/${recipe.node.fields.slug}`}>
-              Title: {recipe.node.frontmatter.title}
-            </Link>
-            <div>
-              HTML:
-              <div dangerouslySetInnerHTML={{ __html: recipe.node.html }}></div>
-            </div>
-          </div>
         ))}
-      </div> */}
-      <div>
-        TIPS:
-        <div>
-          {tips.map(({node:{Title, Desc}}) => {
-            return (
-              <div key={Title}>
-                <h1> {Title}</h1>
-                <p>{Desc}</p>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-    </>
+      </InfiniteScroll>
+
+      {/* </div> */}
+    </div>
   )
 }
 

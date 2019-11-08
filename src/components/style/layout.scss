@@ -23,6 +23,9 @@ a {
 }
 
 main{
+  height: auto;
+  min-height: 100%;
+
   @include media(laptop){
     max-width: 90vw;
     margin: 0  auto;

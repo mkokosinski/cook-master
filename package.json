@@ -7,7 +7,10 @@
   "dependencies": {
     "@animated-burgers/burger": "^1.1.2",
     "@animated-burgers/burger-rotate": "^1.1.2",
+    "@martinreiche/gatsby-firestore": "^1.0.1",
     "@reach/router": "^1.2.1",
+    "antd": "^3.25.0",
+    "auto-breadcrumb": "^1.3.0",
     "classnames": "^2.2.6",
     "firebase": "^6.3.5",
     "firebase-admin": "^8.3.0",
@@ -36,6 +39,7 @@
     "react-helmet": "^5.2.1",
     "react-infinite-scroller": "^1.2.4",
     "react-loaders": "^3.0.1",
+    "react-router-dom": "^5.1.2",
     "sharp": "^0.23.1"
   },
   "devDependencies": {
