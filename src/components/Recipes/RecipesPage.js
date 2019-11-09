@@ -19,6 +19,7 @@ const Przepisy = ({ location }) => {
       allRecipe {
         edges {
           node {
+            id
             name
             childrenStep {
               desc

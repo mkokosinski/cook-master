@@ -26,9 +26,9 @@ const MobileMenu = ({ burgerIsOpen, toggleBurger }) => {
         onClick={toggleBurger}
         className="nav-btn"
         activeClassName="nav-btn--active"
-        to="/"
+        to="/app/AddRecipe"
       >
-        Zaloguj
+        Dodaj przepis
       </Link>
       <div className="mobile-menu-bg" onClick={toggleBurger}></div>
     </div>

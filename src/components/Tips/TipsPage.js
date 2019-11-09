@@ -6,7 +6,6 @@ import Card, { CardType } from "../Cards/Card"
 import SearchInput from "../SearchInput/SearchInput"
 import InfiniteScroll from "react-infinite-scroller"
 import Loader from "../Loader/BallLoader"
-import Img from "../../images/cat.jpg"
 import BreadCrumb from "../BreadCrumb/BreadCrumb"
 
 const tipsPageCardsSkeleton = [CardType.twoSide, CardType.min, CardType.min]
@@ -22,11 +21,10 @@ const Porady = ({ location }) => {
         totalCount
         edges {
           node {
-            Desc
-            Img
-            Title
+            desc
+            img
+            name
             id
-            Category__NODE
           }
         }
       }
@@ -73,11 +71,11 @@ const Porady = ({ location }) => {
         {cards.map(({ node: tip }, index) => (
           <Card
             type={getCardType(index)}
-            img={Img}
-            content={tip.Desc}
-            title={tip.Title}
+            img={tip.img}
+            content={tip.desc}
+            title={tip.name}
             key={index + tip.id}
-            link={"/Tips/" + tip.Title}
+            link={"/Tips/" + tip.name}
           />
         ))}
       </InfiniteScroll>

@@ -5,6 +5,7 @@ import Tips from './../components/Tips/TipsPage';
 import PrivateRoute from "../components/privateRoute";
 import Recipes from './../components/Recipes/RecipesPage';
 import { Router } from "@reach/router"
+import { AddRecipeForm } from './../components/Forms/AddRecipeForm';
 
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
         <Home exact path='app/' />
         <Tips exact path='app/Tips' />
         <PrivateRoute exact path='app/Recipes' component={Recipes} />
+        <PrivateRoute exact path='app/AddRecipe' component={AddRecipeForm} />
       </Router>
     </Layout>
   )

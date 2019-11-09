@@ -59,8 +59,4 @@ const Card = ({ title, img, content, link }) => {
   )
 }
 
-Card.propTypes = {
-  type: PropTypes.oneOf(Object.keys(CardType)).isRequired,
-}
-
 export default Card

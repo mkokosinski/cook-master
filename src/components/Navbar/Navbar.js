@@ -41,7 +41,7 @@ const Navbar = ({ location }) => {
           </Link>
           {
             isLoggedIn() ?
-            <Link className="nav-btn--SignIn" to='/app/' >Profil</Link> 
+            <Link className="nav-btn--SignIn" to='/app//AddRecipe' >Dodaj przepis</Link> 
             :
             <Link className="nav-btn--SignIn" to='/app/' >Zaloguj</Link> 
           }

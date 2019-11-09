@@ -15,7 +15,7 @@ const SearchInput = () => {
       allTip {
         edges {
           node {
-            label: Title
+            label: name
           }
         }
       }

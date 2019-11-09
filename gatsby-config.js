@@ -58,23 +58,11 @@ module.exports = {
         credential: require("./firebase.json"),
         types: [
           {
-            type: "Category",
-            collection: "Categories",
-            map: doc => {
-              return {
-                Name: doc.Name,
-              }
-            },
-          },
-          {
             type: "Tip",
             collection: "Tips",
             map: doc => {
               return {
-                Category__NODE: doc.Category.id,
-                Desc: doc.Desc,
-                Img: doc.Img,
-                Title: doc.Title,
+                ...doc
               }
             },
           },

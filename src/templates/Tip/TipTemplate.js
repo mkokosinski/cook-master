@@ -10,16 +10,15 @@ import styles from "./TipTemplate.module.scss"
 export const query = graphql`
   query($id: String) {
     tip(id: { eq: $id }) {
-      Category__NODE
-      Desc
-      Img
-      Title
+      desc
+      img
+      name
       id
     }
   }
 `
 const Tip = ({ data, location }) => {
-  const { Title, Img, Desc } = data.tip
+  const { name, img, desc } = data.tip
   return (
     <Layout>
     <div className={styles.container}>
@@ -27,15 +26,15 @@ const Tip = ({ data, location }) => {
         <Breadcrumb pathname={location.pathname} />
       </div>
       <div className={styles.cardContainer}>
-        <Header imgSrc={Img} altImg={`Image: ` + Img} title={Title} />
+        <Header imgSrc={img} altImg={`Image: ` + img} title={name} />
         <div className={styles.content}>
           <div className={styles.metaData}>
             <div>Dodano: 19.10.2029</div>
             <div>Wyświetlenia: 48</div>
           </div>
           <article className={styles.desc}>
-            <h3>{Title}</h3>
-            <p>{Desc}</p>
+            <h3>{name}</h3>
+            <p>{desc}</p>
           </article>
         </div>
       </div>
