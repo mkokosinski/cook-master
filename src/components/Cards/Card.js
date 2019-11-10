@@ -19,6 +19,9 @@ const Card = ({ type, title, img, content, link }) => {
   const onMouseLeave = () => {
     setIsMouseOver("")
   }
+
+  console.log(img);
+  
   return (
     <div
       className={`card ${type}-card`}

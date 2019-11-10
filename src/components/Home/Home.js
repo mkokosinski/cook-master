@@ -10,7 +10,7 @@ const dummyContent = `Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
 const Home = () => {
   const data = useStaticQuery(graphql`
     query {
-      file(relativePath: { eq: "bg-img.png" }) {
+      file(relativePath: { eq: "cat.jpg" }) {
         childImageSharp {
           fluid(quality: 100, maxWidth:1600, maxHeight:700, srcSetBreakpoints: [600]) {
             ...GatsbyImageSharpFluid
@@ -19,6 +19,8 @@ const Home = () => {
       }
     }
   `)
+console.log('data', data);
+
   return (
     <div className="home">
       <div className="home-bg">
@@ -33,14 +35,14 @@ const Home = () => {
       <div className="news">
         <JumboCard
           content={dummyContent}
-          img={`https://dummyimage.com/300x300.png`}
+          img={data.file}
           link="Test"
           title="Najnowsza porada"
           type={CardType.jumbo}
         />
         <JumboCard
           content={dummyContent}
-          img={`https://dummyimage.com/300x300.png`}
+          img={data.file}
           link="Test"
           title="Najnowszy przepis"
           type={CardType.min}
