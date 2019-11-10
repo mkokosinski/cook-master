@@ -1,7 +1,6 @@
 import React from "react"
 import Layout from "../../components/layout"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
 import Breadcrumb from '../../components/BreadCrumb/BreadCrumb'
 import Header from "./TipHeader"
 
@@ -11,14 +10,21 @@ export const query = graphql`
   query($id: String) {
     tip(id: { eq: $id }) {
       desc
-      img
       name
       id
+      image {
+        childImageSharp {
+          fluid(quality: 100, maxWidth:1600, maxHeight:700, srcSetBreakpoints: [600]) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
     }
   }
 `
 const Tip = ({ data, location }) => {
-  const { name, img, desc } = data.tip
+  const { name, desc, image } = data.tip
+  
   return (
     <Layout>
     <div className={styles.container}>
@@ -26,7 +32,7 @@ const Tip = ({ data, location }) => {
         <Breadcrumb pathname={location.pathname} />
       </div>
       <div className={styles.cardContainer}>
-        <Header imgSrc={img} altImg={`Image: ` + img} title={name} />
+        <Header img={image} title={name} />
         <div className={styles.content}>
           <div className={styles.metaData}>
             <div>Dodano: 19.10.2029</div>

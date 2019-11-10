@@ -27,6 +27,13 @@ const Przepisy = ({ location }) => {
               img
               step
             }
+            image {
+              childImageSharp {
+                fluid(quality: 100, maxWidth:1600, maxHeight:700, srcSetBreakpoints: [600]) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }
@@ -60,7 +67,7 @@ const Przepisy = ({ location }) => {
       >
         {cards.map(({ node: recipe }, index) => (
           <SimpleCard
-            img={recipe.img}
+            img={recipe.image}
             content={recipe.desc}
             title={recipe.name}
             key={index + recipe.id}

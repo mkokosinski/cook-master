@@ -1,11 +1,12 @@
-import React from 'react'
-import styles from './TipHeader.module.scss'
+import React from "react"
+import styles from "./TipHeader.module.scss"
+import Img from "gatsby-image"
 
-const Header = ({imgSrc, altImg, title}) =>(
-    <div className={styles.header}>
-      <img src={imgSrc} alt={altImg}/>
-      <h1>{title}</h1>
-    </div>
-  )
+const Header = ({ img, title }) => (
+  <div className={styles.header}>
+    <Img fluid={img.childImageSharp.fluid} />
+    <h1>{title}</h1>
+  </div>
+)
 
-  export default Header
+export default Header

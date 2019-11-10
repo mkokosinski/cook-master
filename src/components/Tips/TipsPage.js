@@ -22,7 +22,13 @@ const Porady = ({ location }) => {
         edges {
           node {
             desc
-            img
+            image {
+              childImageSharp {
+                fluid(quality: 100, maxWidth:1600, maxHeight:700, srcSetBreakpoints: [600]) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
             name
             id
           }
@@ -71,7 +77,7 @@ const Porady = ({ location }) => {
         {cards.map(({ node: tip }, index) => (
           <Card
             type={getCardType(index)}
-            img={tip.img}
+            img={tip.image}
             content={tip.desc}
             title={tip.name}
             key={index + tip.id}

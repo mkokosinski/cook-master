@@ -21,8 +21,6 @@ module.exports.createPages = async ({ graphql, actions }) => {
           node {
             id
             name
-            img
-            desc
           }
         }
       }
@@ -52,7 +50,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
       component: recipeTemplate,
       path: "/Recipe/" + edge.node.name,
       context: {
-        id: edge.node.id
+        id: edge.node.id,
       },
     })
   })
@@ -71,5 +69,33 @@ module.exports.onCreatePage = async ({ page, actions }) => {
     page.matchPath = "/app/*"
     // Update the page.
     createPage(page)
+  }
+}
+
+// in our on-create-node.js
+module.exports.onCreateNode = async ({ node, actions, store, cache }) => {
+  // if the node is not DogImage, we don't wanna do anything
+  const { type } = node.internal
+  if (type === "Tip" || type === "Recipe") {
+    console.log('##############################');
+    console.log(node);
+    console.log('##############################');
+    
+    const { createNode } = actions
+    // download image and create a File node
+    // with gatsby-transformer-sharp and gatsby-plugin-sharp
+    // that node will become an ImageSharp
+    const fileNode = await createRemoteFileNode({
+      url: node.img,
+      store,
+      cache,
+      createNode,
+      createNodeId: id => `tip-image-sharp-${id}`,
+    })
+    if (fileNode) {
+      // link File node to DogImage node
+      // at field image
+      node.image___NODE = fileNode.id
+    }
   }
 }

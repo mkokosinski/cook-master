@@ -1,7 +1,6 @@
 import React, { useState } from "react"
-import PropTypes from "prop-types"
 import styles from "./SimpleCard.module.scss"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import {Link } from "gatsby"
 import Img from "gatsby-image"
 
 export const CardType = {
@@ -11,28 +10,6 @@ export const CardType = {
 }
 
 const Card = ({ title, img, content, link }) => {
-  const data = useStaticQuery(graphql`
-    query {
-      file(relativePath: { eq: "cat.jpg" }) {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-  `)
-  // const data = useStaticQuery(graphql`
-  //     query {
-  //       placeholderImage: file(relativePath: { eq: "" }) {
-  //         childImageSharp {
-  //           fluid(maxWidth: 300) {
-  //             ...GatsbyImageSharpfluid
-  //           }
-  //         }
-  //       }
-  //     }
-  //   `)
 
   const [isMouseOver, setIsMouseOver] = useState("")
   const onMouseOver = () => {
@@ -50,7 +27,7 @@ const Card = ({ title, img, content, link }) => {
         <h2 className={styles.simpleCardTitle}> {title}</h2>
         <div className={`${styles.simpleCardImg} ${isMouseOver}`}>
           <Img
-            fluid={data.file.childImageSharp.fluid}
+            fluid={img.childImageSharp.fluid}
             imgStyle={{ objectFit: "cover" }}
             style={{ height: "100%" }}
           />
