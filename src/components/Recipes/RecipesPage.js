@@ -71,7 +71,7 @@ const Przepisy = ({ location }) => {
             content={recipe.desc}
             title={recipe.name}
             key={index + recipe.id}
-            link={"/Recipe/" + recipe.name}
+            link={"/Recipes/" + recipe.name}
           />
         ))}
       </InfiniteScroll>
