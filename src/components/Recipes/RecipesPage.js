@@ -62,7 +62,7 @@ const Przepisy = ({ location }) => {
         loadMore={loadMore}
         hasMore={hasMore}
         initialLoad={true}
-        threshold={200}
+        threshold={400}
         loader={<Loader />}
       >
         {cards.map(({ node: recipe }, index) => (

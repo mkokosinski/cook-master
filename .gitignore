@@ -73,3 +73,6 @@ yarn-error.log
 
 .env.development
 .vscode/
+node_modules/
+firebase.json
+.gitignore

@@ -14,7 +14,7 @@
     grid-gap: 32px;
 
     @include media(mobile) {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       margin-top: 20px;
     }
 
@@ -28,50 +28,8 @@
       grid-template-rows: 300px 300px 1fr;
     }
 
-    .card {
-      @include media(mobile) {
-        grid-column: span 2;
-
-        &:first-child {
-          max-height: 400px;
-          margin-bottom: 30px;
-        }
-
-        &:nth-child(n+2) {
-          grid-column: span 1;
-          height: 200px;
-          margin-bottom: 30px;
-        }
-      }
-
-      @include media(phablet) {
-        grid-column: span 2;
-
-        &:nth-child(n+2) {
-          grid-column: span 1;
-          height: 200px;
-          margin-bottom: 30px;
-        }
-      }
-
-      @include media(laptop) {
-        grid-column: span 3;
-
-        &:first-child {
-          grid-column: span 7;
-          grid-row: span 2;
-        }
-
-        &:nth-child(n+2) {
-          grid-column: span 2;
-          height: 100%;
-        }
-
-        &:nth-child(n+4) {
-          grid-column: span 3;
-          max-height: 300px;
-        }
-      }
+    &-item{
+      height: 300px;
     }
   }
 }

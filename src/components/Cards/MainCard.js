@@ -20,12 +20,15 @@ const Card = ({ type, title, img, content, link }) => {
     setIsMouseOver("")
   }
 
+  console.log(img)
+
   return (
     <div
       className={`card ${type}-card`}
       onMouseOver={onMouseOver}
       onMouseLeave={onMouseLeave}
     >
+      <h2 className={`${type}-card-title`}> {title}</h2>
       <div className={`${type}-card-img ${isMouseOver}`}>
         <Img
           fluid={img.childImageSharp.fluid}
@@ -33,14 +36,14 @@ const Card = ({ type, title, img, content, link }) => {
           style={{ height: "100%" }}
         />
       </div>
-      <h2 className={`${type}-card-title`}> {title}</h2>
-      <div className={`${type}-card-content ${isMouseOver}`}>
-        {content}
-      </div>
-      <button className={`button is-primary ${isMouseOver}`}>
-        <Link to={`${link}`}> Więcej...</Link>
-      </button>
-    </div>
+      <div className={`${type}-card-content ${isMouseOver}`}>{content}</div>
+      <Link to={`${link}`}>
+        <button className={`btn ${type}-card-btn  ${isMouseOver}`}>
+          {" "}
+          Więcej...
+        </button>
+      </Link>
+    </div> 
   )
 }
 

@@ -8,7 +8,7 @@ import InfiniteScroll from "react-infinite-scroller"
 import Loader from "../Loader/BallLoader"
 import BreadCrumb from "../BreadCrumb/BreadCrumb"
 
-const tipsPageCardsSkeleton = [CardType.twoSide, CardType.min, CardType.min]
+const tipsPageCardsSkeleton = [CardType.twoSide, CardType.twoSide, CardType.twoSide]
 const Porady = ({ location }) => {
   const [cards, setCards] = useState([])
   const [limit, setLimit] = useState(5)
@@ -24,7 +24,12 @@ const Porady = ({ location }) => {
             desc
             image {
               childImageSharp {
-                fluid(quality: 100, maxWidth:1600, maxHeight:700, srcSetBreakpoints: [600]) {
+                fluid(
+                  quality: 100
+                  maxWidth: 1600
+                  maxHeight: 700
+                  srcSetBreakpoints: [600]
+                ) {
                   ...GatsbyImageSharpFluid
                 }
               }
@@ -71,18 +76,20 @@ const Porady = ({ location }) => {
         loadMore={loadMore}
         hasMore={hasMore}
         initialLoad={true}
-        threshold={200}
+        threshold={400}
         loader={<Loader />}
       >
         {cards.map(({ node: tip }, index) => (
-          <Card
-            type={getCardType(index)}
-            img={tip.image}
-            content={tip.desc}
-            title={tip.name}
-            key={index + tip.id}
-            link={"/Tips/" + tip.name}
-          />
+          <div className="grid-item">
+            <Card
+              type={getCardType(index)}
+              img={tip.image}
+              content={tip.desc}
+              title={tip.name}
+              key={index + tip.id}
+              link={"/Tips/" + tip.name}
+            />
+          </div>
         ))}
       </InfiniteScroll>
 

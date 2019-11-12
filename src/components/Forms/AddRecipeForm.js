@@ -1,6 +1,5 @@
 import React from "react"
 import { Formik, useFormik } from "formik"
-import "./bulma.sass"
 import "@fortawesome/fontawesome-free/css/all.min.css"
 import { uploadImg, addRecipe } from "../../services/api"
 
