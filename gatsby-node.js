@@ -76,7 +76,7 @@ module.exports.onCreatePage = async ({ page, actions }) => {
 module.exports.onCreateNode = async ({ node, actions, store, cache }) => {
   // if the node is not DogImage, we don't wanna do anything
   const { type } = node.internal
-  if (type === "Tip" || type === "Recipe") {
+  if (type === "Tip" || type === "Recipe" || type === "Step") {
     console.log('##############################');
     console.log(node);
     console.log('##############################');
@@ -90,7 +90,7 @@ module.exports.onCreateNode = async ({ node, actions, store, cache }) => {
       store,
       cache,
       createNode,
-      createNodeId: id => `tip-image-sharp-${id}`,
+      createNodeId: id => `image-sharp-${id}`,
     })
     if (fileNode) {
       // link File node to DogImage node

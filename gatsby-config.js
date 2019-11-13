@@ -32,8 +32,8 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    'gatsby-plugin-sharp', 
-    'gatsby-transformer-sharp',
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
     `gatsby-transformer-remark`,
     {
       resolve: `gatsby-plugin-manifest`,
@@ -62,7 +62,7 @@ module.exports = {
             collection: "Tips",
             map: doc => {
               return {
-                ...doc
+                ...doc,
               }
             },
           },
@@ -70,15 +70,24 @@ module.exports = {
             type: "Recipe",
             collection: "Recipes",
             map: doc => ({
-              ...doc
+              ...doc,
             }),
-            subCollections:[{
-              type: `Step`,
+            subCollections: [
+              {
+                type: `Step`,
                 collection: `steps`,
                 map: doc => ({
-                    ...doc
-                  })
-            }]
+                  ...doc,
+                }),
+              },
+              {
+                type: `Ingredient`,
+                collection: `ingredients`,
+                map: doc => ({
+                  ...doc,
+                }),
+              },
+            ],
           },
         ],
       },

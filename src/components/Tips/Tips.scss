@@ -1,35 +1,83 @@
 @import "../style//mobileBreakPoints.scss";
-
 .tips-page {
   padding: 16px;
 
   .search-input {
     @include media(desktop) {
-      margin: 20px 300px 0;
+      margin: 20px 100px 0;
     }
   }
 
   .grid {
     display: grid;
     grid-gap: 32px;
+    grid-template-columns: repeat(12, 1fr);
 
     @include media(mobile) {
-      grid-template-columns: 1fr;
       margin-top: 20px;
     }
 
     @include media(phablet) {
-      grid-template-columns: 1fr 1fr;
       margin-top: 40px;
     }
 
     @include media(laptop) {
-      grid-template-columns: repeat(9, 1fr);
       grid-template-rows: 300px 300px 1fr;
     }
 
-    &-item{
-      height: 300px;
+    &-item {
+      border-radius: 10px;
+      box-shadow: 0 2px 10px -3px rgba(0, 0, 0, 0.5);
+      grid-column: span 12;
+      height: auto;
+      overflow: hidden;
+      &:first-child {
+        font-size: 1.2rem;
+        height: auto;
+        margin: 30px 0;
+      }
+      &:nth-child(n + 2) {
+        font-size: 1.1rem;
+      }
+
+      @include media(phablet) {
+        border-radius: 0px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 1px 5px -3px rgba(0, 0, 0, 0.7);
+
+        &:first-child {
+          font-size: 1.3rem;
+          grid-column: span 12;
+          grid-row: span 2;
+          margin: 0;
+        }
+        &:nth-child(n + 2) {
+          font-size: 1.2rem;
+          grid-column: span 6;
+          height: 200px;
+        }
+        &:nth-child(n + 4) {
+          font-size: 1.1rem;
+          grid-column: span 6;
+        }
+      }
+
+      @include media(desktop) {
+        &:first-child {
+          grid-column: span 8;
+          grid-row: span 2;
+        }
+        &:nth-child(n + 2) {
+          font-size: 1.2rem;
+          grid-column: span 4;
+          height: 100%;
+        }
+        &:nth-child(n + 4) {
+          font-size: 1.1rem;
+          grid-column: span 3;
+          height: 300px;
+        }
+      }
     }
   }
 }

@@ -1,24 +1,69 @@
 .container {
-    margin: 10px auto 20px;
-    width: 90vw;
-    position: relative;
-  
-    .cardContainer {
-      background-color: white;
-      box-shadow: 0 2px 4px -3px rgba(0, 0, 0, 0.5);
-    }
-    .content {
-      padding: 20px;
-  
-      .metaData {
-        display: flex;
-        justify-content: space-between;
+  margin: 10px auto 20px;
+  width: 90vw;
+  position: relative;
+
+  .cardContainer {
+    background-color: white;
+    box-shadow: 0 2px 4px -3px rgba(0, 0, 0, 0.5);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    column-gap: 20px;
+    row-gap: 20px;
+    padding: 10px;
+
+    .left {
+      grid-column: 1/2;
+
+      .imgContainer {
         width: 100%;
+        padding-top: 100%; /* 1:1 Aspect Ratio */
+        position: relative;
+        .img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+        }
       }
-  
-      .desc {
-        padding: 20px;
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        width: 1px;
+        background: #000;
+        height: 100%;
+        top: 0;
+        right: -10px;
       }
+
+      .ingredients {
+        .listOfIndegredients {
+        }
+        .buttons {
+        }
+      }
+    }
+
+    .steps {
+      grid-column: 2/3;
+      padding: 20px;
+      .title {
+      }
+      
     }
   }
-  
+
+  .metaData {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .desc {
+    padding: 20px;
+  }
+}

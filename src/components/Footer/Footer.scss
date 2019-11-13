@@ -1,3 +1,4 @@
+@import "../style/basics.scss";
 .footer {
     background: #424d53;
     color: #81929a;
@@ -8,5 +9,5 @@
 
     height: 300px;
 
-    font-size: 3em;
+    font-size: $font-size-huge;
 }

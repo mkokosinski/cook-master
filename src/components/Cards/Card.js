@@ -37,7 +37,7 @@ const Card = ({ type, title, img, content, link }) => {
       <div className={`${type}-card-content ${isMouseOver}`}>
         {content}
       </div>
-      <button className={`button is-primary ${isMouseOver}`}>
+      <button className={`button ${isMouseOver}`}>
         <Link to={`${link}`}> Więcej...</Link>
       </button>
     </div>

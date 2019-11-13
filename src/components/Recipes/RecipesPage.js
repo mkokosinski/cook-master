@@ -29,7 +29,12 @@ const Przepisy = ({ location }) => {
             }
             image {
               childImageSharp {
-                fluid(quality: 100, maxWidth:1600, maxHeight:700, srcSetBreakpoints: [600]) {
+                fluid(
+                  quality: 100
+                  maxWidth: 1600
+                  maxHeight: 700
+                  srcSetBreakpoints: [600]
+                ) {
                   ...GatsbyImageSharpFluid
                 }
               }
@@ -56,7 +61,9 @@ const Przepisy = ({ location }) => {
   return (
     <div className={styles.recipePage}>
       <BreadCrumb pathname={location.pathname} />
-      <SearchInput />
+      <div className={styles.searchInput}>
+        <SearchInput />
+      </div>
       <InfiniteScroll
         className={styles.grid}
         loadMore={loadMore}
@@ -66,13 +73,15 @@ const Przepisy = ({ location }) => {
         loader={<Loader />}
       >
         {cards.map(({ node: recipe }, index) => (
-          <SimpleCard
-            img={recipe.image}
-            content={recipe.desc}
-            title={recipe.name}
-            key={index + recipe.id}
-            link={"/Recipes/" + recipe.name}
-          />
+          <div className={styles.gridItem}>
+            <SimpleCard
+              img={recipe.image}
+              content={recipe.desc}
+              title={recipe.name}
+              key={index + recipe.id}
+              link={"/Recipes/" + recipe.name}
+            />
+          </div>
         ))}
       </InfiniteScroll>
 

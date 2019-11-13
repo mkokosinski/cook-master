@@ -1,4 +1,11 @@
+@charset "utf-8";
+@import "bulma/sass/utilities/_all";
+@import "bulma/sass/elements/_all";
+@import "bulma/sass/form/_all";
 @import './mobileBreakPoints.scss';
+@import './basics.scss';
+
+
 html, body {
   background: #f8f8f8;
   margin: 0;

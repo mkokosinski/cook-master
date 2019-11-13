@@ -6,7 +6,6 @@ import PrivateRoute from "../components/privateRoute";
 import Recipes from './../components/Recipes/RecipesPage';
 import { Router } from "@reach/router"
 import { AddRecipeForm } from './../components/Forms/AddRecipeForm';
-import "../components/style/myBulma.scss"
 
 
 

@@ -23,6 +23,7 @@ const Card = ({ title, img, content, link }) => {
       className={`card ${styles.simpleCard}`}
       onMouseOver={onMouseOver}
       onMouseLeave={onMouseLeave}
+      title={title}
     >
         <h2 className={styles.simpleCardTitle}> {title}</h2>
         <div className={`${styles.simpleCardImg} ${isMouseOver}`}>

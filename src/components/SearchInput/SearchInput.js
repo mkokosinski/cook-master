@@ -10,6 +10,7 @@ const SearchInput = () => {
   const [value, setValue] = useState("")
   const [prp, setPrp] = useState([])
   const [suggestions, setSuggestions] = useState([])
+  const [placeholderValue, setPlaceholderValue] = useState("")
   const query = useStaticQuery(graphql`
     {
       allTip {
@@ -30,8 +31,27 @@ const SearchInput = () => {
   `)
 
   useEffect(() => {
+    window.addEventListener("resize", onWindowResize);
+    adjustPlaceholderToWidth();
     getAutoCompleteList()
+
+    return () =>{
+      window.removeEventListener("resize", onWindowResize);
+    }
   }, [])
+
+  const onWindowResize = e => {
+    adjustPlaceholderToWidth()
+  }
+
+  const adjustPlaceholderToWidth = () => {
+    const docWidth = document.documentElement.clientWidth
+    if (docWidth < 380) {
+      setPlaceholderValue("Czego szukasz?")
+    } else {
+      setPlaceholderValue("Szukasz profesjonalnej porady czy przepisu?")
+    }
+  }
 
   const getAutoCompleteList = () => {
     const tips = query.allTip.edges.map(egde => ({
@@ -57,8 +77,8 @@ const SearchInput = () => {
   )
 
   const onChange = (event, { newValue }) => {
-    console.log(newValue);
-    
+    console.log(newValue)
+
     setValue(newValue)
   }
 
@@ -74,7 +94,7 @@ const SearchInput = () => {
   }
 
   const inputProps = {
-    placeholder: "Szukasz profesjonalnej porady czy przepisu?",
+    placeholder: placeholderValue,
     value,
     onChange,
   }
