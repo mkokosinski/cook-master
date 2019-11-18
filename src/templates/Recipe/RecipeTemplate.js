@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import Layout from "../../components/layout"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
@@ -7,6 +7,11 @@ import sort from "fast-sort"
 
 import styles from "./RecipeTemplate.module.scss"
 import { Step } from "./Step"
+import Separator, {
+  separatorDirection,
+} from "../../components/Separator/Separator"
+import CheckBox from "../../components/CheckBox/CheckBox"
+import { MobileButton } from "./MobileButtons"
 
 export const query = graphql`
   query($id: String!) {
@@ -52,6 +57,19 @@ export const query = graphql`
 `
 
 const Recipe = ({ data, location }) => {
+  const [PageSize, setPageSize] = useState("")
+  useEffect(() => {
+    window.addEventListener("resize", getPageSize)
+    getPageSize()
+    return () => {
+      window.removeEventListener("resize", getPageSize)
+    }
+  }, [])
+
+  const getPageSize = e => {
+    setPageSize(window.innerWidth)
+  }
+
   const {
     name,
     image,
@@ -66,9 +84,11 @@ const Recipe = ({ data, location }) => {
         <div className={styles.breadcrumbs}>
           <Breadcrumb pathname={location.pathname} />
         </div>
+
         <div className={styles.cardContainer}>
           <div className={styles.grid}>
             <div className={styles.left}>
+              <h1 className={styles.title}>{name}</h1>
               <div className={styles.imgContainer}>
                 <div className={styles.img}>
                   <Img
@@ -78,33 +98,61 @@ const Recipe = ({ data, location }) => {
                   />
                 </div>
               </div>
+
+              <Separator
+                direction={separatorDirection.horizontal}
+                className={styles.separatorH}
+              />
+
               <div className={styles.ingredients}>
+                <h2 className={styles.title}>Składniki</h2>
                 <div className={styles.listOfIndegredients}>
-                  {ingredients.map(ingredient => (
-                    <ul>
+                  <ul>
+                    {ingredients.map(ingredient => (
                       <li>
-                        {ingredient.name} {ingredient.quantity}{" "}
-                        {ingredient.unit}
+                        <div className={styles.listItem}>
+                          <CheckBox>
+                            {`${ingredient.name} ${ingredient.quantity} ${ingredient.unit}`}
+                          </CheckBox>
+                        </div>
                       </li>
-                    </ul>
-                  ))}
+                    ))}
+                  </ul>
                 </div>
+
+                <Separator
+                  direction={separatorDirection.vertical}
+                  className={styles.separatorV}
+                />
+
                 <div className={styles.buttons}>
-                  <button className="button is-primary">Zapisz PDF</button>
-                  <button className="button is-primary">Drukuj</button>
-                  <button className="button is-primary">Listonic</button>
-                  <button className="button is-primary">E-mail</button>
+                  <button className="button">Zapisz PDF</button>
+                  <button className="button">Drukuj</button>
+                  <button className="button">Listonic</button>
+                  <button className="button">E-mail</button>
                 </div>
               </div>
             </div>
 
+            <Separator
+              direction={separatorDirection.vertical}
+              className={`${styles.separatorV} ${styles.ml30}`}
+            />
+
             <div className={styles.steps}>
-              <div className={styles.title}>{name}</div>
+              <h2 className={styles.title}>Przygotowanie</h2>
               {steps.map(step => (
                 <Step className={styles.step} {...step} />
               ))}
             </div>
           </div>
+
+          {PageSize <= 600 && (
+            <div>
+              <MobileButton>t1 </MobileButton>
+              <MobileButton>t2 </MobileButton>
+            </div>
+          )}
         </div>
       </div>
     </Layout>

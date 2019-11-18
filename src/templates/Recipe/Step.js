@@ -5,8 +5,12 @@ import Img from "gatsby-image"
 export const Step = ({ image, desc, step }) => {
   return (
     <div className={styles.step}>
-      <div className={styles.title}>{`Krok ${step}.`}</div>
-      <div className={styles.desc}>{desc}</div>
+
+      <div className={styles.content}>
+        <h2 className={styles.title}>{`Krok ${step}.`}</h2>
+        <div className={styles.desc}>{desc}</div>
+      </div>
+
       <div className={styles.imgContainer}>
         <div className={styles.img}>
           <Img

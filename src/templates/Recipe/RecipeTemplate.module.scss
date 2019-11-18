@@ -1,59 +1,129 @@
+@import "../../components/style/mobileBreakPoints.scss";
+
+  $spaces: 20px;
+
 .container {
-  margin: 10px auto 20px;
-  width: 90vw;
+  margin: 5px auto $spaces;
+  width: 96vw;
   position: relative;
+  @include media(phablet) {
+    margin: 10px auto $spaces;
+    width: 90vw;
+  }
 
   .cardContainer {
     background-color: white;
     box-shadow: 0 2px 4px -3px rgba(0, 0, 0, 0.5);
   }
   .grid {
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-    column-gap: 20px;
-    row-gap: 20px;
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: $spaces;
+    position: relative;
+
+    @include media(tablet) {
+      display: grid;
+      grid-template-columns: 45% auto auto;
+    }
+    @include media(laptop) {
+    }
 
     .left {
       grid-column: 1/2;
 
+      @include media(phablet) {
+      }
+
+      @include media(laptop) {
+      }
+
+
+      .title {
+        color: rgb(70, 70, 70);
+        margin: 0 10px;
+        padding: 0;
+      }
+
       .imgContainer {
-        width: 100%;
-        padding-top: 100%; /* 1:1 Aspect Ratio */
+        height: 160px;
+        width: calc(100% + #{$spaces}*2);
         position: relative;
+        top: -$spaces;
+        left: -$spaces;
+
+        @include media(tablet) {
+          left: 0;
+          padding-top: 100%; /* 1:1 Aspect Ratio */
+          top: 0;
+          width: 100%;
+        }
         .img {
           position: absolute;
           top: 0;
           left: 0;
           bottom: 0;
           right: 0;
+          @include media(tablet) {
+            padding: 10px;
+          }
         }
-      }
-      position: relative;
-      &::after {
-        content: "";
-        position: absolute;
-        width: 1px;
-        background: #000;
-        height: 100%;
-        top: 0;
-        right: -10px;
       }
 
       .ingredients {
+        display: flex;
+        flex-direction: column;
+
+        @include media(tablet) {
+          display: grid;
+          grid-template-columns: 1fr auto 1fr;
+        }
+
         .listOfIndegredients {
+          grid-column: 1/2;
+          padding: 10px;
+
+          ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            li {
+              .listItem {
+              }
+            }
+          }
         }
         .buttons {
+          grid-column: 3/4;
+          padding: 10px;
+
+          button {
+            background: linear-gradient(135deg, #36d61d 0%, #0faf35 100%);
+            color: white;
+            margin: 10px 0;
+            transition: filter 0.1s;
+            width: 100%;
+
+            &:hover {
+              filter: brightness(1.1);
+            }
+            &:active {
+              filter: brightness(0.95);
+            }
+          }
         }
       }
     }
 
     .steps {
-      grid-column: 2/3;
-      padding: 20px;
+      $stepsPadding: $spaces;
+      grid-column: 3/4;
+      padding: $spaces/4;
       .title {
+        color: rgb(70, 70, 70);
+        font-size: 1.6em;
+        margin: 0 10px;
+        padding: 0;
       }
-      
     }
   }
 
@@ -64,6 +134,21 @@
   }
 
   .desc {
-    padding: 20px;
+    padding: $spaces;
   }
+}
+
+.separatorH {
+  margin: $spaces 0;
+}
+.separatorV {
+  margin: 0 $spaces;
+  display: none;
+
+  @include media(tablet) {
+    display: block;
+  }
+}
+.ml30 {
+  margin-left: 30px;
 }
