@@ -1,0 +1,38 @@
+@import "../style/basics.scss";
+$color: rgb(220, 220, 220);
+.footer {
+  background: #27ae60;
+  color: $color;
+
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  height: auto;
+
+  font-size: $font-size-normal;
+  .img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
+  }
+  .text {
+    text-align: center;
+    padding: 10px;
+  }
+}
+
+.menu {
+    margin: 20px 0 40px;
+  .btn {
+    color: $color;
+    font-weight: bold;
+    &:not(:last-child)::after{
+        content: "|";
+        margin: 0 5px;
+    }
+  }
+}

@@ -14,7 +14,7 @@ import recipesIco from "../../images/recipe-book.svg"
 import MobileMenu from "./MobileMenu"
 import { isLoggedIn } from "../../services/auth"
 
-const Navbar = ({ location }) => {
+const Navbar = ({ location, items }) => {
   const [burgerIsOpen, setBurgerIsOpen] = useState(false)
   const [isScrolledDown, setIsScrolledDown] = useState(false)
 

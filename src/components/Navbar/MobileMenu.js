@@ -3,7 +3,8 @@ import { Link } from "gatsby"
 
 import "./MobileMenu.scss"
 
-const MobileMenu = ({ burgerIsOpen, toggleBurger }) => {
+
+const MobileMenu = ({ burgerIsOpen, toggleBurger, items }) => {
   return (
     <div className={`mobile-menu ${burgerIsOpen && "open"}`}>
       <Link
