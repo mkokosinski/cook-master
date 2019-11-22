@@ -21,7 +21,8 @@ const Card = ({ type, title, img, content, link }) => {
   }
 
   return (
-    <div
+    <Link
+      to={`${link}`}
       className={`card ${type}-card`}
       onMouseOver={onMouseOver}
       onMouseLeave={onMouseLeave}
@@ -34,13 +35,8 @@ const Card = ({ type, title, img, content, link }) => {
         />
       </div>
       <h2 className={`${type}-card-title`}> {title}</h2>
-      <div className={`${type}-card-content ${isMouseOver}`}>
-        {content}
-      </div>
-      <button className={`button ${isMouseOver}`}>
-        <Link to={`${link}`}> Więcej...</Link>
-      </button>
-    </div>
+      <div className={`${type}-card-content ${isMouseOver}`}>{content}</div>
+    </Link>
   )
 }
 

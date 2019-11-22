@@ -88,7 +88,7 @@ const Recipe = ({ data, location }) => {
         <div className={styles.cardContainer}>
           <div className={styles.grid}>
             <div className={styles.left}>
-              <h1 className={styles.title}>{name}</h1>
+              <h1 className={styles.titleImg}>{name}</h1>
               <div className={styles.imgContainer}>
                 <div className={styles.img}>
                   <Img

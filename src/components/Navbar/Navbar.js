@@ -26,10 +26,10 @@ const Navbar = ({ location }) => {
   }, [])
 
   const onScrollHandler = e => {
-    if (window.scrollY > 48) {
+    if (window.scrollY > 120) {
       setIsScrolledDown(true)
     } 
-    if (window.scrollY <= 2) {
+    if (window.scrollY <= 12) {
       setIsScrolledDown(false)
     } 
   }

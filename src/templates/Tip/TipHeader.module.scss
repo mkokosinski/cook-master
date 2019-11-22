@@ -1,22 +1,31 @@
-.header{
-    position: relative;
-    img{
-        height: 300px;
-        object-fit: cover;
-        object-position: 0% 0%;
-        width: 100%;
-    }
+@import "../../components/style/basics.scss";
+.header {
+  position: relative;
+  img {
+    height: 300px;
+    object-fit: cover;
+    object-position: 0% 0%;
+    width: 100%;
+  }
 
-    h1{
-        background: rgba(0, 0, 0, 0.5);
-        background: linear-gradient(5deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%);
-        bottom: 0;
-        color: white;
-        font-size: 4rem;
-        left: 0;
-        margin: 0;
-        padding: 15px 25px;
-        position: absolute;
-        width: 100%;
-    }
+  h1 {
+    background: rgba(0, 0, 0, 0.5);
+    background: linear-gradient(
+      5deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0) 60%
+    );
+    bottom: 0;
+    color: white;
+    font-size: 3em;
+    left: 0;
+    padding: 10px 16px;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    @include media(tablet) {
+      font-size: 4em;
+    padding: 15px 25px;
+}
+  }
 }

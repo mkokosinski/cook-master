@@ -1,6 +1,6 @@
 :global {
   .ant-breadcrumb {
-    margin: 5px 0 10px;
+    margin-top: 15px;
     span:last-child {
       .ant-breadcrumb-separator {
         display: none;
@@ -8,12 +8,16 @@
     }
   }
 }
-
+$margin: 2px;
 .breadcrumb > span:not(:last-child) {
   .breadcrumbItem {
+    margin-right: $margin;
     transition: color 150ms;
     &:hover {
       color: rgba(0, 0, 0, 0.5);
     }
   }
+}
+.breadcrumb > span:not(:first-child) {
+  .breadcrumbItem {margin-left: $margin;}
 }

@@ -1,3 +1,4 @@
+@import "../../components/style/basics.scss";
 .container {
   margin: 10px auto 20px;
   width: 90vw;
@@ -6,10 +7,18 @@
   .cardContainer {
     background-color: white;
     box-shadow: 0 2px 4px -3px rgba(0, 0, 0, 0.5);
+    font-size: 0.9rem;
+    margin:12px 0 48px;
+
+    @include media(tablet) {
+      margin:12px 0 80px;
+    }
   }
   .content {
-    padding: 20px;
-
+      padding: 10px;
+      @include media(tablet) {
+      padding: 20px;
+    }
     .metaData {
       display: flex;
       justify-content: space-between;
@@ -17,7 +26,16 @@
     }
 
     .desc {
-      padding: 20px;
+      font-size: $font-size-normal;
+      padding: 10px;
+      @include media(tablet) {
+        padding: 20px;
+      }
+      h3{
+        font-size: 1.5em;
+        margin: 10px 0 0;
+        padding: 0;
+      }
     }
   }
 }

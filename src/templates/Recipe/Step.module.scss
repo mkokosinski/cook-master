@@ -1,10 +1,15 @@
+@import "../../components/style/basics.scss";
 .step {
   border: 1px solid rgba(0, 0, 0, 0.5);
-  display: grid;
-  grid-template-columns: 5fr 2fr;
-
+  display: flex;
+  margin: 10px -16px 20px;
   padding: 5px;
-  margin: 10px 10px 20px;
+  
+  @include media(tablet){
+    display: grid;
+    grid-template-columns: 5fr 2fr;
+    margin: 10px 10px 20px;
+  }
   .title {
     font-size: 1.2em;
     grid-column: 1/2;
@@ -18,11 +23,15 @@
     padding: 0px 15px 10px;
   }
   .imgContainer {
+    display: none;
     grid-row: 1/2;
     grid-column: 2/3;
     width: 100%;
     padding-top: 100%; /* 1:1 Aspect Ratio */
     position: relative;
+    @include media(tablet){
+      display: block;
+    }
     .img {
       position: absolute;
       top: 0px;

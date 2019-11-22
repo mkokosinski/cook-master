@@ -1,6 +1,6 @@
-@import "../../components/style/mobileBreakPoints.scss";
+@import "../../components/style/basics.scss";
 
-  $spaces: 20px;
+$spaces: 20px;
 
 .container {
   margin: 5px auto $spaces;
@@ -14,6 +14,10 @@
   .cardContainer {
     background-color: white;
     box-shadow: 0 2px 4px -3px rgba(0, 0, 0, 0.5);
+    margin:12px 0 30px;
+    @include media(tablet) {
+      margin:12px 0 80px;
+    }
   }
   .grid {
     display: flex;
@@ -37,16 +41,43 @@
       @include media(laptop) {
       }
 
-
-      .title {
-        color: rgb(70, 70, 70);
+      %title-shared {
+        font-size: $font-size-xlarge;
         margin: 0 10px;
         padding: 0;
       }
 
+      .titleImg {
+        @extend %title-shared;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.7) 0%,
+          rgba(0, 0, 0, 0.5) 60%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        color: white;
+        position: absolute;
+        padding: 16px 10px;
+        top: 0;
+        left: 0;
+        right: -$spaces/2;
+        z-index: 1;
+
+        @include media(tablet) {
+          background:none;
+          color: rgb(70, 70, 70);
+          position: relative;
+        }
+      }
+
+      .title {
+        @extend %title-shared;
+        color: rgb(70, 70, 70);
+      }
+
       .imgContainer {
         height: 160px;
-        width: calc(100% + #{$spaces}*2);
+        width: calc(100% + #{$spaces}* 2);
         position: relative;
         top: -$spaces;
         left: -$spaces;
