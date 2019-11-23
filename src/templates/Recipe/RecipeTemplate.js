@@ -103,7 +103,7 @@ const Recipe = ({ data, location }) => {
                 direction={separatorDirection.horizontal}
                 className={styles.separatorH}
               />
-
+{/* TODO Add number of servings */}
               <div className={styles.ingredients}>
                 <h2 className={styles.title}>Składniki</h2>
                 <div className={styles.listOfIndegredients}>
