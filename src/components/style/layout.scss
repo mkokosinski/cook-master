@@ -32,9 +32,8 @@ a {
 main{
   height: auto;
   min-height: 100%;
-
+z-index: -1;
   @include media(laptop){
-    max-width: 90vw;
     margin: 0  auto;
   }
 }

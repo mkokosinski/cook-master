@@ -1,59 +1,66 @@
 @import "../style/basics.scss";
 .home {
+  padding: 120px 10px 100px;
   width: 100%;
-
-  &Bg {
-    left: 0;
-    position: absolute;
-    overflow: hidden;
-    top: 100px;
-    width: 100%;
-
-    @include media(laptop) {
-      top: 60px;
-    }
+  @include media(tablet) {
+    padding: 160px 30px 100px;
+  }
+  @include media(laptop) {
+    padding: 180px 60px 100px;
   }
 
   .seachDialog {
-    margin: 200px 20px 40px;
-    padding: 30px;
-
-    @include media(mobile) {
-      height: 160px;
-      top: -70px;
+    font-size: $font-size-xsmall;
+    height: 120px;
+    padding: 20px;
+    @include media(tablet) {
+      padding: 30px 60px;
+      height: 140px;
     }
-
     @include media(desktop) {
-      height: 180px;
-      margin: 200px auto;
-      top: -40px;
-      width: 800px;
+      font-size: $font-size-normal;
+      padding: 30px 60px;
+      height: 170px;
+      input {
+        height: 50px;
+      }
     }
 
     label {
       font-weight: bold;
       font-size: $font-size-xlarge;
     }
+
+    .searchInput {
+      margin: 10px 0;
+    }
   }
 
-  .news {
+  .newses {
     display: grid;
-    grid-template: 1fr/1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
-    overflow: hidden;
-    padding: 20px;
+    margin: 80px 5px 60px;
 
+    @include media(tablet) {
+      grid-template: 160px/240px 240px;
+      justify-content: space-around;
+      width: 100%;
+    }
     @include media(desktop) {
-      height: auto;
+      grid-template: 280px/280px 280px;
+      justify-content: space-around;
+    margin: 140px 5px 60px;
+    width: 100%;
     }
 
-    
-  }
-}
-
-:global{
-  .card {
-    height: 400px;
-    overflow: hidden;
+    .news {
+      align-items: center;
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20px;
+    }
   }
 }

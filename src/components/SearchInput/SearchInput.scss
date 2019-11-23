@@ -4,19 +4,8 @@
   align-items: stretch;
   box-sizing: border-box;
   display: flex;
-  height: 45px;
-
-  @include media(mobile) {
-    margin: 20px 10px 0;
-  }
-
-  @include media(phablet) {
-    margin: 20px 10px 0;
-  }
-
-  @include media(desktop) {
-    margin: 20px 60px 0;
-  }
+  height: 100%;
+  width: 100%;
 
   .react-autosuggest {
     &__container {
@@ -25,19 +14,16 @@
       .react-autosuggest__input {
         border: 1px solid rgba(0, 0, 0, 0.3);
         box-sizing: border-box;
-        height: 100%;
 
         outline: none;
         padding: 10px 20px;
         width: 100%;
 
         @include media(mobile) {
-          border-radius: 20px;
           flex-basis: 100%;
         }
 
         @include media(phablet) {
-          border-radius: 20px 0 0 20px;
           flex-basis: 100%;
         }
 
@@ -48,12 +34,10 @@
 
         &--open {
           border: none;
-          border-radius: 0;
-          box-shadow: 0 0 4px -2px rgba(0, 0, 0, 0.7);
+          box-shadow: 0 0 4px -1px rgba(0, 0, 0, 0.8);
 
           &:focus {
-            box-shadow: 0 0 4px -2px rgba(0, 0, 0, 0.7);
-            border-radius: 0;
+            box-shadow: 0 0 4px -1px rgba(0, 0, 0, 0.8);
           }
         }
       }
@@ -78,6 +62,7 @@
 
         li {
           a {
+            border: 1px solid rgba(0, 0, 0, 0.1);
               display: block;
             cursor: pointer;
             padding: 10px;
@@ -95,7 +80,6 @@
   .magnifier {
     align-items: center;
     background: #18c033;
-    border-radius: 0 20px 20px 0;
     box-sizing: border-box;
     cursor: pointer;
     display: flex;

@@ -1,54 +1,136 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import SearchInput from "../SearchInput/SearchInput"
-import styles  from "./HomePage.module.scss"
-import JumboCard, { CardType } from "../Cards/Card"
-import { graphql, useStaticQuery } from "gatsby"
-import Img from 'gatsby-image';
+import { graphql, useStaticQuery, Link } from "gatsby"
+import BackgroundImage from "gatsby-background-image"
+import styles from "./HomePage.module.scss"
 
-const dummyContent = `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim quae esse quas tempora mollitia ut laborum dolorum atque quaerat. Consequatur atque doloribus blanditiis animi velit soluta laborum cupiditate veniam, libero dolor unde minus, obcaecati mollitia repellendus placeat asperiores odit voluptatum eligendi molestiae ullam error natus voluptate tempora. Similique dolores, tenetur in ipsa labore aliquid! Impedit, inventore? Omnis aspernatur, voluptas, tenetur quaerat sed aliquam consequ.`
+import SimpleCard from "../Cards/SimpleCard"
+
+import tipsImg from "../../images/chef.svg"
+import recipeImg from "../../images/recipe-book.svg"
+import { Newsletter } from "../Newsletter/Newsletter"
 
 const Home = () => {
+  const [PageSize, setPageSize] = useState("")
+  useEffect(() => {
+    window.addEventListener("resize", getPageSize)
+    getPageSize()
+    return () => {
+      window.removeEventListener("resize", getPageSize)
+    }
+  }, [])
+
+  const getPageSize = e => {
+    setPageSize(window.innerWidth)
+  }
+
   const data = useStaticQuery(graphql`
     query {
-      file(relativePath: { eq: "cat.jpg" }) {
+      file(relativePath: { eq: "bg.png" }) {
         childImageSharp {
-          fluid(quality: 100, maxWidth:1600, maxHeight:700, srcSetBreakpoints: [600]) {
+          fluid(
+            quality: 100
+            maxWidth: 1600
+            maxHeight: 700
+            srcSetBreakpoints: [320, 600, 1200, 1920]
+          ) {
             ...GatsbyImageSharpFluid
+          }
+        }
+      }
+
+      recipe {
+        name
+        image {
+          childImageSharp {
+            fluid(
+              quality: 100
+              maxWidth: 1600
+              maxHeight: 700
+              srcSetBreakpoints: [600]
+            ) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
+
+      tip {
+        name
+        image {
+          childImageSharp {
+            fluid(
+              quality: 100
+              maxWidth: 1600
+              maxHeight: 700
+              srcSetBreakpoints: [600]
+            ) {
+              ...GatsbyImageSharpFluid
+            }
           }
         }
       }
     }
   `)
-console.log('data', data);
+
+  const MobileTiles = () => (
+    <>
+      <div className="card">
+        <Link className={styles.news} to="/app/Tips">
+          <img src={tipsImg} alt="Tips image" />
+          Przepisy
+        </Link>
+      </div>
+      <div className="card">
+        <Link className={styles.news} to="/app/Recipes">
+          <img src={recipeImg} alt="Recipe image" />
+          Porady
+        </Link>
+      </div>
+    </>
+  )
+  const DesktopTiles = () => (
+    <>
+      {/* <SimpleCard
+        img={recipe.image}
+        content={recipe.desc}
+        title={recipe.name}
+        key={index + recipe.id}
+        link={"/Recipes/" + recipe.name}
+      />
+      <SimpleCard
+        img={recipe.image}
+        content={recipe.desc}
+        title={recipe.name}
+        key={index + recipe.id}
+        link={"/Recipes/" + recipe.name}
+      /> */}
+    </>
+  )
+
+  console.log("data", data)
 
   return (
-    <div className={styles.home}>
-      <div className={styles.homeBg}>
-        <Img fluid={data.file.childImageSharp.fluid} />
-      </div>
-      <div className={`.card ${styles.seachDialog}`}>
-        <form>
+    <BackgroundImage
+      fluid={data.file.childImageSharp.fluid}
+      imgStyle={{ objectFit: "cover" }}
+      style={{ height: "100%" }}
+    >
+      <div className={styles.home}>
+        <div className={`card ${styles.seachDialog}`}>
           <label htmlFor="seachInput">Wpisz co Cię interesuje:</label>
-          <SearchInput />
-        </form>
+          <div className={styles.searchInput}>
+            <SearchInput />
+          </div>
+        </div>
+      <div className={styles.newses}>
+        {/* {PageSize <= 800 ? <MobileTiles /> : <DesktopTiles />} */}
+        <MobileTiles /> 
       </div>
-      <div className={styles.news}>
-        <JumboCard
-          content={dummyContent}
-          img={data.file}
-          link="Test"
-          title="Najnowsza porada"
-          type={CardType.jumbo}
-        />
-        <JumboCard
-          content={dummyContent}
-          img={data.file}
-          link="Test"
-          title="Najnowszy przepis"
-          type={CardType.min}
-        />
+
       </div>
-    </div>
+      <Newsletter />
+    </BackgroundImage>
   )
 }
 
