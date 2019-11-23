@@ -1,9 +1,8 @@
-@import "../style//mobileBreakPoints.scss";
 @import "../style/basics.scss";
 .home {
   width: 100%;
 
-  &-bg {
+  &Bg {
     left: 0;
     position: absolute;
     overflow: hidden;
@@ -15,7 +14,7 @@
     }
   }
 
-  .seach-dialog {
+  .seachDialog {
     margin: 200px 20px 40px;
     padding: 30px;
 
@@ -48,9 +47,13 @@
       height: auto;
     }
 
-    .card {
-      height: 400px;
-      overflow: hidden;
-    }
+    
+  }
+}
+
+:global{
+  .card {
+    height: 400px;
+    overflow: hidden;
   }
 }

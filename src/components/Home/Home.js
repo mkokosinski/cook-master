@@ -1,6 +1,6 @@
 import React from "react"
 import SearchInput from "../SearchInput/SearchInput"
-import "./HomePage.scss"
+import styles  from "./HomePage.module.scss"
 import JumboCard, { CardType } from "../Cards/Card"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from 'gatsby-image';
@@ -22,17 +22,17 @@ const Home = () => {
 console.log('data', data);
 
   return (
-    <div className="home">
-      <div className="home-bg">
+    <div className={styles.home}>
+      <div className={styles.homeBg}>
         <Img fluid={data.file.childImageSharp.fluid} />
       </div>
-      <div className="card seach-dialog">
-        <form action="">
+      <div className={`.card ${styles.seachDialog}`}>
+        <form>
           <label htmlFor="seachInput">Wpisz co Cię interesuje:</label>
           <SearchInput />
         </form>
       </div>
-      <div className="news">
+      <div className={styles.news}>
         <JumboCard
           content={dummyContent}
           img={data.file}
