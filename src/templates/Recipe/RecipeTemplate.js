@@ -5,13 +5,15 @@ import Img from "gatsby-image"
 import Breadcrumb from "../../components/BreadCrumb/BreadCrumb"
 import sort from "fast-sort"
 
-import styles from "./RecipeTemplate.module.scss"
+import CheckBox from "../../components/CheckBox/CheckBox"
+import Listonic from '../../components/Listonic/Listonic'
+import { MobileButton } from "./MobileButtons"
 import { Step } from "./Step"
 import Separator, {
   separatorDirection,
 } from "../../components/Separator/Separator"
-import CheckBox from "../../components/CheckBox/CheckBox"
-import { MobileButton } from "./MobileButtons"
+
+import styles from "./RecipeTemplate.module.scss"
 
 export const query = graphql`
   query($id: String!) {
@@ -108,6 +110,7 @@ const Recipe = ({ data, location }) => {
                 <h2 className={styles.title}>Składniki</h2>
                 <div className={styles.listOfIndegredients}>
                   <ul>
+
                     {ingredients.map(ingredient => (
                       <li>
                         <div className={styles.listItem}>
@@ -117,7 +120,9 @@ const Recipe = ({ data, location }) => {
                         </div>
                       </li>
                     ))}
+
                   </ul>
+                  <Listonic />
                 </div>
 
                 <Separator

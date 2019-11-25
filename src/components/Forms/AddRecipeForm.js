@@ -10,12 +10,12 @@ export const AddRecipeForm = () => {
     // uploadImg(img)
     //   .then(uploadedPath => {
     //     const imgPath = uploadedPath
-        // const imgPath = 'http://placeimg.com/200/200/any'
-        // addRecipe({ name, desc, imgPath }).then(res => {
-        //     console.log(res);
-            
-        //   setSubmitting(false)
-        // })
+    // const imgPath = 'http://placeimg.com/200/200/any'
+    // addRecipe({ name, desc, imgPath }).then(res => {
+    //     console.log(res);
+
+    //   setSubmitting(false)
+    // })
     //   })
     //   .catch(err => {
     //     console.log(err)
@@ -87,3 +87,4 @@ export const AddRecipeForm = () => {
     </div>
   )
 }
+
