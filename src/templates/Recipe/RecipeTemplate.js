@@ -60,11 +60,15 @@ export const query = graphql`
 
 const Recipe = ({ data, location }) => {
   const [PageSize, setPageSize] = useState("")
+  const [isListonicVisible, setIsListonicVisible] = useState(false)
   useEffect(() => {
     window.addEventListener("resize", getPageSize)
+    window.addEventListener("click", test)
     getPageSize()
     return () => {
       window.removeEventListener("resize", getPageSize)
+      window.removeEventListener("click", test)
+
     }
   }, [])
 
@@ -72,6 +76,9 @@ const Recipe = ({ data, location }) => {
     setPageSize(window.innerWidth)
   }
 
+  const test = (e) =>{
+    console.log(e.target)
+  }
   const {
     name,
     image,
@@ -122,7 +129,13 @@ const Recipe = ({ data, location }) => {
                     ))}
 
                   </ul>
-                  <Listonic />
+                    { isListonicVisible &&
+                     <Listonic
+                      closeListonic={()=>setIsListonicVisible(false)}
+                      ingredients={ingredients}  
+                      title={name}
+                      /> }
+                 
                 </div>
 
                 <Separator
@@ -133,7 +146,7 @@ const Recipe = ({ data, location }) => {
                 <div className={styles.buttons}>
                   <button className="button">Zapisz PDF</button>
                   <button className="button">Drukuj</button>
-                  <button className="button">Listonic</button>
+                  <button className="button" onClick={()=>setIsListonicVisible(true)}>Listonic</button>
                   <button className="button">E-mail</button>
                 </div>
               </div>

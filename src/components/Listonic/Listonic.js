@@ -2,16 +2,20 @@ import React from 'react'
 
 import styles from './Listonic.module.scss'
 
-const Listonic = () => {
+   
+
+const Listonic = ({closeListonic, title, ingredients}) => {
     const api = 'https://app.listonic.com/widget.html#!/widget/'
-    const uri = `https://www.przepisy.pl/przepis/sledzie-pod-pierzynka2/Śledzie pod pierzynką/filety śledziowe w oleju - 6 sztuka<BR>Sos sa%C5%82atkowy ckowy Knorr - 2 opakowanie<BR>marchewka - 1 sztuka<BR>ziemniaki - 2 sztuka<BR>ALALALALAL - 1 sztuka<BR>ser żółty - 150 gram<BR>ogórki korniszony - 2 sztuka<BR>Majonez Hellmann's Babuni - 200 mililitr<BR>natka pietruszki - 0 unit`
-    const encodedUri = encodeURIComponent(uri.replace('%2F', '%252f'));
+    const site= 'https:%252f%252fcook-master.netlify.com%252fprzepis%252f'
+    console.log(ingredients);
     
+    const ingredientsNames = ingredients.map(ingr => ingr.name)
+    const uri = `${api}${site}${title.replace(/ /g,'-')}/${encodeURI(title)}/${encodeURI(ingredientsNames.join('%3CBR%3E'))}`
     return (
-      <div>
+      <div className={styles.container} >
+        <button className={styles.closeBtn} onClick={closeListonic}></button>
         <iframe
-          style={{ height: "300px" }}
-          src={`${api}${encodedUri}`}
+          src={uri}
           frameBorder="0"
         ></iframe>
       </div>
@@ -19,3 +23,5 @@ const Listonic = () => {
   }
 
   export default Listonic
+
+  
