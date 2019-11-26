@@ -63,11 +63,9 @@ const Recipe = ({ data, location }) => {
   const [isListonicVisible, setIsListonicVisible] = useState(false)
   useEffect(() => {
     window.addEventListener("resize", getPageSize)
-    window.addEventListener("click", test)
     getPageSize()
     return () => {
       window.removeEventListener("resize", getPageSize)
-      window.removeEventListener("click", test)
 
     }
   }, [])
@@ -76,9 +74,6 @@ const Recipe = ({ data, location }) => {
     setPageSize(window.innerWidth)
   }
 
-  const test = (e) =>{
-    console.log(e.target)
-  }
   const {
     name,
     image,
