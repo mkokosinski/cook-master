@@ -1,9 +1,8 @@
-import React, { useRef } from "react"
+import React, { useRef, useEffect } from "react"
 
 // import './listonicFunctions'
 
 import styles from "./Listonic.module.scss"
-import './style.css'
 
 const Listonic = ({ closeListonic, title, ingredients }) => {
   let iframeRef = useRef(null)
@@ -12,6 +11,13 @@ const Listonic = ({ closeListonic, title, ingredients }) => {
     var body= iframeRef.current.contentWindow.document
     console.log(body);
 }
+
+// useEffect(() => {
+//   effect
+//   return () => {
+//     cleanup
+//   };
+// }, [input])
   const api = "https://app.listonic.com/widget.html#!/widget/"
   const site = "https:%252f%252fcook-master.netlify.com%252fprzepis%252f"
   const ingredientsNames = ingredients.map(ingr => ingr.name)
@@ -20,8 +26,9 @@ const Listonic = ({ closeListonic, title, ingredients }) => {
   )}/${encodeURI(ingredientsNames.join("%3CBR%3E"))}`
   return (
     <div className={styles.container}>
-      {/* <button className={styles.closeBtn} onClick={test}></button>
-      <iframe ref={iframeRef} src={uri} onLoad={test} frameBorder="0"></iframe> */}
+      <button className={styles.closeBtn} onClick={test}></button>
+      <iframe ref={iframeRef} src={uri} onLoad={test} frameBorder="0"></iframe>
+      
     </div>
   )
 }
