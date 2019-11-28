@@ -1,34 +1,47 @@
 import React, { useRef, useEffect } from "react"
 
-// import './listonicFunctions'
 
 import styles from "./Listonic.module.scss"
 
-const Listonic = ({ closeListonic, title, ingredients }) => {
-  let iframeRef = useRef(null)
-  const test = (e) =>{
-    console.log(iframeRef);
-    var body= iframeRef.current.contentWindow.document
-    console.log(body);
-}
+import {html} from './ListonicButton'
 
-// useEffect(() => {
-//   effect
-//   return () => {
-//     cleanup
-//   };
-// }, [input])
+
+
+const Listonic = ({ closeListonic, title, ingredients }) => {
+  let frame = useRef(null)
   const api = "https://app.listonic.com/widget.html#!/widget/"
   const site = "https:%252f%252fcook-master.netlify.com%252fprzepis%252f"
   const ingredientsNames = ingredients.map(ingr => ingr.name)
   const uri = `${api}${site}${title.replace(/ /g, "-")}/${encodeURI(
     title
   )}/${encodeURI(ingredientsNames.join("%3CBR%3E"))}`
+
+  useEffect(() => {
+    if (frame.current != null) {
+        const doc = frame.current.contentWindow.document;
+        doc.open()
+        doc.write(
+         html(ingredients, title, styles)
+        )
+        doc.close()
+        console.log(ingredients);
+        
+        console.log(doc);
+        
+
+        // doc.querySelector('.listonic-button').className=styles.test;
+        
+    }
+  }, [])
   return (
     <div className={styles.container}>
-      <button className={styles.closeBtn} onClick={test}></button>
-      <iframe ref={iframeRef} src={uri} onLoad={test} frameBorder="0"></iframe>
-      
+      <iframe
+        title="test"
+        ref={frame}
+        scrolling="no"
+        className="test"
+        frameBorder="0"
+      ></iframe>
     </div>
   )
 }
