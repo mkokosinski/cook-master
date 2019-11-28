@@ -1,0 +1,10 @@
+@import "../style/basics.scss";
+iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.buttonLabel {
+  pointer-events: none;
+  position: absolute;
+}

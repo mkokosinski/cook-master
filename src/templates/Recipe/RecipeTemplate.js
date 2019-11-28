@@ -6,7 +6,7 @@ import Breadcrumb from "../../components/BreadCrumb/BreadCrumb"
 import sort from "fast-sort"
 
 import CheckBox from "../../components/CheckBox/CheckBox"
-import Listonic from "../../components/Listonic/Listonic"
+import Listonic from "../../components/Listonic/ListonicButton"
 import { MobileButton } from "./MobileButtons"
 import { Step } from "./Step"
 import Separator, {
@@ -132,9 +132,9 @@ const Recipe = ({ data, location }) => {
                 <div className={styles.buttons}>
                   <button className="button">Zapisz PDF</button>
                   <button className="button">Drukuj</button>
-                  <Listonic ingredients={ingredients} title={name} />
-                  <button className="button">Listonic</button>
-
+                  <Listonic className="button" 
+                  ingredients={ingredients} 
+                  recipeTitle={name} />
                   <button className="button">E-mail</button>
                 </div>
               </div>
