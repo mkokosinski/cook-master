@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import styles from "./Footer.module.scss"
+import { tips, recipes,addRecipe } from "../helpers/menuLinks"
 
 export const FooterMenu = ({items}) => {
   return (
@@ -8,23 +9,23 @@ export const FooterMenu = ({items}) => {
       <Link
         className={styles.btn}
         activeClassName={styles.btnActive}
-        to="/app/Tips"
+        to={"/app/" + tips.slug}
       >
-        Porady
+        {tips.name}
       </Link>
       <Link
         className={styles.btn}
         activeClassName={styles.btnActive}
-        to="/app/Recipes"
-      >
-        Przepisy
+        to={"/app/" + recipes.slug}
+        >
+          {recipes.name}
       </Link>
       <Link
         className={styles.btn}
         activeClassName={styles.btnActive}
-        to="/app/AddRecipe"
+        to={"/app/" + addRecipe.slug}
       >
-        Dodaj przepis
+        {addRecipe.name}
       </Link>
     </div>
   )

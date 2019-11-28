@@ -9,6 +9,7 @@ import SimpleCard from "../Cards/SimpleCard"
 import tipsImg from "../../images/chef.svg"
 import recipeImg from "../../images/recipe-book.svg"
 import { Newsletter } from "../Newsletter/Newsletter"
+import { tips, recipes } from "../helpers/menuLinks"
 
 const Home = () => {
   const [PageSize, setPageSize] = useState("")
@@ -76,15 +77,15 @@ const Home = () => {
   const MobileTiles = () => (
     <>
       <div className="card">
-        <Link className={styles.news} to="/app/Tips">
+        <Link className={styles.news} to={"/app/" + tips.slug}>
           <img src={tipsImg} alt="Tips image" />
-          Przepisy
+          {tips.name}
         </Link>
       </div>
       <div className="card">
-        <Link className={styles.news} to="/app/Recipes">
+        <Link className={styles.news}to={"/app/" + recipes.slug}>
           <img src={recipeImg} alt="Recipe image" />
-          Porady
+          {recipes.name}
         </Link>
       </div>
     </>

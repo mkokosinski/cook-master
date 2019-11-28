@@ -1,4 +1,4 @@
-@import "../style//mobileBreakPoints.scss";
+@import "../style/basics.scss";
 
 .search-input {
   align-items: stretch;
@@ -9,6 +9,7 @@
 
   .react-autosuggest {
     &__container {
+      position: relative;
       width: 100%;
 
       .react-autosuggest__input {
@@ -35,6 +36,7 @@
         &--open {
           border: none;
           box-shadow: 0 0 4px -1px rgba(0, 0, 0, 0.8);
+         
 
           &:focus {
             box-shadow: 0 0 4px -1px rgba(0, 0, 0, 0.8);
@@ -47,7 +49,8 @@
       background: white;
       box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.7);
       opacity: 0;
-      position: relative;
+      position: absolute;
+      width: 100%;
       transition: 200ms;
       z-index: 998;
 
@@ -79,7 +82,7 @@
 
   .magnifier {
     align-items: center;
-    background: #18c033;
+    background: $green-complementary;
     box-sizing: border-box;
     cursor: pointer;
     display: flex;

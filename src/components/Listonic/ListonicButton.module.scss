@@ -2,9 +2,17 @@
 iframe {
   width: 100%;
   height: 100%;
+
+  &[disabled] {
+    pointer-events: none;
+  }
 }
 
 .buttonLabel {
   pointer-events: none;
   position: absolute;
 }
+    .loader {
+      transform: scale(0.5);
+      position: absolute;
+    }

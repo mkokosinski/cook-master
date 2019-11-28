@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
+import {home, tips,recipes,signIn, addRecipe} from '../helpers/menuLinks'
 
 import "./MobileMenu.scss"
 
@@ -11,25 +12,25 @@ const MobileMenu = ({ burgerIsOpen, toggleBurger, items }) => {
         onClick={toggleBurger}
         className="nav-btn"
         activeClassName="nav-btn--active"
-        to="/app/Tips"
-      >
-        Porady
+        to={"/app/" + tips.slug}
+        >
+          {tips.name}
       </Link>
       <Link
         onClick={toggleBurger}
         className="nav-btn"
         activeClassName="nav-btn--active"
-        to="/app/Recipes"
+        to={"/app/" + recipes.slug}
       >
-        Przepisy
+        {recipes.name}
       </Link>
       <Link
         onClick={toggleBurger}
         className="nav-btn"
         activeClassName="nav-btn--active"
-        to="/app/AddRecipe"
-      >
-        Dodaj przepis
+        to={"/app/" + addRecipe.slug}
+        >
+          {addRecipe.name}
       </Link>
       <div className="mobile-menu-bg" onClick={toggleBurger}></div>
     </div>

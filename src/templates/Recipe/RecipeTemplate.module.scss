@@ -48,7 +48,6 @@ $spaces: 20px;
       }
 
       .titleImg {
-        @extend %title-shared;
         background: linear-gradient(
           180deg,
           rgba(0, 0, 0, 0.7) 0%,
@@ -58,8 +57,9 @@ $spaces: 20px;
         color: white;
         position: absolute;
         padding: 16px 10px;
-        top: 0;
+        margin: 0;
         left: 0;
+        top: 0;
         right: -$spaces/2;
         z-index: 1;
 
@@ -128,7 +128,7 @@ $spaces: 20px;
           padding: 10px;
 
           button {
-            background: linear-gradient(135deg, #36d61d 0%, #0faf35 100%);
+            background: linear-gradient(135deg, $green-main 0%, $green-secondary 100%);
             color: white;
             margin: 10px 0;
             transition: filter 0.1s;

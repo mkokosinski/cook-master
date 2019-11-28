@@ -66,20 +66,19 @@ nav {
       flex-direction: column;
       justify-content: center;
       width: 120px;
+      transition: background 200ms ease;
 
       &:hover {
-        background: #39bf00;
-        transition: 200ms;
-
+        background: $green-complementary;
+        
         .nav-btn__ico,
         .nav-btn__txt {
           filter: invert(1);
         }
       }
-
+      
       &--active {
-        background: #32a800;
-        transition: 200ms;
+        background: $green-secondary;
 
         .nav-btn__ico,
         .nav-btn__txt {
@@ -90,19 +89,13 @@ nav {
       &--SignIn {
         align-items: center;
         align-self: center;
-        background: #36d61d;
-        background: -moz-linear-gradient(-45deg, #36d61d 0%, #0faf35 100%);
-        background: -webkit-linear-gradient(-45deg, #36d61d 0%, #0faf35 100%);
-        background: linear-gradient(135deg, #36d61d 0%, #0faf35 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#36d61d', endColorstr='#0faf35', GradientType=1);
-        border: 1px solid #36d61d;
-        border-radius: 30px;
+        background: linear-gradient(135deg, $green-main 0%, $green-secondary 100%);
+        border: 1px solid $green-secondary;
         color: white;
         display: flex;
         justify-content: center;
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#48ff23', endColorstr='#2bc920', GradientType=1);
         font-weight: bold;
-        height: 40px;
+        height: 50px;
         line-height: 1em;
         margin-left: 30px;
         transition: 200ms;
