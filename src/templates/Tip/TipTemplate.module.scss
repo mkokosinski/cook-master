@@ -13,6 +13,9 @@
     @include media(tablet) {
       margin:12px 0 80px;
     }
+    @include media(desktop) {
+      margin:12px 80px 80px;
+    }
   }
   .content {
       padding: 14px;

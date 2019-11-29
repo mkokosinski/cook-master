@@ -7,6 +7,11 @@
   height: 100%;
   width: 100%;
 
+  input{
+    height: 100%;
+    width: 100%;
+  }
+
   .react-autosuggest {
     &__container {
       position: relative;
@@ -82,7 +87,7 @@
 
   .magnifier {
     align-items: center;
-    background: $green-complementary;
+    background: linear-gradient(135deg, $green-main 0%, $green-secondary 100%);
     box-sizing: border-box;
     cursor: pointer;
     display: flex;

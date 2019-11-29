@@ -4,7 +4,11 @@ import Img from "gatsby-image"
 
 const Header = ({ img, title }) => (
   <div className={styles.header}>
-    <Img fluid={img.childImageSharp.fluid} />
+    <Img
+      fluid={img.childImageSharp.fluid}
+      imgStyle={{ objectFit: "cover" }}
+      style={{ height: "100%" }}
+    />
     <h1>{title}</h1>
   </div>
 )

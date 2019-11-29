@@ -3,18 +3,10 @@ import { graphql, useStaticQuery } from "gatsby"
 
 import "./Tips.scss"
 import Card, { CardType } from "../Cards/Card"
-import SearchInput from "../SearchInput/SearchInput"
-import InfiniteScroll from "react-infinite-scroller"
-import Loader from "../Loader/BallLoader"
-import BreadCrumb from "../BreadCrumb/BreadCrumb"
+import GridView from '../../templates/GridView/GridView'
 
 const tipsPageCardsSkeleton = [CardType.twoSide, CardType.twoSide, CardType.twoSide]
-const Porady = ({ location }) => {
-  const [cards, setCards] = useState([])
-  const [limit, setLimit] = useState(5)
-  const [hasMore, setHasMore] = useState(true)
-  const span = 5
-
+const Porady = ({location}) => {
   const tipsQuery = useStaticQuery(graphql`
     {
       allTip {
@@ -41,60 +33,11 @@ const Porady = ({ location }) => {
       }
     }
   `)
-
-  const loadMore = () => {
-    let { edges: tips, totalCount } = tipsQuery.allTip
-    tips = [...tips, ...tips, ...tips, ...tips]
-    totalCount = 24
-
-    if (limit <= totalCount + span) {
-      setCards([...cards, ...tips.slice(limit - span, limit)])
-      console.log("Cards", cards)
-      setLimit(limit + span)
-    } else {
-      setHasMore(false)
-    }
-  }
-
-  const getCardType = index => {
-    const { length } = tipsPageCardsSkeleton
-    if (index < length) {
-      return tipsPageCardsSkeleton[index]
-    } else {
-      return CardType.twoSide
-    }
-  }
-
+  const tips = tipsQuery.allTip;
+  console.log(tips);
+  
   return (
-    <div className="tips-page">
-      <BreadCrumb pathname={location.pathname} />
-      <SearchInput />
-      {/* <div className="grid"> */}
-
-      <InfiniteScroll
-        className="grid"
-        loadMore={loadMore}
-        hasMore={hasMore}
-        initialLoad={true}
-        threshold={400}
-        loader={<Loader />}
-      >
-        {cards.map(({ node: tip }, index) => (
-          <div className="grid-item">
-            <Card
-              type={getCardType(index)}
-              img={tip.image}
-              content={tip.desc}
-              title={tip.name}
-              key={index + tip.id}
-              link={"/Tips/" + tip.name}
-            />
-          </div>
-        ))}
-      </InfiniteScroll>
-
-      {/* </div> */}
-    </div>
+    <GridView items={tips} CardComponent={Card} location={location} slug={'Tips'}/>
   )
 }
 

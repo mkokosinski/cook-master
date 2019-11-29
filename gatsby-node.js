@@ -77,10 +77,6 @@ module.exports.onCreateNode = async ({ node, actions, store, cache }) => {
   // if the node is not DogImage, we don't wanna do anything
   const { type } = node.internal
   if (type === "Tip" || type === "Recipe" || type === "Step") {
-    console.log('##############################');
-    console.log(node);
-    console.log('##############################');
-    
     const { createNode } = actions
     // download image and create a File node
     // with gatsby-transformer-sharp and gatsby-plugin-sharp

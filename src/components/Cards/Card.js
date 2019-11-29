@@ -11,7 +11,7 @@ export const CardType = {
   simple: "simple",
 }
 
-const Card = ({ type, title, img, content, link }) => {
+const Card = ({ title, img, content, link }) => {
   const [isMouseOver, setIsMouseOver] = useState("")
   const onMouseOver = () => {
     setIsMouseOver("is-mouse-over")
@@ -19,6 +19,8 @@ const Card = ({ type, title, img, content, link }) => {
   const onMouseLeave = () => {
     setIsMouseOver("")
   }
+
+  const type = CardType.twoSide;
 
   return (
     <Link
