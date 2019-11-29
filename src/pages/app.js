@@ -1,9 +1,10 @@
 import React from 'react'
 import Layout from '../components/layout'
 import Home from '../components/Home/Home'
-import Tips from './../components/Tips/TipsPage';
+import Tips from '../components/Tips/TipsPage';
 import PrivateRoute from "../components/privateRoute";
-import Recipes from './../components/Recipes/RecipesPage';
+import Recipes from '../components/Recipes/RecipesPage';
+import SignUp from '../components/Auth/SignUp/SignUp'
 import { Router } from "@reach/router"
 import { AddRecipeForm } from './../components/Forms/AddRecipeForm';
 
@@ -15,6 +16,7 @@ const App = () => {
       <Router>
         <Home exact path='app/' />
         <Tips exact path='app/Tips' />
+        <SignUp exact path='app/SignUp' />
         <PrivateRoute exact path='app/Recipes' component={Recipes} />
         <PrivateRoute exact path='app/AddRecipe' component={AddRecipeForm} />
       </Router>

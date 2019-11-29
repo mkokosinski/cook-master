@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 
 import "./Tips.scss"
-import Card, { CardType } from "../Cards/Card"
+import Card from "../Cards/Card"
 import GridView from '../../templates/GridView/GridView'
 
-const tipsPageCardsSkeleton = [CardType.twoSide, CardType.twoSide, CardType.twoSide]
 const Porady = ({location}) => {
   const tipsQuery = useStaticQuery(graphql`
     {
@@ -34,8 +33,6 @@ const Porady = ({location}) => {
     }
   `)
   const tips = tipsQuery.allTip;
-  console.log(tips);
-  
   return (
     <GridView items={tips} CardComponent={Card} location={location} slug={'Tips'}/>
   )

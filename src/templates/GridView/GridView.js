@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react"
-import { graphql, useStaticQuery } from "gatsby"
+import React, { useState } from "react"
 import InfiniteScroll from "react-infinite-scroller"
 
 import Loader from "../../components/Loader/BallLoader"
 import BreadCrumb from '../../components/BreadCrumb/BreadCrumb'
-import Card, { CardType } from "../../components/Cards/Card"
 import SearchInput from "../../components/SearchInput/SearchInput"
 
 import styles from './GridView.module.scss'
 
-const pageCardsSkeleton = [CardType.twoSide, CardType.twoSide, CardType.twoSide]
 
 const GridView = ({ location, CardComponent, items, slug}) => {
   const [cards, setCards] = useState([])
@@ -31,17 +28,7 @@ const GridView = ({ location, CardComponent, items, slug}) => {
       setHasMore(false)
     }
   }
-
-  const getCardType = index => {
-    const { length } = pageCardsSkeleton
-    if (index < length) {
-      return pageCardsSkeleton[index]
-    } else {
-      return CardType.twoSide
-    }
-  }
   return (
-
     <div className={styles.gridViewPage}>
       <BreadCrumb pathname={location.pathname} />
       <div className={styles.searchInput}>

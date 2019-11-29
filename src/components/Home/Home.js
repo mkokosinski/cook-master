@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import SearchInput from "../SearchInput/SearchInput"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
 import styles from "./HomePage.module.scss"
-
-import SimpleCard from "../Cards/SimpleCard"
 
 import tipsImg from "../../images/chef.svg"
 import recipeImg from "../../images/recipe-book.svg"
@@ -12,19 +10,6 @@ import { Newsletter } from "../Newsletter/Newsletter"
 import { tips, recipes } from "../helpers/menuLinks"
 
 const Home = () => {
-  const [PageSize, setPageSize] = useState("")
-  useEffect(() => {
-    window.addEventListener("resize", getPageSize)
-    getPageSize()
-    return () => {
-      window.removeEventListener("resize", getPageSize)
-    }
-  }, [])
-
-  const getPageSize = e => {
-    setPageSize(window.innerWidth)
-  }
-
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "bg.png" }) {
@@ -78,36 +63,36 @@ const Home = () => {
     <>
       <div className="card">
         <Link className={styles.news} to={"/app/" + tips.slug}>
-          <img src={tipsImg} alt="Tips image" />
+          <img src={tipsImg} alt="Tips" />
           {tips.name}
         </Link>
       </div>
       <div className="card">
         <Link className={styles.news}to={"/app/" + recipes.slug}>
-          <img src={recipeImg} alt="Recipe image" />
+          <img src={recipeImg} alt="Recipe" />
           {recipes.name}
         </Link>
       </div>
     </>
   )
-  const DesktopTiles = () => (
-    <>
-      {/* <SimpleCard
-        img={recipe.image}
-        content={recipe.desc}
-        title={recipe.name}
-        key={index + recipe.id}
-        link={"/Recipes/" + recipe.name}
-      />
-      <SimpleCard
-        img={recipe.image}
-        content={recipe.desc}
-        title={recipe.name}
-        key={index + recipe.id}
-        link={"/Recipes/" + recipe.name}
-      /> */}
-    </>
-  )
+  // const DesktopTiles = () => (
+  //   <>
+  //     {/* <SimpleCard
+  //       img={recipe.image}
+  //       content={recipe.desc}
+  //       title={recipe.name}
+  //       key={index + recipe.id}
+  //       link={"/Recipes/" + recipe.name}
+  //     />
+  //     <SimpleCard
+  //       img={recipe.image}
+  //       content={recipe.desc}
+  //       title={recipe.name}
+  //       key={index + recipe.id}
+  //       link={"/Recipes/" + recipe.name}
+  //     /> */}
+  //   </>
+  // )
 
   console.log("data", data)
 

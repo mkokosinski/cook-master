@@ -13,7 +13,7 @@ import tipsIco from "../../images/chef.svg"
 import recipesIco from "../../images/recipe-book.svg"
 import MobileMenu from "./MobileMenu"
 import { isLoggedIn } from "../../services/auth"
-import { tips, recipes, addRecipe, signIn } from "../helpers/menuLinks"
+import { tips, recipes, signIn, signUp } from "../helpers/menuLinks"
 
 const Navbar = ({ location, items }) => {
   const [burgerIsOpen, setBurgerIsOpen] = useState(false)
@@ -72,8 +72,8 @@ const Navbar = ({ location, items }) => {
             <div className="nav-btn__txt">{recipes.name}</div>
           </Link>
           {isLoggedIn() ? (
-            <Link className="nav-btn--SignIn" to={"/app/" + addRecipe.slug}>
-              {addRecipe.name}
+            <Link className="nav-btn--SignIn" to={"/app/" + signUp.slug}>
+              {signUp.name}
             </Link>
           ) : (
             <Link className="nav-btn--SignIn" to={"/app/" + signIn.slug}>

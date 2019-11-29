@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 
-import styles from "./RecipePage.module.scss"
 import SimpleCard from "../Cards/SimpleCard"
 import GridView from "../../templates/GridView/GridView"
 

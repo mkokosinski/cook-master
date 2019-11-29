@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import Autosuggest from "react-autosuggest"
 import magnifier from "../../images/magnifier.svg"
 import "./SearchInput.scss"
@@ -11,6 +11,9 @@ const SearchInput = () => {
   const [prp, setPrp] = useState([])
   const [suggestions, setSuggestions] = useState([])
   const [placeholderValue, setPlaceholderValue] = useState("")
+
+  const searchInputRef = useRef(null) 
+
   const query = useStaticQuery(graphql`
     {
       allTip {
@@ -40,6 +43,7 @@ const SearchInput = () => {
     }
   }, [])
 
+  let innerHeight = 0;
   const onWindowResize = e => {
     adjustPlaceholderToWidth()
   }
@@ -63,9 +67,6 @@ const SearchInput = () => {
       category: "Recipes",
       label: egde.node.label,
     }))
-    console.log(tips)
-    console.log(recipes)
-    console.log([...tips, ...recipes])
     setSuggestions([...tips, ...recipes])
     return [...tips, ...recipes]
   }
@@ -77,8 +78,6 @@ const SearchInput = () => {
   )
 
   const onChange = (event, { newValue }) => {
-    console.log(newValue)
-
     setValue(newValue)
   }
 
@@ -93,10 +92,12 @@ const SearchInput = () => {
         )
   }
 
+ 
+
   const inputProps = {
     placeholder: placeholderValue,
     value,
-    onChange,
+    onChange
   }
 
   const onSuggestionsFetchRequested = ({ value }) => {
@@ -108,7 +109,7 @@ const SearchInput = () => {
   }
 
   return (
-    <div className="search-input">
+    <div className="search-input" ref={searchInputRef}>
       <Autosuggest
         suggestions={prp}
         onSuggestionsFetchRequested={onSuggestionsFetchRequested}
@@ -116,7 +117,7 @@ const SearchInput = () => {
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
-        className="test"
+        
       />
 
       {/* <input type="text"

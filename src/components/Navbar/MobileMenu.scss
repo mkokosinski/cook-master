@@ -10,7 +10,7 @@
     transform-origin: top center;
     transform: scaleY(0);
     visibility: hidden;
-    z-index: 999;
+    z-index: 800;
 
     &.open {
         transform: scaleY(1);

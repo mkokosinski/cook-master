@@ -12,7 +12,7 @@ nav {
   display: flex;
   height: 100px;
   position: relative;
-  z-index: 999;
+  z-index: 900;
 
   @include media(tablet-down) {
     align-items: center;

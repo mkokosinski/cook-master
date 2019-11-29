@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Layout from "../../components/layout"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Breadcrumb from "../../components/BreadCrumb/BreadCrumb"
 import sort from "fast-sort"
@@ -60,7 +60,6 @@ export const query = graphql`
 
 const Recipe = ({ data, location }) => {
   const [PageSize, setPageSize] = useState("")
-  const [isListonicVisible, setIsListonicVisible] = useState(false)
   useEffect(() => {
     window.addEventListener("resize", getPageSize)
     getPageSize()
@@ -76,7 +75,6 @@ const Recipe = ({ data, location }) => {
   const {
     name,
     image,
-    desc,
     childrenStep: steps,
     childrenIngredient: ingredients,
   } = data.recipe
