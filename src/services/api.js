@@ -1,23 +1,22 @@
 // import db from "./services/firebase"
-import { getFirestore, getStorage } from "./firebase"
+import { getFirestore, getStorage, getAuth } from "./firebase"
 
 export const uploadImg = async file => {
-  const storage = await getStorage();
-  const storageRef = storage().ref();
-  const imgRef = storageRef.child("img/" + file.name);
-  const uploadTask = imgRef.put(file);
+  const storage = await getStorage()
+  const storageRef = storage().ref()
+  const imgRef = storageRef.child("img/" + file.name)
+  const uploadTask = imgRef.put(file)
   return await uploadTask.snapshot.ref.getDownloadURL()
 }
 
-export const addRecipe = async doc =>{
+export const addRecipe = async doc => {
   const firestore = await getFirestore()
-  const t = await firestore.collection('Tips').add({
-    name:doc.name,
-    img:doc.imgPath,
-    desc:doc.desc
+  const t = await firestore.collection("Tips").add({
+    name: doc.name,
+    img: doc.imgPath,
+    desc: doc.desc,
   })
-  console.log(t);
-  
+  console.log(t)
 }
 
 export const getAutoCompleteList = async () => {
@@ -50,3 +49,17 @@ const getSnap = async (firestore, collectionName) => {
 }
 
 const getCategoryName = path => path.replace("Categories/", "")
+
+export const signUpWithEmail = async ( email, password ) => {
+  const auth = await getAuth()
+  console.dir(auth);
+  
+  auth()
+    .createUserWithEmailAndPassword(email, password)
+    .catch(function(error) {
+      var errorCode = error.code
+      var errorMessage = error.message
+      console.log(errorCode)
+      console.log(errorMessage)
+    })
+}

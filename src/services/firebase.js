@@ -8,7 +8,7 @@ const config = {
   projectId: process.env.GATSBY_PROJECT_ID,
   storageBucket: process.env.GATSBY_STORAGE_BUCKET,
   messagingSenderId: process.env.GATSBY_MESSAGING_SENDER_ID,
-  appId: process.env.GATSBY_APP_ID,
+  appId: process.env.GATSBY_APP_ID
 }
 
 let firebaseInstance
