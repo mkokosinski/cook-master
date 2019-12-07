@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { Link } from "gatsby"
 import cx from "classnames"
 
@@ -12,12 +12,14 @@ import logo from "../../images/logo.png"
 import tipsIco from "../../images/chef.svg"
 import recipesIco from "../../images/recipe-book.svg"
 import MobileMenu from "./MobileMenu"
-import { isLoggedIn } from "../../services/auth"
-import { tips, recipes, signIn, signUp } from "../helpers/menuLinks"
+import { logOut, AuthContext } from "../../services/auth"
+import { tips, recipes, signIn, signUp, signOut } from "../../helpers/menuLinks"
 
 const Navbar = ({ location, items }) => {
   const [burgerIsOpen, setBurgerIsOpen] = useState(false)
   const [isScrolledDown, setIsScrolledDown] = useState(false)
+
+  const { isLoggedIn } = useContext(AuthContext)
 
   useEffect(() => {
     window.addEventListener("scroll", onScrollHandler)
@@ -71,14 +73,23 @@ const Navbar = ({ location, items }) => {
             </div>
             <div className="nav-btn__txt">{recipes.name}</div>
           </Link>
-          {isLoggedIn() ? (
-            <Link className="nav-btn--SignIn" to={"/app/" + signUp.slug}>
-              {signUp.name}
+          {isLoggedIn ? (
+            <Link
+              className="nav-btn--SignIn"
+              to={"/app/" + signOut.slug}
+              onClick={logOut}
+            >
+              {signOut.name}
             </Link>
           ) : (
-            <Link className="nav-btn--SignIn" to={"/app/" + signIn.slug}>
-              {signIn.name}
-            </Link>
+            <>
+              <Link className="nav-btn--SignIn" to={"/app/" + signIn.slug}>
+                {signIn.name}
+              </Link>
+              <Link className="nav-btn--SignIn" to={"/app/" + signUp.slug}>
+                {signUp.name}
+              </Link>
+            </>
           )}
         </div>
         <Burger onClick={toggleBurger} isOpen={burgerIsOpen} />

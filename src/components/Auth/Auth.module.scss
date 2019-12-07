@@ -1,0 +1,60 @@
+@import "../style//basics.scss";
+@import "../Cards/Card.scss";
+
+.container {
+  margin: 10px;
+
+  .formCard {
+    @extend .card;
+    padding: 15px 20px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 1px 4px -2px rgba(0, 0, 0, 0.3);
+
+    @include media(laptop) {
+      width: 500px;
+    }
+
+    img,
+    i {
+      margin-right: 5px;
+    }
+
+    i {
+      color: #385499;
+    }
+  }
+
+  .socialButton {
+    @extend .formCard;
+    cursor: pointer;
+    transition: background 100ms ease;
+    user-select: none;
+
+    &:hover {
+      background: lighten($color: $green-main, $amount: 55);
+    }
+    &:active {
+      background: lighten($color: $green-main, $amount: 50);
+    }
+  }
+
+  .form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    button{
+      width: 100%;
+      margin: 15px 0;
+    }
+
+    a{
+      align-self: center;
+      color: #385499;
+    }
+  }
+}

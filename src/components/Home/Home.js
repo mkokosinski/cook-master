@@ -7,7 +7,7 @@ import styles from "./HomePage.module.scss"
 import tipsImg from "../../images/chef.svg"
 import recipeImg from "../../images/recipe-book.svg"
 import { Newsletter } from "../Newsletter/Newsletter"
-import { tips, recipes } from "../helpers/menuLinks"
+import { tips, recipes } from "../../helpers/menuLinks"
 
 const Home = () => {
   const data = useStaticQuery(graphql`

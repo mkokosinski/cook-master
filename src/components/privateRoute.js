@@ -1,24 +1,20 @@
-import React, { Component } from "react"
+import React, { useEffect, useContext } from "react"
 import { navigate } from "gatsby"
-import { isLoggedIn } from "../services/auth"
+import { signIn } from "../helpers/menuLinks"
+import { AuthContext } from "../services/auth"
 
-class PrivateRoute extends Component {
+const PrivateRoute = (props) => {
+  const { isLoggedIn } = useContext(AuthContext)
 
-  componentDidMount() {
-    const { location } = this.props
-    let noOnLoginPage = location.pathname !== `app/login`
-    console.log('Elo');
-    console.log(isLoggedIn());
-    
-    if (!isLoggedIn() && noOnLoginPage) {
-      navigate("app/login")
-      return null
+  useEffect(() => {
+    const  { location } = props;
+    let noOnLoginPage = location.pathname !== `app/` + signIn.slug
+    if (!isLoggedIn && noOnLoginPage) {
+      navigate(`app/${signIn.slug}`, {state:{from:location.pathname}})
     }
-  }
+  }, [])
 
-  render() {
-    const { component: Component, ...rest } = this.props
-    return <Component {...rest} />
-  }
+  const {component: Component, ...rest} = props;
+  return isLoggedIn ? <Component {...rest}  /> : null
 }
 export default PrivateRoute

@@ -50,16 +50,3 @@ const getSnap = async (firestore, collectionName) => {
 
 const getCategoryName = path => path.replace("Categories/", "")
 
-export const signUpWithEmail = async ( email, password ) => {
-  const auth = await getAuth()
-  console.dir(auth);
-  
-  auth()
-    .createUserWithEmailAndPassword(email, password)
-    .catch(function(error) {
-      var errorCode = error.code
-      var errorMessage = error.message
-      console.log(errorCode)
-      console.log(errorMessage)
-    })
-}

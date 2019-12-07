@@ -10,9 +10,9 @@ import React from "react"
 // import { useStaticQuery, graphql } from "gatsby"
 
 import Navbar from "./Navbar/Navbar"
+import Footer from "./Footer/Footer"
+import "../../node_modules/bulma/bulma.sass"
 import "./style/layout.scss"
-import Footer from './Footer/Footer';
-
 
 const Layout = ({ children }) => {
   // const data = useStaticQuery(graphql`
@@ -28,12 +28,8 @@ const Layout = ({ children }) => {
   return (
     <div className="App">
       <Navbar />
-      <main>
-        {children}
-      </main>
-      <footer>
-        <Footer />
-      </footer>
+      <main>{children}</main>
+      <Footer />
     </div>
   )
 }

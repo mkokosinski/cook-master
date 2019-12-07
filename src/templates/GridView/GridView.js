@@ -17,8 +17,7 @@ const GridView = ({ location, CardComponent, items, slug}) => {
   const loadMore = () => {
     let { edges, totalCount } = items;
     edges = [...edges, ...edges, ...edges, ...edges, ...edges, ...edges, ...edges]
-    console.log(edges);
-    
+
     totalCount = 48
 
     if (limit <= totalCount + span) {

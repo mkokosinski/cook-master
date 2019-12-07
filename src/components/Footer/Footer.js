@@ -21,7 +21,7 @@ const Footer = () => {
   `)
   const logo = data.imageSharp.fluid
   return (
-    <div className={styles.footer}>
+    <footer className={styles.footer}>
       <div className={styles.img}>
         <Img
           fluid={logo}
@@ -35,7 +35,7 @@ const Footer = () => {
         rozpowszechnianie bez zgody kuchmistrz.pl zabronione
       </div>
       <FooterMenu />
-    </div>
+    </footer>
   )
 }
 

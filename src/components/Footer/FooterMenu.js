@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import styles from "./Footer.module.scss"
-import { tips, recipes,addRecipe } from "../helpers/menuLinks"
+import { tips, recipes,addRecipe } from "../../helpers/menuLinks"
 
 export const FooterMenu = ({items}) => {
   return (
