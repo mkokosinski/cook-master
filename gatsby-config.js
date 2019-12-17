@@ -1,7 +1,7 @@
 let activeEnv = process.env.ACTIVE_ENV
 console.clear()
 if (!activeEnv) {
-  activeEnv = "development"
+  activeEnv = "production"
 }
 
 require("dotenv").config({

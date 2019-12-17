@@ -37,5 +37,7 @@ export const getStorage = async () => {
 export const getAuth = async () => {
   const lazyApp = await import("@firebase/app")
   const lazyAuth = await import("@firebase/auth")
+console.log(config);
+
   return getFirebase(lazyApp.firebase).auth;
 }

@@ -4,6 +4,7 @@ import React from "react"
 export const singUpGoogle = async modalHandler => {
   const auth = await getAuth()
   const provider = new auth.GoogleAuthProvider()
+  console.log("asd", auth)
   provider.setCustomParameters({
     display: "popup",
   })
@@ -30,6 +31,7 @@ export const signUpWithEmail = async (email, password) => {
 
 export const signInWithEmail = async (email, password) => {
   const auth = await getAuth()
+  console.dir(auth)
   await auth()
     .signInWithEmailAndPassword(email, password)
     .catch(err => {
