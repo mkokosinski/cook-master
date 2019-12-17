@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react"
 import { navigate } from "gatsby"
-import { signIn } from "./menuLinks"
+import { signIn } from "../helpers/menuLinks"
 import { AuthContext } from "../services/auth"
 
 const PrivateRoute = (props) => {
