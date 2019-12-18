@@ -8,7 +8,7 @@ import Burger from "@animated-burgers/burger-rotate"
 import "@animated-burgers/burger-rotate/dist/styles.css"
 
 import "./Navbar.scss"
-import logo from "../../images/logo.png"
+import Logo from "../Logo/Logo"
 import tipsIco from "../../images/chef.svg"
 import recipesIco from "../../images/recipe-book.svg"
 import MobileMenu from "./MobileMenu"
@@ -49,7 +49,9 @@ const Navbar = ({ location, items }) => {
           className={"nav-logo"}
           to="/app/"
         >
-          <img src={logo} alt="Logo" />
+          <div className="logo">
+          <Logo />
+          </div>
         </Link>
         <div className="nav-buttons-container">
           <Link
