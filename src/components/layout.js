@@ -17,7 +17,7 @@ import { isAuthorized, AuthContext } from "../services/auth"
 
 const Layout = ({ children }) => {
   const [currentUser, setCurrentUser] = useState({
-    isLoggedIn: localStorage.getItem('user')!==null,
+    isLoggedIn: localStorage && localStorage.getItem('user')!==null,
     user: {},
   })
   useEffect(() => {
