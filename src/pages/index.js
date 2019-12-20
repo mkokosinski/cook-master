@@ -6,9 +6,7 @@ import { Router } from "@reach/router"
 const HomePage = () => {
   return (
     <Layout>
-      <Router>
-        <Home exact path="/" />
-      </Router>
+        <Home />
     </Layout>
   )
 }

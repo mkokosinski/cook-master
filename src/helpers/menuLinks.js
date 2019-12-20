@@ -1,8 +1,8 @@
-export const homr={name:'Strona główna', slug:'Home'}
-export const tips={name:'Porady', slug:'Tips'}
-export const recipes={name:'Przepisy', slug:'Recipes'}
-export const signIn={name:'Zaloguj', slug:'SignIn'}
+export const homr={name:'Strona główna', slug:'home'}
+export const tips={name:'Porady', slug:'tips'}
+export const recipes={name:'Przepisy', slug:'recipes'}
+export const signIn={name:'Zaloguj', slug:'signIn'}
 export const signOut={name:'Wyloguj', slug:''}
-export const signUp={name:'Zarejestruj', slug:'SignUp'}
-export const addRecipe={name:'Dodaj przepis', slug:'AddRecipe'}
-export const profile={name:'Profil', slug:'Profile'}
+export const signUp={name:'Zarejestruj', slug:'signUp'}
+export const addRecipe={name:'Dodaj przepis', slug:'addRecipe'}
+export const profile={name:'Profil', slug:'profile'}

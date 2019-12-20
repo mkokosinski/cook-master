@@ -47,17 +47,17 @@ const Navbar = ({ location, items }) => {
         <Link
           onClick={burgerIsOpen ? toggleBurger : null}
           className={"nav-logo"}
-          to="/app/"
+          to="/"
         >
           <div className="logo">
-          <Logo />
+          <Logo template='color' />
           </div>
         </Link>
         <div className="nav-buttons-container">
           <Link
             className="nav-btn"
             activeClassName="nav-btn--active"
-            to={"/app/" + tips.slug}
+            to={"/" + tips.slug}
           >
             <div className="nav-btn__ico">
               <img src={tipsIco} alt="Ico" />
@@ -68,7 +68,7 @@ const Navbar = ({ location, items }) => {
           <Link
             activeClassName="nav-btn--active"
             className="nav-btn"
-            to={"/app/" + recipes.slug}
+            to={"/" + recipes.slug}
           >
             <div className="nav-btn__ico">
               <img src={recipesIco} alt="Ico" />
@@ -78,17 +78,17 @@ const Navbar = ({ location, items }) => {
           {isLoggedIn ? (
             <Link
               className="nav-btn--SignIn"
-              to={"/app/" + signOut.slug}
+              to={"/" + signOut.slug}
               onClick={logOut}
             >
               {signOut.name}
             </Link>
           ) : (
             <>
-              <Link className="nav-btn--SignIn" to={"/app/" + signIn.slug}>
+              <Link className="nav-btn--SignIn" to={"/" + signIn.slug}>
                 {signIn.name}
               </Link>
-              <Link className="nav-btn--SignIn" to={"/app/" + signUp.slug}>
+              <Link className="nav-btn--SignIn" to={"/" + signUp.slug}>
                 {signUp.name}
               </Link>
             </>

@@ -10,7 +10,7 @@ const PrivateRoute = (props) => {
     const  { location } = props;
     let noOnLoginPage = location.pathname !== `app/` + signIn.slug
     if (!isLoggedIn && noOnLoginPage) {
-      navigate(`app/${signIn.slug}`, {state:{from:location.pathname}})
+      navigate(`/${signIn.slug}`, {state:{from:location.pathname}})
     }
   }, [])
 

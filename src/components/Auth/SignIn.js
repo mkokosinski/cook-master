@@ -4,10 +4,10 @@ import { navigate, Link } from "gatsby"
 import * as Yup from 'yup';
 
 import {
-  signUpWithEmail,
+  // signUpWithEmail,
   singUpGoogle,
-  singUpFacebook,
-  isLoggedIn,
+  // singUpFacebook,
+  // isLoggedIn,
   AuthContext,
   signInWithEmail,
 } from "../../services/auth"
@@ -30,8 +30,7 @@ const SignUp = ({location}) => {
 
   const onSubmitHandler = (values, { setSubmitting }) => {
     const { email, password } = values
-    const {from='/app/'} = location.state
-    console.log(from);
+    const {from='/'} = location.state
     
     signInWithEmail(email, password).then(res => {
       navigate(from)

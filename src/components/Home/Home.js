@@ -62,13 +62,13 @@ const Home = () => {
   const MobileTiles = () => (
     <>
       <div className="card">
-        <Link className={styles.news} to={"/app/" + tips.slug}>
+        <Link className={styles.news} to={"/" + tips.slug}>
           <img src={tipsImg} alt="Tips" />
           {tips.name}
         </Link>
       </div>
       <div className="card">
-        <Link className={styles.news}to={"/app/" + recipes.slug}>
+        <Link className={styles.news}to={"/" + recipes.slug}>
           <img src={recipeImg} alt="Recipe" />
           {recipes.name}
         </Link>
