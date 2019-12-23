@@ -1,0 +1,40 @@
+.parallax {
+  background: #f7be24ce;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-perspective:2px;
+  perspective: 2px;
+
+}
+.parallax::-webkit-scrollbar { 
+}
+.parallax_layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.parallax_layerFront {
+  -webkit-transform: translateZ(-0.2px);
+  transform: translateZ(-0.2px) scale(1.2);
+}
+.parallax_layerMiddle {
+  -webkit-transform: translateZ(-0.4px);
+  transform: translateZ(-0.4px) scale(1.4);
+}
+.parallax_layerBack {
+  -webkit-transform: translateZ(-1px);
+  transform: translateZ(-1px) scale(1.8);
+}
+
+/* demo styles
+  --------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+}
+/* add some padding to force scrollbars */
+.parallax_layer {
+  padding: 20px;
+}

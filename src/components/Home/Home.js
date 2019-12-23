@@ -8,6 +8,7 @@ import tipsImg from "../../images/chef.svg"
 import recipeImg from "../../images/recipe-book.svg"
 import { Newsletter } from "../Newsletter/Newsletter"
 import { tips, recipes } from "../../helpers/menuLinks"
+import Background from "../Background/Background"
 
 const Home = () => {
   const data = useStaticQuery(graphql`
@@ -68,7 +69,7 @@ const Home = () => {
         </Link>
       </div>
       <div className="card">
-        <Link className={styles.news}to={"/" + recipes.slug}>
+        <Link className={styles.news} to={"/" + recipes.slug}>
           <img src={recipeImg} alt="Recipe" />
           {recipes.name}
         </Link>
@@ -97,26 +98,27 @@ const Home = () => {
   console.log("data", data)
 
   return (
-    <BackgroundImage
-      fluid={data.file.childImageSharp.fluid}
-      imgStyle={{ objectFit: "cover" }}
-      style={{ height: "100%" }}
-    >
-      <div className={styles.home}>
-        <div className={`card ${styles.seachDialog}`}>
-          <label htmlFor="seachInput">Wpisz co Cię interesuje:</label>
-          <div className={styles.searchInput}>
-            <SearchInput />
+    // <BackgroundImage
+    //   fluid={data.file.childImageSharp.fluid}
+    //   imgStyle={{ objectFit: "cover" }}
+    //   style={{ height: "100%" }}
+    // >
+    <>
+        <div className={styles.home}>
+          <div className={`card ${styles.seachDialog}`}>
+            <label htmlFor="seachInput">Wpisz co Cię interesuje:</label>
+            <div className={styles.searchInput}>
+              <SearchInput />
+            </div>
+          </div>
+          <div className={styles.newses}>
+            {/* {PageSize <= 800 ? <MobileTiles /> : <DesktopTiles />} */}
+            <MobileTiles />
           </div>
         </div>
-      <div className={styles.newses}>
-        {/* {PageSize <= 800 ? <MobileTiles /> : <DesktopTiles />} */}
-        <MobileTiles /> 
-      </div>
-
-      </div>
       <Newsletter />
-    </BackgroundImage>
+    </>
+    // </BackgroundImage>
   )
 }
 

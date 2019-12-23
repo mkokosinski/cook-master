@@ -14,23 +14,26 @@ import Footer from "./Footer/Footer"
 import "../../node_modules/bulma/bulma.sass"
 import "./style/layout.scss"
 import { isAuthorized, AuthContext } from "../services/auth"
+import Background from "./Background/Background"
 
 const Layout = ({ children }) => {
   const [currentUser, setCurrentUser] = useState({
-    isLoggedIn: localStorage && localStorage.getItem('user')!==null,
+    isLoggedIn: window && localStorage.getItem("user") !== null,
     user: {},
   })
   useEffect(() => {
-      isAuthorized(setCurrentUser)
+    isAuthorized(setCurrentUser)
   }, [])
 
   return (
     <AuthContext.Provider value={currentUser}>
-      <div className="App">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </div>
+      <Background>
+        <div className="App">
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </div>
+      </Background>
     </AuthContext.Provider>
   )
 }
