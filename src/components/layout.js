@@ -18,7 +18,7 @@ import Background from "./Background/Background"
 
 const Layout = ({ children }) => {
   const [currentUser, setCurrentUser] = useState({
-    isLoggedIn: window && localStorage.getItem("user") !== null,
+    isLoggedIn: typeof window !== 'undefined' && window ? localStorage.getItem("user") !== null : false,
     user: {},
   })
   useEffect(() => {
