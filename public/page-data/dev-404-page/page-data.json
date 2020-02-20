@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"componentChunkName":"component---cache-dev-404-page-js","path":"/dev-404-page/","result":{"data":{"allSitePage":{"nodes":[{"path":"/Tips/Hartowanie"},{"path":"/Tips/Macerowanie"},{"path":"/Tips/Al dente"},{"path":"/Tips/Poszetowanie"},{"path":"/Recipes/Kremowa zupa z kurek"},{"path":"/Recipes/Grzybowa po męsku"},{"path":"/404/"},{"path":"/app/"},{"path":"/"},{"path":"/404.html"}]}},"pageContext":{"isCreatedByStatefulCreatePages":true}}}
-=======
 {"componentChunkName":"component---cache-dev-404-page-js","path":"/dev-404-page/","result":{"data":{"allSitePage":{"nodes":[{"path":"/tips/Hartowanie"},{"path":"/tips/Macerowanie"},{"path":"/tips/Al dente"},{"path":"/tips/Poszetowanie"},{"path":"/recipes/Kremowa zupa z kurek"},{"path":"/recipes/Grzybowa po męsku"},{"path":"/404/"},{"path":"/app/"},{"path":"/"},{"path":"/recipes/"},{"path":"/signIn/"},{"path":"/signUp/"},{"path":"/tips/"},{"path":"/404.html"}]}},"pageContext":{"isCreatedByStatefulCreatePages":true}}}
->>>>>>> a3bfcf8bfa678c3fd17375922f9c957ef36e1ab7

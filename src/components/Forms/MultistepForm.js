@@ -48,20 +48,20 @@ const Buttons = () => {
   const isLastStep = currentStep === registeredSteps.length
   return (
     <>
-      <button
+      <div
         className="button"
         onClick={() => setCurrentStep(currentStep - 1)}
         disabled={currentStep === 1}
       >
         Wstecz
-      </button>
-      <button
+      </div>
+      <div
         className="button"
         onClick={() => setCurrentStep(currentStep + 1)}
         disabled={isLastStep}
       >
         Dalej
-      </button>
+      </div>
       {isLastStep && <button className="button" type="submit">Dodaj przepis</button>}
     </>
   )

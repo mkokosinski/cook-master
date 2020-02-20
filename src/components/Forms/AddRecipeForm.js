@@ -1,13 +1,17 @@
-import React from "react"
+import React, { useState } from "react"
 import { Formik, useFormik } from "formik"
 import "@fortawesome/fontawesome-free/css/all.min.css"
 import { uploadImg, addRecipe } from "../../services/api"
 
 import * as MultistepForm from "./MultistepForm"
 
+let stepsCounter = 1;
+
 export const AddRecipeForm = () => {
+  const [steps, setSteps] = useState(['Krok 1'])
+
   const onSubmitHandler = (values, { setSubmitting }) => {
-    console.log(formik.values)
+    console.log("submit", formik.values)
     const { name, desc, img } = values
     // uploadImg(img)
     //   .then(uploadedPath => {
@@ -30,11 +34,36 @@ export const AddRecipeForm = () => {
     onSubmit: onSubmitHandler,
   })
 
+  const StepInput = ({name}) => {
+    return (
+      <div className="field">
+        <label className="label" htmlFor="name">
+          {name}
+        </label>
+        <div className="control">
+          <input
+            className="input"
+            type="text"
+            placeholder="Jaki jest kolejny krok?"
+            name={name}
+            {...formik.getFieldProps(name)}
+          />
+        </div>
+      </div>
+    )
+  }
+
+  const addStep = () =>{
+    setSteps([...steps, 'Krok ' + ++stepsCounter])
+  }
+
   return (
     <div className="card">
       <div className="card-content">
         <form onSubmit={formik.handleSubmit}>
           <MultistepForm.Form>
+
+
             <MultistepForm.Step step={1}>
               <div className="field">
                 <label className="label" htmlFor="name">
@@ -83,23 +112,15 @@ export const AddRecipeForm = () => {
                 </label>
               </div>
             </MultistepForm.Step>
+
+
             <MultistepForm.Step step={2}>
-              <div className="field">
-                <label className="label" htmlFor="name">
-                  Krok 1
-                </label>
-                <div className="control">
-                  <input
-                    className="input"
-                    type="text"
-                    placeholder="Nazwa przepisu"
-                    name="step1"
-                    {...formik.getFieldProps("step1")}
-                  />
-                </div>
-                
-              </div>
+              {steps.map(step => <StepInput name={step} />)}
+              <div className="button" onClick={addStep}>+</div>
             </MultistepForm.Step>
+
+
+
             <MultistepForm.Step step={3}>
               Składniki:
               <div className="field">
@@ -117,6 +138,8 @@ export const AddRecipeForm = () => {
                 </div>
               </div>
             </MultistepForm.Step>
+
+
             <MultistepForm.Buttons />
           </MultistepForm.Form>
         </form>
