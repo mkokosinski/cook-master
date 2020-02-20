@@ -9,21 +9,21 @@ export const FooterMenu = ({items}) => {
       <Link
         className={styles.btn}
         activeClassName={styles.btnActive}
-        to={"/app/" + tips.slug}
+        to={"/" + tips.slug}
       >
         {tips.name}
       </Link>
       <Link
         className={styles.btn}
         activeClassName={styles.btnActive}
-        to={"/app/" + recipes.slug}
+        to={"/" + recipes.slug}
         >
           {recipes.name}
       </Link>
       <Link
         className={styles.btn}
         activeClassName={styles.btnActive}
-        to={"/app/" + addRecipe.slug}
+        to={"/" + addRecipe.slug}
       >
         {addRecipe.name}
       </Link>

@@ -20,7 +20,7 @@ const MobileMenu = ({ burgerIsOpen, toggleBurger, items }) => {
         onClick={toggleBurger}
         className="nav-btn"
         activeClassName="nav-btn--active"
-        to={"/app/" + tips.slug}
+        to={"/" + tips.slug}
       >
         {tips.name}
       </Link>
@@ -28,7 +28,7 @@ const MobileMenu = ({ burgerIsOpen, toggleBurger, items }) => {
         onClick={toggleBurger}
         className="nav-btn"
         activeClassName="nav-btn--active"
-        to={"/app/" + recipes.slug}
+        to={"/" + recipes.slug}
       >
         {recipes.name}
       </Link>
@@ -38,7 +38,7 @@ const MobileMenu = ({ burgerIsOpen, toggleBurger, items }) => {
             onClick={toggleBurger}
             className="nav-btn"
             activeClassName="nav-btn--active"
-            to={"/app/" + addRecipe.slug}
+            to={"/" + addRecipe.slug}
           >
             {addRecipe.name}
           </Link>
@@ -46,7 +46,7 @@ const MobileMenu = ({ burgerIsOpen, toggleBurger, items }) => {
             onClick={toggleBurger}
             className="nav-btn"
             activeClassName="nav-btn--active"
-            to={"/app/" + signOut.slug}
+            to={"/" + signOut.slug}
             onClick={logOut}
           >
             {signOut.name}
@@ -58,7 +58,7 @@ const MobileMenu = ({ burgerIsOpen, toggleBurger, items }) => {
             onClick={toggleBurger}
             className="nav-btn"
             activeClassName="nav-btn--active"
-            to={"/app/" + signIn.slug}
+            to={"/" + signIn.slug}
           >
             {signIn.name}
           </Link>
@@ -66,7 +66,7 @@ const MobileMenu = ({ burgerIsOpen, toggleBurger, items }) => {
             onClick={toggleBurger}
             className="nav-btn"
             activeClassName="nav-btn--active"
-            to={"/app/" + signUp.slug}
+            to={"/" + signUp.slug}
           >
             {signUp.name}
           </Link>

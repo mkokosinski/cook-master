@@ -5,32 +5,38 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 // import PropTypes from "prop-types"
 // import { useStaticQuery, graphql } from "gatsby"
+import { ToastContainer, toast } from 'react-toastify';
 
 import Navbar from "./Navbar/Navbar"
 import Footer from "./Footer/Footer"
 import "../../node_modules/bulma/bulma.sass"
 import "./style/layout.scss"
+import { isAuthorized, AuthContext } from "../services/auth"
+import Background from "./Background/Background"
+import 'react-toastify/dist/ReactToastify.min.css';
+
+toast.configure()
 
 const Layout = ({ children }) => {
-  // const data = useStaticQuery(graphql`
-  //   query SiteTitleQuery {
-  //     site {
-  //       siteMetadata {
-  //         title
-  //       }
-  //     }
-  //   }
-  // `)
+  const [currentUser, setCurrentUser] = useState({
+    isLoggedIn: typeof window !== 'undefined' && window ? localStorage.getItem("user") !== null : false,
+    user: {},
+  })
+  useEffect(() => {
+    isAuthorized(setCurrentUser)
+  }, [])
 
   return (
-    <div className="App">
-      <Navbar />
-      <main>{children}</main>
-      <Footer />
-    </div>
+    <AuthContext.Provider value={currentUser}>
+        <div className="App">
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </div>
+    </AuthContext.Provider>
   )
 }
 

@@ -1,33 +1,15 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
+
+import { FooterMenu } from "./FooterMenu"
+import Logo from '../Logo/Logo'
 
 import styles from "./Footer.module.scss"
-import { FooterMenu } from "./FooterMenu"
 
 const Footer = () => {
-  const data = useStaticQuery(graphql`
-    {
-      imageSharp(fluid: { originalName: { eq: "logo-white.png" } }) {
-        fluid(
-          quality: 100
-          maxWidth: 200
-          srcSetBreakpoints: [300, 600, 900, 1200]
-        ) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  `)
-  const logo = data.imageSharp.fluid
   return (
     <footer className={styles.footer}>
       <div className={styles.img}>
-        <Img
-          fluid={logo}
-          imgStyle={{ objectFit: "contain" }}
-          style={{ width: "100%" }}
-        />
+      <Logo template='white' />
       </div>
 
       <div className={styles.text}>

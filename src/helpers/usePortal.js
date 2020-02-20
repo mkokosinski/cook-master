@@ -26,10 +26,13 @@ export const usePortal = id => {
   }, []);
 
   function getRootElem() {
-    if (!rootElemRef.current) {
-      rootElemRef.current = document.createElement('div');
+    if (typeof document !== "undefined") {
+      
+      if (!rootElemRef.current) {
+        rootElemRef.current = document.createElement('div');
+      }
+      return rootElemRef.current;
     }
-    return rootElemRef.current;
   }
 
   return getRootElem();

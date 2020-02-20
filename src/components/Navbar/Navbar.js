@@ -8,12 +8,13 @@ import Burger from "@animated-burgers/burger-rotate"
 import "@animated-burgers/burger-rotate/dist/styles.css"
 
 import "./Navbar.scss"
-import logo from "../../images/logo.png"
+import Logo from "../Logo/Logo"
 import tipsIco from "../../images/chef.svg"
 import recipesIco from "../../images/recipe-book.svg"
 import MobileMenu from "./MobileMenu"
-import { logOut, AuthContext } from "../../services/auth"
+import { AuthContext } from "../../services/auth"
 import { tips, recipes, signIn, signUp, signOut } from "../../helpers/menuLinks"
+import { signOutHandler } from "../Auth/SignOut"
 
 const Navbar = ({ location, items }) => {
   const [burgerIsOpen, setBurgerIsOpen] = useState(false)
@@ -47,15 +48,17 @@ const Navbar = ({ location, items }) => {
         <Link
           onClick={burgerIsOpen ? toggleBurger : null}
           className={"nav-logo"}
-          to="/app/"
+          to="/"
         >
-          <img src={logo} alt="Logo" />
+          <div className="logo">
+            <Logo template="color" />
+          </div>
         </Link>
         <div className="nav-buttons-container">
           <Link
             className="nav-btn"
             activeClassName="nav-btn--active"
-            to={"/app/" + tips.slug}
+            to={"/" + tips.slug}
           >
             <div className="nav-btn__ico">
               <img src={tipsIco} alt="Ico" />
@@ -66,7 +69,7 @@ const Navbar = ({ location, items }) => {
           <Link
             activeClassName="nav-btn--active"
             className="nav-btn"
-            to={"/app/" + recipes.slug}
+            to={"/" + recipes.slug}
           >
             <div className="nav-btn__ico">
               <img src={recipesIco} alt="Ico" />
@@ -76,17 +79,17 @@ const Navbar = ({ location, items }) => {
           {isLoggedIn ? (
             <Link
               className="nav-btn--SignIn"
-              to={"/app/" + signOut.slug}
-              onClick={logOut}
+              to={"/" + signOut.slug}
+              onClick={signOutHandler}
             >
               {signOut.name}
             </Link>
           ) : (
             <>
-              <Link className="nav-btn--SignIn" to={"/app/" + signIn.slug}>
+              <Link className="nav-btn--SignIn" to={"/" + signIn.slug}>
                 {signIn.name}
               </Link>
-              <Link className="nav-btn--SignIn" to={"/app/" + signUp.slug}>
+              <Link className="nav-btn--SignIn" to={"/" + signUp.slug}>
                 {signUp.name}
               </Link>
             </>

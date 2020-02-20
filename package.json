@@ -36,6 +36,7 @@
     "gatsby-transformer-remark": "^2.6.26",
     "gatsby-transformer-sharp": "^2.2.20",
     "intersection-observer": "^0.7.0",
+    "lax.js": "^1.2.5",
     "loaders.css": "^0.1.2",
     "lodash": "^4.17.15",
     "node-sass": "^4.12.0",
@@ -47,7 +48,9 @@
     "react-infinite-scroller": "^1.2.4",
     "react-loaders": "^3.0.1",
     "react-router-dom": "^5.1.2",
+    "react-toastify": "^5.4.1",
     "sharp": "^0.23.1",
+    "use-lax": "^3.1.0",
     "yup": "^0.27.0"
   },
   "devDependencies": {

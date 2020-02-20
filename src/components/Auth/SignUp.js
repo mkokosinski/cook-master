@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import {
   signUpWithEmail,
   singUpGoogle,
-  singUpFacebook,
+  // singUpFacebook,
   isLoggedIn,
 } from "../../services/auth"
 
@@ -24,7 +24,8 @@ const validationSchema= Yup.object({
 })
 
 const SignUp = ({ sourceLink = profile.slug }) => {
-  const [isModalActive, setIsModalActive] = useState(false)
+  //TODO Modal to confirm accounts merge
+  // const [isModalActive, setIsModalActive] = useState(false)
 
   const onSubmitHandler = (values, { setSubmitting }) => {
     const { email, password } = values
@@ -51,7 +52,7 @@ const SignUp = ({ sourceLink = profile.slug }) => {
 
   return (
     <div className={styles.container}>
-      <ModalConfirm isActive={isModalActive} />
+      {/* <ModalConfirm isActive={isModalActive} /> */}
       <div className={styles.socialButton} onClick={signUpGoogleHandler}>
         <img src={GoogleIcon} alt="Google" /> Zarejestruj przez Google
       </div>

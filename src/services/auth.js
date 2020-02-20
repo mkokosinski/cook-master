@@ -4,7 +4,6 @@ import React from "react"
 export const singUpGoogle = async modalHandler => {
   const auth = await getAuth()
   const provider = new auth.GoogleAuthProvider()
-  console.log("asd", auth)
   provider.setCustomParameters({
     display: "popup",
   })
@@ -21,6 +20,7 @@ export const singUpFacebook = async modalHandler => {
 }
 
 export const signUpWithEmail = async (email, password) => {
+  
   const auth = await getAuth()
   await auth()
     .createUserWithEmailAndPassword(email, password)
@@ -31,11 +31,15 @@ export const signUpWithEmail = async (email, password) => {
 
 export const signInWithEmail = async (email, password) => {
   const auth = await getAuth()
-  console.dir(auth)
-  await auth()
+  return auth()
     .signInWithEmailAndPassword(email, password)
+    .then(res => {
+      console.log("login successful", res)
+      return res
+    })
     .catch(err => {
-      return err
+      console.log("error", err)
+      throw err
     })
 }
 
@@ -46,8 +50,8 @@ const signUpWithExternalProvider = async (provider, modalHandler) => {
     .signInWithPopup(provider)
     .then(res => res)
     .catch(function(error) {
-      console.log("Auth error", error);
-      
+      throw error
+
       // if (error.code === "auth/account-exists-with-different-credential") {
       //   const pendingCred = error.credential
       //   const email = error.email
@@ -121,12 +125,13 @@ export const getCurrentUser = async () => {
 export const isAuthorized = async callback => {
   const auth = await getAuth()
 
-  await auth().onAuthStateChanged(user => {
-    console.log("auth user", user)
-
-    if (user) {
-      callback({ isLoggedIn: true, user })
+  await auth().onAuthStateChanged(firebaseUser => {
+    if (firebaseUser) {
+      const { uid, email } = firebaseUser
+      localStorage.setItem("user", uid)
+      callback({ isLoggedIn: true, user: { uid, email } })
     } else {
+      localStorage.removeItem("user")
       callback({ isLoggedIn: false })
     }
   })
@@ -134,13 +139,8 @@ export const isAuthorized = async callback => {
 
 export const logOut = async () => {
   const auth = await getAuth()
-
-  auth()
+  return await auth()
     .signOut()
-    .then(res => {
-      console.log("sign out", res)
-    })
-    .catch(error => {
-      console.log("sign out error", error)
-    })
+    .then(res => res)
+    .catch(err => err )
 }

@@ -38,7 +38,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
   res.data.allTip.edges.forEach(edge => {
     createPage({
       component: tipTemplate,
-      path: "/Tips/" + edge.node.name,
+      path: "/tips/" + edge.node.name,
       context: {
         id: edge.node.id,
       },
@@ -48,7 +48,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
   res.data.allRecipe.edges.forEach(edge => {
     createPage({
       component: recipeTemplate,
-      path: "/Recipes/" + edge.node.name,
+      path: "/recipes/" + edge.node.name,
       context: {
         id: edge.node.id,
       },

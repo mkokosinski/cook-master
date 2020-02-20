@@ -21,7 +21,7 @@ const Breadcrumbs = BreadcrumbConfig({
     },
     itemRender:  (name, path) =>
       path ? (
-        <Link className={styles.breadcrumbItem} to={"app/" + path}>
+        <Link className={styles.breadcrumbItem} to={"/" + path}>
           {decodeURI(name)}
         </Link>
       ) : (
