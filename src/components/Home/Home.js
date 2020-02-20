@@ -17,8 +17,8 @@ const Home = () => {
         childImageSharp {
           fluid(
             quality: 100
-            maxWidth: 1600
-            maxHeight: 700
+            maxWidth: 5947
+            maxHeight: 3542
             srcSetBreakpoints: [320, 600, 1200, 1920]
           ) {
             ...GatsbyImageSharpFluid
@@ -98,12 +98,11 @@ const Home = () => {
   console.log("data", data)
 
   return (
-    // <BackgroundImage
-    //   fluid={data.file.childImageSharp.fluid}
-    //   imgStyle={{ objectFit: "cover" }}
-    //   style={{ height: "100%" }}
-    // >
-    <>
+    <BackgroundImage
+      fluid={data.file.childImageSharp.fluid}
+      imgStyle={{ objectFit: "cover" }}
+      style={{ height: "100%" }}
+    >
         <div className={styles.home}>
           <div className={`card ${styles.seachDialog}`}>
             <label htmlFor="seachInput">Wpisz co Cię interesuje:</label>
@@ -116,9 +115,8 @@ const Home = () => {
             <MobileTiles />
           </div>
         </div>
-      <Newsletter />
-    </>
-    // </BackgroundImage>
+        <Newsletter />
+    </BackgroundImage>
   )
 }
 

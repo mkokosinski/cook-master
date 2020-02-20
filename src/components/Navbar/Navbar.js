@@ -12,8 +12,9 @@ import Logo from "../Logo/Logo"
 import tipsIco from "../../images/chef.svg"
 import recipesIco from "../../images/recipe-book.svg"
 import MobileMenu from "./MobileMenu"
-import { logOut, AuthContext } from "../../services/auth"
+import { AuthContext } from "../../services/auth"
 import { tips, recipes, signIn, signUp, signOut } from "../../helpers/menuLinks"
+import { signOutHandler } from "../Auth/SignOut"
 
 const Navbar = ({ location, items }) => {
   const [burgerIsOpen, setBurgerIsOpen] = useState(false)
@@ -50,7 +51,7 @@ const Navbar = ({ location, items }) => {
           to="/"
         >
           <div className="logo">
-          <Logo template='color' />
+            <Logo template="color" />
           </div>
         </Link>
         <div className="nav-buttons-container">
@@ -79,7 +80,7 @@ const Navbar = ({ location, items }) => {
             <Link
               className="nav-btn--SignIn"
               to={"/" + signOut.slug}
-              onClick={logOut}
+              onClick={signOutHandler}
             >
               {signOut.name}
             </Link>

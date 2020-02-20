@@ -20,6 +20,7 @@ export const singUpFacebook = async modalHandler => {
 }
 
 export const signUpWithEmail = async (email, password) => {
+  
   const auth = await getAuth()
   await auth()
     .createUserWithEmailAndPassword(email, password)
@@ -30,10 +31,15 @@ export const signUpWithEmail = async (email, password) => {
 
 export const signInWithEmail = async (email, password) => {
   const auth = await getAuth()
-  await auth()
+  return auth()
     .signInWithEmailAndPassword(email, password)
+    .then(res => {
+      console.log("login successful", res)
+      return res
+    })
     .catch(err => {
-      return err
+      console.log("error", err)
+      throw err
     })
 }
 
@@ -44,7 +50,7 @@ const signUpWithExternalProvider = async (provider, modalHandler) => {
     .signInWithPopup(provider)
     .then(res => res)
     .catch(function(error) {
-      console.log("Auth error", error)
+      throw error
 
       // if (error.code === "auth/account-exists-with-different-credential") {
       //   const pendingCred = error.credential
@@ -133,12 +139,8 @@ export const isAuthorized = async callback => {
 
 export const logOut = async () => {
   const auth = await getAuth()
-  auth()
+  return await auth()
     .signOut()
-    .then(res => {
-      console.log("sign out", res)
-    })
-    .catch(error => {
-      console.log("sign out error", error)
-    })
+    .then(res => res)
+    .catch(err => err )
 }
