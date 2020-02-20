@@ -9,6 +9,7 @@ const PrivateRoute = (props) => {
   useEffect(() => {
     const  { location } = props;
     let noOnLoginPage = location.pathname !== `app/` + signIn.slug
+    console.log("Is Auth", isLoggedIn, noOnLoginPage)
     if (!isLoggedIn && noOnLoginPage) {
       navigate(`app/${signIn.slug}`, {state:{from:location.pathname}})
     }
