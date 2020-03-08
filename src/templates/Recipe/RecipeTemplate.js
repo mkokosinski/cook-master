@@ -14,6 +14,7 @@ import Separator, {
 } from "../../components/Separator/Separator"
 
 import styles from "./RecipeTemplate.module.scss"
+import RatingStars from "../../components/RatingStars/RatingStars"
 
 export const query = graphql`
   query($id: String!) {
@@ -97,6 +98,7 @@ const Recipe = ({ data, location }) => {
                     imgStyle={{ objectFit: "cover" }}
                     style={{ height: "100%" }}
                   />
+                  <RatingStars rating={3.5} />
                 </div>
               </div>
 
