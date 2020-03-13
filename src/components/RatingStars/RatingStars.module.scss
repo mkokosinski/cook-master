@@ -1,6 +1,10 @@
-.star{
-    color: gray;
-    &--active{
-        color: yellow;
-    }
+.star {
+  color: rgba(0, 0, 0, 0.400);
+
+  &--saved {
+    color: #b4ce4067;
+  }
+  &--active {
+    color: #b0d800;
+  }
 }

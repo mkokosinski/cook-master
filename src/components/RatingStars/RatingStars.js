@@ -1,37 +1,40 @@
 import React, { useState } from "react"
+import cx from 'classnames'
 
 import styles from "./RatingStars.module.scss"
 
 const RatingStars = ({ rating }) => {
-  const [currentRateHover, setCurrentRateHover] = useState(1)
+  const [currentRateHover, setCurrentRateHover] = useState(0)
   const [touchedRate, setTouchedRate] = useState(0)
-
-  const saveRate = ()=>{
-    if (touchedRate === 0) {
-        setCurrentRateHover(1)
-    }
-    else if(touchedRate !== currentRateHover){
-        
-    }
-
-  }
 
   const createStars = () => {
     let stars = []
-    for (let i = 1; i <= 5; i++) {
-      const style = i <= currentRateHover ? "fas" : "far"
+    for (let i = 0; i < 5; i++) {
+      const starStyle = cx( {
+        'far': i >= currentRateHover,
+        'fas': i < currentRateHover,
+        [styles.starActive]: i < currentRateHover
+      });
+
+      const touchedStar = cx('fas', styles.starSaved, {
+        [styles.starActive]: i < currentRateHover
+      })
+
+      const style = i < touchedRate && touchedRate > currentRateHover ? touchedStar : starStyle;
+
       stars.push(
         <i
           key={i}
-          className={`${style} ${styles.starActive} fa-star`}
-          onMouseEnter={() => setCurrentRateHover(i)}
-          onClick={() => setTouchedRate(i)}
-          onMouseLeave={(saveRate)}
+          className={`${style} ${styles.star} fa-star`}
+          onMouseEnter={() => setCurrentRateHover(i+1)}
+          onClick={() => setTouchedRate(i+1)}
+          onMouseLeave={() => setCurrentRateHover(touchedRate)}
         ></i>
       )
     }
     return stars
   }
+
   return (
     <div>
       {createStars()}

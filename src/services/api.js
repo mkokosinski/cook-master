@@ -50,3 +50,11 @@ const getSnap = async (firestore, collectionName) => {
 
 const getCategoryName = path => path.replace("Categories/", "")
 
+// export const saveRacipeRate = async() =>{
+//     const firestore = await getFirestore()
+//     const t = await firestore.collection("Tips").add({
+//       name: doc.name,
+//       img: doc.imgPath,
+//       desc: doc.desc,
+//     })
+//   }

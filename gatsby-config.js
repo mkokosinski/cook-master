@@ -52,7 +52,7 @@ module.exports = {
               return {
                 ...doc,
               }
-            },
+            }
           },
           {
             type: "Recipe",
@@ -75,8 +75,13 @@ module.exports = {
                   ...doc,
                 }),
               },
+              {
+                type: `Rates`,
+                collection: `rates`,
+                map: doc => ({...doc})
+              }
             ],
-          },
+          }
         ],
       },
     },
