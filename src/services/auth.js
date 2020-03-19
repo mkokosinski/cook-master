@@ -141,6 +141,4 @@ export const logOut = async () => {
   const auth = await getAuth()
   return await auth()
     .signOut()
-    .then(res => res)
-    .catch(err => err )
 }

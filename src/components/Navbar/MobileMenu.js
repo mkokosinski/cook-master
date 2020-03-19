@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 import {
   tips,
   recipes,
@@ -11,9 +11,26 @@ import {
 
 import "./MobileMenu.scss"
 import { logOut, AuthContext } from "../../services/auth"
+import { toast } from "react-toastify"
 
 const MobileMenu = ({ burgerIsOpen, toggleBurger, items }) => {
   const { isLoggedIn } = useContext(AuthContext)
+
+  const logOutHandler = () => {
+    logOut().then(resp => {
+      toast.success("Poprawnie wylogowano", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 2000,
+      })
+    }).catch(err => {
+      console.log(err)
+      toast.error("Nie udało się wylogować, szczegóły w konsoli...", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 2000,
+      })
+    })
+  }
+
   return (
     <div className={`mobile-menu ${burgerIsOpen && "open"}`}>
       <Link
@@ -46,32 +63,31 @@ const MobileMenu = ({ burgerIsOpen, toggleBurger, items }) => {
             onClick={toggleBurger}
             className="nav-btn"
             activeClassName="nav-btn--active"
-            to={"/" + signOut.slug}
-            onClick={logOut}
+            onClick={logOutHandler}
           >
             {signOut.name}
           </Link>
         </>
       ) : (
-        <>
-          <Link
-            onClick={toggleBurger}
-            className="nav-btn"
-            activeClassName="nav-btn--active"
-            to={"/" + signIn.slug}
-          >
-            {signIn.name}
-          </Link>
-          <Link
-            onClick={toggleBurger}
-            className="nav-btn"
-            activeClassName="nav-btn--active"
-            to={"/" + signUp.slug}
-          >
-            {signUp.name}
-          </Link>
-        </>
-      )}
+          <>
+            <Link
+              onClick={toggleBurger}
+              className="nav-btn"
+              activeClassName="nav-btn--active"
+              to={"/" + signIn.slug}
+            >
+              {signIn.name}
+            </Link>
+            <Link
+              onClick={toggleBurger}
+              className="nav-btn"
+              activeClassName="nav-btn--active"
+              to={"/" + signUp.slug}
+            >
+              {signUp.name}
+            </Link>
+          </>
+        )}
 
       <div className="mobile-menu-bg" onClick={toggleBurger}></div>
     </div>
