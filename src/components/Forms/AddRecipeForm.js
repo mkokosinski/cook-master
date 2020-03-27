@@ -4,46 +4,30 @@ import "@fortawesome/fontawesome-free/css/all.min.css"
 import { uploadImg, addRecipe } from "../../services/api"
 
 import * as MultistepForm from "./MultistepForm"
+import BallLoader from "../Loader/BallLoader"
 
-const StepInput = ({ name, formikProps }) => {
-  return (
-    <div className="field">
-      <label className="label" htmlFor="name">
-        {name}
-      </label>
-      <div className="control">
-        <input
-          className="input"
-          type="text"
-          placeholder="Jaki jest kolejny krok?"
-          name={name}
-          {...formikProps}
-        />
-      </div>
-    </div>
-  )
-}
-
-let stepsCounter = 1
+import styles from "./Forms.module.scss"
 
 export const AddRecipeForm = () => {
-  const onSubmitHandler = (values, { setSubmitting }) => {
-    console.log("submit", values)
-    const { name, desc, img } = values
-    // uploadImg(img)
-    //   .then(uploadedPath => {
-    //     const imgPath = uploadedPath
-    // const imgPath = 'http://placeimg.com/200/200/any'
-    // addRecipe({ name, desc, imgPath }).then(res => {
-    //     console.log(res);
+  const [previewSrc, setPreviewSrc] = useState(null)
+  const [imgIsUploading, setImgIsUploading] = useState(false)
 
-    //   setSubmitting(false)
-    // })
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //     setSubmitting(false)
-    //   })
+  const onSubmitHandler = async (values, { setSubmitting }) => {
+    console.log("submit", values)
+    const { name, desc, steps, ingredients } = values;
+    const recipe = {
+      name, desc, img: previewSrc, steps, ingredients
+    }
+      const res = await addRecipe(recipe)
+      setSubmitting(false)
+  }
+
+  const uploadImage = async img => {
+    setImgIsUploading(true)
+    const uploadedImgPath = await uploadImg(img)
+    console.log(uploadedImgPath)
+    setImgIsUploading(false)
+    setPreviewSrc(uploadedImgPath)
   }
 
   return (
@@ -83,7 +67,7 @@ export const AddRecipeForm = () => {
                     <label className="label">Opis</label>
                     <div className="control">
                       <Field
-                        type="textarea"
+                        component="textarea"
                         className="textarea"
                         placeholder="Krótki opis przepisu"
                         name="desc"
@@ -99,7 +83,7 @@ export const AddRecipeForm = () => {
                         name="img"
                         value={values.img.path}
                         onChange={event => {
-                          setFieldValue("img", event.currentTarget.files[0])
+                          uploadImage(event.currentTarget.files[0])
                         }}
                       />
                       <span className="file-cta">
@@ -109,6 +93,14 @@ export const AddRecipeForm = () => {
                         <span className="file-label">Dodaj zdjęcie</span>
                       </span>
                     </label>
+
+                    {imgIsUploading && <BallLoader />}
+
+                    {previewSrc && (
+                      <div className={styles.previewImg}>
+                        <img src={previewSrc} alt="Uploaded img preview" />
+                      </div>
+                    )}
                   </div>
                 </MultistepForm.Step>
 
@@ -118,33 +110,32 @@ export const AddRecipeForm = () => {
                       <div>
                         {values.steps.map((step, index) => (
                           <>
-                          <label className="label" htmlFor="name">
+                            <label className="label" htmlFor="name">
                               {step.label}
                             </label>
                             <div className="field is-grouped" key={index}>
                               <div className="control is-expanded">
-                              <Field
-                                className="input"
-                                type="text"
-                                placeholder="Jaki jest kolejny krok?"
-                                name={`steps[${index}].value`}
-                              />
+                                <Field
+                                  className="input"
+                                  type="text"
+                                  placeholder="Jaki jest kolejny krok?"
+                                  name={`steps[${index}].value`}
+                                />
+                              </div>
+                              {values.steps.length === index + 1 && index > 0 && (
+                                <div className="control">
+                                  <button
+                                    type="button"
+                                    className="button"
+                                    onClick={() => {
+                                      remove(index)
+                                    }}
+                                  >
+                                    -
+                                  </button>
+                                </div>
+                              )}
                             </div>
-                            {values.steps.length === index + 1 &&
-                                index > 0 && (
-                                  <div className="control">
-                                    <button
-                                      type="button"
-                                      className="button"
-                                      onClick={() => {
-                                        remove(index)
-                                      }}
-                                    >
-                                      -
-                                    </button>
-                                  </div>
-                                )}
-                          </div>
                           </>
                         ))}
                         <button

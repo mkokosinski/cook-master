@@ -2,21 +2,29 @@
 import { getFirestore, getStorage, getAuth } from "./firebase"
 
 export const uploadImg = async file => {
-  const storage = await getStorage()
-  const storageRef = storage().ref()
-  const imgRef = storageRef.child("img/" + file.name)
-  const uploadTask = imgRef.put(file)
-  return await uploadTask.snapshot.ref.getDownloadURL()
+  try {
+    const storage = await getStorage()
+    const storageRef = storage().ref()
+    const imgRef = storageRef.child("img/" + file.name)
+    const uploadTask = await imgRef.put(file);
+    return uploadTask.ref.getDownloadURL();
+  } catch (error) {
+    console.log("api err: ", error)
+  }
 }
 
-export const addRecipe = async doc => {
+export const addRecipe = async recipe => {
   const firestore = await getFirestore()
-  const t = await firestore.collection("Tips").add({
-    name: doc.name,
-    img: doc.imgPath,
-    desc: doc.desc,
+  const {name, desc, img, steps, ingredients} = recipe;
+  const t = await firestore.collection("Recipes").add({
+    name, desc, img
+  }).then(ref => {
+    console.log('eeeeeeee', ref);
+    ref.collection('steps').add({steps});
   })
   console.log(t)
+  console.log(recipe);
+  
 }
 
 export const getAutoCompleteList = async () => {
@@ -49,4 +57,3 @@ const getSnap = async (firestore, collectionName) => {
 }
 
 const getCategoryName = path => path.replace("Categories/", "")
-
