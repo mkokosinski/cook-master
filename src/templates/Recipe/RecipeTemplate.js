@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import Layout from "../../components/layout"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
@@ -14,6 +14,7 @@ import Separator, {
 } from "../../components/Separator/Separator"
 import RatingStars from "../../components/RatingStars/RatingStars"
 import { saveRacipeRate, getRecipeRate } from "../../services/api"
+import { AuthContext } from "../../services/auth"
 
 import styles from "./RecipeTemplate.module.scss"
 
@@ -64,6 +65,8 @@ const Recipe = ({ data, location }) => {
   const [PageSize, setPageSize] = useState("")
   const [currentUserRate, setCurrentUserRate] = useState(null)
 
+  const { isLoggedIn, user } = useContext(AuthContext)
+
   const {
     id,
     name,
@@ -74,7 +77,9 @@ const Recipe = ({ data, location }) => {
   sort(steps).asc(step => step.step)
 
   useEffect(() => {
-    getRecipeRate(id, "2s1313").then(rate => {
+    console.log(isLoggedIn)
+
+    getRecipeRate(id, user.uid).then(rate => {
       setCurrentUserRate(rate)
     })
 
@@ -90,7 +95,7 @@ const Recipe = ({ data, location }) => {
   }
 
   const saveRate = rate => {
-    const doc = { rate, userId: "2s1313", recipeId: id }
+    const doc = { rate, userId: user.uid, recipeId: id }
     saveRacipeRate(doc)
   }
 
@@ -115,17 +120,17 @@ const Recipe = ({ data, location }) => {
                 </div>
               </div>
 
-              <div className={styles.rating}>
-                <div className={styles.ratingLabel}>Oceń:</div>
-                <div className={styles.ratingIcons}>
-                  <RatingStars
-                    rating={currentUserRate}
-                    userId={"2s1313"}
-                    recipeId={id}
-                    saveRate={saveRate}
-                  />
+              {isLoggedIn ? (
+                <div className={styles.rating}>
+                  <div className={styles.ratingLabel}>Oceń:</div>
+                  <div className={styles.ratingIcons}>
+                    <RatingStars
+                      rating={currentUserRate}
+                      saveRate={saveRate}
+                    />
+                  </div>
                 </div>
-              </div>
+              ) : null}
 
               <Separator
                 direction={separatorDirection.horizontal}

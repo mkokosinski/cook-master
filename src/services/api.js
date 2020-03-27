@@ -57,8 +57,6 @@ const getSnap = async (firestore, collectionName) => {
 }
 
 const getCategoryName = path => path.replace("Categories/", "")
-<<<<<<< HEAD
-=======
 
 const getPreviousRate = async (recipeId, userId) => {
   let result = { isExists: false, rateId: "" }
@@ -120,4 +118,3 @@ export const getRecipeRate = async (recipeId, userId) => {
   }
   return recipeRate;
 }
->>>>>>> be6df78bc09ff6f21b410ce17fc1d9e97b6e5bd3
