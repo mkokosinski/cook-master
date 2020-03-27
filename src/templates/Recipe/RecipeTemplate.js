@@ -112,12 +112,18 @@ const Recipe = ({ data, location }) => {
                     imgStyle={{ objectFit: "cover" }}
                     style={{ height: "100%" }}
                   />
-                    <RatingStars
-                      rating={currentUserRate}
-                      userId={"2s1313"}
-                      recipeId={id}
-                      saveRate={saveRate}
-                    />
+                </div>
+              </div>
+
+              <div className={styles.rating}>
+                <div className={styles.ratingLabel}>Oceń:</div>
+                <div className={styles.ratingIcons}>
+                  <RatingStars
+                    rating={currentUserRate}
+                    userId={"2s1313"}
+                    recipeId={id}
+                    saveRate={saveRate}
+                  />
                 </div>
               </div>
 
