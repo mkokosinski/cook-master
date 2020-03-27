@@ -12,6 +12,8 @@ import { Step } from "./Step"
 import Separator, {
   separatorDirection,
 } from "../../components/Separator/Separator"
+import RatingStars from "../../components/RatingStars/RatingStars"
+import { saveRacipeRate, getRecipeRate } from "../../services/api"
 
 import styles from "./RecipeTemplate.module.scss"
 
@@ -60,7 +62,22 @@ export const query = graphql`
 
 const Recipe = ({ data, location }) => {
   const [PageSize, setPageSize] = useState("")
+  const [currentUserRate, setCurrentUserRate] = useState(null)
+
+  const {
+    id,
+    name,
+    image,
+    childrenStep: steps,
+    childrenIngredient: ingredients,
+  } = data.recipe
+  sort(steps).asc(step => step.step)
+
   useEffect(() => {
+    getRecipeRate(id, "2s1313").then(rate => {
+      setCurrentUserRate(rate)
+    })
+
     window.addEventListener("resize", getPageSize)
     getPageSize()
     return () => {
@@ -72,13 +89,11 @@ const Recipe = ({ data, location }) => {
     setPageSize(window.innerWidth)
   }
 
-  const {
-    name,
-    image,
-    childrenStep: steps,
-    childrenIngredient: ingredients,
-  } = data.recipe
-  sort(steps).asc(step => step.step)
+  const saveRate = rate => {
+    const doc = { rate, userId: "2s1313", recipeId: id }
+    saveRacipeRate(doc)
+  }
+
   return (
     <Layout>
       <div className={styles.container}>
@@ -100,6 +115,18 @@ const Recipe = ({ data, location }) => {
                 </div>
               </div>
 
+              <div className={styles.rating}>
+                <div className={styles.ratingLabel}>Oceń:</div>
+                <div className={styles.ratingIcons}>
+                  <RatingStars
+                    rating={currentUserRate}
+                    userId={"2s1313"}
+                    recipeId={id}
+                    saveRate={saveRate}
+                  />
+                </div>
+              </div>
+
               <Separator
                 direction={separatorDirection.horizontal}
                 className={styles.separatorH}
@@ -110,7 +137,7 @@ const Recipe = ({ data, location }) => {
                 <div className={styles.listOfIndegredients}>
                   <ul>
                     {ingredients.map(ingredient => (
-                      <li>
+                      <li key={ingredient.name}>
                         <div className={styles.listItem}>
                           <CheckBox>
                             {`${ingredient.name} ${ingredient.quantity} ${ingredient.unit}`}
@@ -119,7 +146,6 @@ const Recipe = ({ data, location }) => {
                       </li>
                     ))}
                   </ul>
-                    
                 </div>
 
                 <Separator
@@ -130,9 +156,11 @@ const Recipe = ({ data, location }) => {
                 <div className={styles.buttons}>
                   <button className="button">Zapisz PDF</button>
                   <button className="button">Drukuj</button>
-                  <Listonic className="button" 
-                  ingredients={ingredients} 
-                  recipeTitle={name} />
+                  <Listonic
+                    className="button"
+                    ingredients={ingredients}
+                    recipeTitle={name}
+                  />
                   <button className="button">E-mail</button>
                 </div>
               </div>
@@ -146,7 +174,7 @@ const Recipe = ({ data, location }) => {
             <div className={styles.steps}>
               <h2 className={styles.title}>Przygotowanie</h2>
               {steps.map(step => (
-                <Step className={styles.step} {...step} />
+                <Step key={step.name} className={styles.step} {...step} />
               ))}
             </div>
           </div>

@@ -57,3 +57,67 @@ const getSnap = async (firestore, collectionName) => {
 }
 
 const getCategoryName = path => path.replace("Categories/", "")
+<<<<<<< HEAD
+=======
+
+const getPreviousRate = async (recipeId, userId) => {
+  let result = { isExists: false, rateId: "" }
+  const firestore = await getFirestore()
+  const recipes = firestore.collection("Recipes")
+  const recipe = recipes.doc(recipeId)
+  const rates = await recipe.collection("rates").get()
+
+  rates.forEach(doc => {
+    const rate = doc.data()
+    if (rate.user === userId) {
+      result = { isExists: true, rateId: doc.id }
+    }
+  })
+
+  return result
+}
+
+export const saveRacipeRate = async doc => {
+  const { rate, userId, recipeId } = doc
+  const previousRate = await getPreviousRate(recipeId, userId)
+
+  const firestore = await getFirestore()
+  const ratesRef = firestore
+    .collection("Recipes")
+    .doc(recipeId)
+    .collection("rates")
+
+  if (previousRate.isExists) {
+    ratesRef.doc(previousRate.rateId).set({
+      rate,
+      user: userId,
+    })
+  } else {
+    ratesRef.add({
+      rate,
+      user: userId,
+    })
+  }
+}
+
+export const getRecipeRate = async (recipeId, userId) => {
+  console.log(recipeId, userId);
+  
+  let recipeRate = 1;
+  const previousRate = await getPreviousRate(recipeId, userId);
+
+  if (previousRate.isExists) {
+
+    const firestore = await getFirestore()
+    
+    const rate = await firestore
+    .collection("Recipes")
+    .doc(recipeId)
+    .collection("rates")
+    .doc(previousRate.rateId).get()
+
+    recipeRate = rate.data().rate;
+  }
+  return recipeRate;
+}
+>>>>>>> be6df78bc09ff6f21b410ce17fc1d9e97b6e5bd3
