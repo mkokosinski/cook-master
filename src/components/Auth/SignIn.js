@@ -14,7 +14,7 @@ import {
 
 import GoogleIcon from "../../images/google-icon.svg"
 import styles from "./Auth.module.scss"
-import { ModalConfirm } from "../Modal/Modal"
+// import { ModalConfirm } from "../Modal/Modal"
 import { profile, signUp } from "../../helpers/menuLinks"
 
 import "@fortawesome/fontawesome-free/css/all.min.css"
@@ -88,7 +88,7 @@ const SignUp = ({ location }) => {
 
   return (
     <div className={styles.container}>
-      <ModalConfirm isActive={isModalActive} />
+      {/* <ModalConfirm isActive={isModalActive} /> */}
       <div className={styles.socialButton} onClick={signUpGoogleHandler}>
         <img src={GoogleIcon} alt="Google" /> Logowanie przez Google
       </div>
