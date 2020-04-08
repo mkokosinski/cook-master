@@ -1,5 +1,4 @@
 import React from "react"
-import Layout from "../../components/layout"
 import { graphql } from "gatsby"
 import Breadcrumb from '../../components/BreadCrumb/BreadCrumb'
 import Header from "./TipHeader"
@@ -26,7 +25,7 @@ const Tip = ({ data, location }) => {
   const { name, desc, image } = data.tip
   
   return (
-    <Layout>
+    <>
     <div className={styles.container}>
       <div className={styles.breadcrumbs}>
         <Breadcrumb pathname={location.pathname} />
@@ -45,7 +44,7 @@ const Tip = ({ data, location }) => {
         </div>
       </div>
     </div>
-  </Layout>
+  </>
   )
 }
 
