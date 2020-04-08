@@ -23,6 +23,8 @@ const Navbar = ({ location, items }) => {
   const { isLoggedIn } = useContext(AuthContext)
 
   useEffect(() => {
+    console.log(isLoggedIn);
+    
     window.addEventListener("scroll", onScrollHandler)
     return () => {
       window.removeEventListener("scroll", onScrollHandler)

@@ -9,7 +9,6 @@ import { AuthContext } from "../../services/auth"
 const RatingStars = ({ rating, saveRate }) => {
   const [currentRateHover, setCurrentRateHover] = useState(rating)
   const [touchedRate, setTouchedRate] = useState(rating)
-  const { isLoggedIn } = useContext(AuthContext)
 
   useEffect(() => {
     setCurrentRateHover(rating)
@@ -61,7 +60,7 @@ const RatingStars = ({ rating, saveRate }) => {
     return stars
   }
 
-  return isLoggedIn === true ? <div>{createStars()}</div> : null
+  return <div>{createStars()}</div> 
 }
 
 export default RatingStars

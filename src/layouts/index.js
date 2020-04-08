@@ -19,25 +19,14 @@ import 'react-toastify/dist/ReactToastify.min.css';
 toast.configure()
 
 const Layout = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState({
-    isLoggedIn: typeof window !== 'undefined' && window ? localStorage.getItem('user') !== null : false,
-    user: {},
-  })
-  useEffect(() => {
-    isAuthorized(setCurrentUser)
-  }, [])
-
   return (
-    <AuthContext.Provider value={currentUser}>
-      <div className='App'>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </div>
-    </AuthContext.Provider>
+        <div className="App">
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </div>
   )
 }
-
 // Layout.propTypes = {
 //   children: PropTypes.node.isRequired,
 // }
