@@ -29,6 +29,9 @@ module.exports.createPages = async ({ graphql, actions }) => {
           node {
             name
             id
+            childrenRates {
+              rate
+            }
           }
         }
       }
@@ -38,7 +41,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
   res.data.allTip.edges.forEach(edge => {
     createPage({
       component: tipTemplate,
-      path: "/tips/" + edge.node.name,
+      path: "/Porady/" + edge.node.name,
       context: {
         id: edge.node.id,
       },
@@ -46,11 +49,18 @@ module.exports.createPages = async ({ graphql, actions }) => {
   })
 
   res.data.allRecipe.edges.forEach(edge => {
+    const { id, name, childrenRates } = edge.node
+
+    const formattedRates = childrenRates.map(node => node.rate)
+    const ratesAvg =
+      formattedRates.reduce((a, b) => a + b, 0) / formattedRates.length
+
     createPage({
       component: recipeTemplate,
-      path: "/recipes/" + edge.node.name,
+      path: "/Przepisy/" + name,
       context: {
-        id: edge.node.id,
+        id: id,
+        ratesAvg,
       },
     })
   })
@@ -64,12 +74,25 @@ module.exports.onCreatePage = async ({ page, actions }) => {
   const { createPage } = actions
   // page.matchPath is a special key that's used for matching pages
   // only on the client.
+console.log('#################################################################');
+console.log(page)
+console.log('#################################################################');
+
 
   if (page.path.match(/^\/app/)) {
     page.matchPath = "/app/*"
     // Update the page.
-    createPage(page)
   }
+
+  if (page.path === '/recipes/') {
+    page.path = '/Przepisy/'
+  }
+  
+  if (page.path === '/tips/') {
+    page.path = '/Porady/'
+  }
+  
+  createPage(page)
 }
 
 // in our on-create-node.js

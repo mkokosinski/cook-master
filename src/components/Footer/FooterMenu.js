@@ -20,13 +20,6 @@ export const FooterMenu = ({items}) => {
         >
           {recipes.name}
       </Link>
-      <Link
-        className={styles.btn}
-        activeClassName={styles.btnActive}
-        to={"/" + addRecipe.slug}
-      >
-        {addRecipe.name}
-      </Link>
     </div>
   )
 }
