@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Breadcrumb from "../../components/BreadCrumb/BreadCrumb"
