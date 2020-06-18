@@ -27,11 +27,11 @@ module.exports.createPages = async ({ graphql, actions }) => {
       allRecipe {
         edges {
           node {
-            name
-            id
             childrenRates {
               rate
             }
+            name
+            id
           }
         }
       }
@@ -74,11 +74,6 @@ module.exports.onCreatePage = async ({ page, actions }) => {
   const { createPage } = actions
   // page.matchPath is a special key that's used for matching pages
   // only on the client.
-console.log('#################################################################');
-console.log(page)
-console.log('#################################################################');
-
-
   if (page.path.match(/^\/app/)) {
     page.matchPath = "/app/*"
     // Update the page.
