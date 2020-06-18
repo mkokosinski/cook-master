@@ -32,6 +32,9 @@ module.exports.createPages = async ({ graphql, actions }) => {
             }
             name
             id
+            childrenRates {
+              rate
+            }
           }
         }
       }
