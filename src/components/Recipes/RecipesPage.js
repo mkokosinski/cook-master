@@ -12,12 +12,6 @@ const Przepisy = ({ location }) => {
           node {
             id
             name
-            childrenStep {
-              desc
-              id
-              img
-              step
-            }
             image {
               childImageSharp {
                 fluid(

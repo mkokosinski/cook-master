@@ -11,15 +11,7 @@ export const Step = ({ image, desc, step }) => {
         <div className={styles.desc}>{desc}</div>
       </div>
 
-      <div className={styles.imgContainer}>
-        <div className={styles.img}>
-          <Img
-            fluid={image.childImageSharp.fluid}
-            imgStyle={{ objectFit: "cover" }}
-            style={{ height: "100%" }}
-          />
-        </div>
-      </div>
+     
     </div>
   )
 }

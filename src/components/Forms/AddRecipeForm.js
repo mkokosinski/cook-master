@@ -1,16 +1,34 @@
 import React, { useState } from "react"
-import { Formik, Form, Field, FieldArray } from "formik"
+import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik"
 import "@fortawesome/fontawesome-free/css/all.min.css"
 import { uploadImg, addRecipe } from "../../services/api"
+import * as Yup from 'yup';
 
-import * as MultistepForm from "./MultistepForm"
+import * as MultistepForm from "../MultistepForm/MultistepForm"
 import BallLoader from "../Loader/BallLoader"
 
 import styles from "./Forms.module.scss"
+import { FieldWithErrors } from "./FieldWithErrors";
+
+const AddRecipeFormSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(3, 'Minimum 3 znaki!')
+    .required('To pole jest wymagane'),
+  desc: Yup.string()
+    .min(3, 'Minimum 3 znaki!')
+    .required('To pole jest wymagane'),
+  steps: Yup.array().of(
+    Yup.object().shape({
+      desc: Yup.string().min(3, 'Minimum 3 znaki!').required('To pole jest wymagane')
+    })
+  ).min(2, 'Podaj przynajmniej 2 kroki!')
+});
 
 export const AddRecipeForm = () => {
   const [previewSrc, setPreviewSrc] = useState(null)
   const [imgIsUploading, setImgIsUploading] = useState(false)
+
+  
 
   const onSubmitHandler = async (values, { setSubmitting }) => {
     console.log("submit", values)
@@ -18,16 +36,17 @@ export const AddRecipeForm = () => {
     const recipe = {
       name, desc, img: previewSrc, steps, ingredients
     }
-      const res = await addRecipe(recipe)
-      setSubmitting(false)
+    console.log("Submit:", recipe);
+
+    // const res = await addRecipe(recipe)
+    setSubmitting(false)
   }
 
   const uploadImage = async img => {
     setImgIsUploading(true)
     const uploadedImgPath = await uploadImg(img)
-    console.log(uploadedImgPath)
-    setImgIsUploading(false)
     setPreviewSrc(uploadedImgPath)
+    setImgIsUploading(false)
   }
 
   return (
@@ -38,29 +57,25 @@ export const AddRecipeForm = () => {
             name: "",
             desc: "",
             img: "",
-            steps: [{ name: "step1", label: "Krok 1", value: "" }],
+            steps: [{ name: "step1", label: "Krok 1", desc: '' }, { name: "step2", label: "Krok 2", desc: '' }],
             ingredients: [
-              { name: "ingredient", label: "Składnik 1", value: "" },
+              { name: "ingredient", label: "Składnik 1", value: "" },{ name: "ingredient", label: "Składnik 2", value: "" },
             ],
           }}
+          validationSchema={AddRecipeFormSchema}
           onSubmit={onSubmitHandler}
         >
-          {({ values, setFieldValue }) => (
+          {({ values, setFieldValue, errors, touched, handleSubmit}) => (
             <Form>
               <MultistepForm.Form>
                 <MultistepForm.Step step={1}>
                   <div className="field">
-                    <label className="label" htmlFor="name">
-                      Nazwa
-                    </label>
-                    <div className="control">
-                      <Field
-                        className="input"
-                        type="text"
-                        placeholder="Nazwa przepisu"
-                        name="name"
-                      />
-                    </div>
+                    <FieldWithErrors
+                      type="text"
+                      placeholder="Nazwa przepisu"
+                      name="name"
+                      label="Nazwa"
+                    />
                   </div>
 
                   <div className="field">
@@ -119,10 +134,12 @@ export const AddRecipeForm = () => {
                                   className="input"
                                   type="text"
                                   placeholder="Jaki jest kolejny krok?"
-                                  name={`steps[${index}].value`}
+                                  name={`steps[${index}].desc`}
                                 />
                               </div>
-                              {values.steps.length === index + 1 && index > 0 && (
+                              <ErrorMessage name={`steps[${index}].desc`} />
+
+                              {values.steps.length === index + 1 && index > 1 && (
                                 <div className="control">
                                   <button
                                     type="button"
@@ -171,12 +188,24 @@ export const AddRecipeForm = () => {
                                 <input
                                   className="input"
                                   type="text"
-                                  placeholder="Nazwa przepisu"
-                                  name={`ingredients.${index}.value`}
+                                  placeholder="Wpisz nazwę"
+                                  name={`ingredients[${index}].name`}
+                                />
+                                <input
+                                  className="input"
+                                  type="text"
+                                  placeholder="Podaj ilość"
+                                  name={`ingredients[${index}].quantity`}
+                                />
+                                <input
+                                  className="input"
+                                  type="text"
+                                  placeholder="Wybierz jednostkę"
+                                  name={`ingredients[${index}].unit`}
                                 />
                               </div>
                               {values.ingredients.length === index + 1 &&
-                                index > 0 && (
+                                index > 1 && (
                                   <div className="control">
                                     <button
                                       type="button"
@@ -212,7 +241,7 @@ export const AddRecipeForm = () => {
                   </FieldArray>
                 </MultistepForm.Step>
 
-                <MultistepForm.Buttons />
+                <MultistepForm.Buttons handleSubmit={handleSubmit} />
               </MultistepForm.Form>
             </Form>
           )}

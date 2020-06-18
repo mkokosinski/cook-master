@@ -70,9 +70,10 @@ const Recipe = ({ data, location }) => {
     id,
     name,
     image,
-    childrenStep: steps,
+    childrenStep : steps,
     childrenIngredient: ingredients,
   } = data.recipe
+
   sort(steps).asc(step => step.step)
 
   useEffect(() => {

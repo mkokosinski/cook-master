@@ -1,60 +1,65 @@
 @import "../style/basics.scss";
 .mobile-menu {
-    animation: expand-down 500ms ease forwards;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    position: fixed;
-    width: 100%;
-    transition: 200ms ease;
-    transform-origin: top center;
-    transform: scaleY(0);
-    visibility: hidden;
-    z-index: 800;
+  animation: expand-down 500ms ease forwards;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  transition: 200ms ease;
+  transform-origin: top center;
+  transform: scaleY(0);
+  visibility: hidden;
+  z-index: 800;
 
-    &.open {
-        transform: scaleY(1);
-        visibility: visible;
-    }
-
+  &.open {
     .nav-btn {
-        background: white;
-        border-top: 1px solid rgba(0, 0, 0, .2);
-        cursor: pointer;
-        padding: 20px;
-        text-align: center;
-
-        &:hover {
-            filter: brightness(110%);
-        }
+      color: rgba($color: #000000, $alpha: 1);
     }
+    transform: scaleY(1);
+    visibility: visible;
+  }
 
-    &-bg {
-        background: rgba(0, 0, 0, 0.2);
-        height: 100%;
-        opacity: 0;
-    }
+  .nav-btn {
+    background: white;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    color: rgba($color: #000000, $alpha: 0);
+    cursor: pointer;
+    padding: 20px;
+    text-align: center;
+    transition: 200ms ease;
 
-    &.open &-bg {
-        opacity: 1;
-        transition: 500ms ease-out;
+    &:hover {
+      filter: brightness(110%);
     }
+  }
+
+  &-bg {
+    background: rgba(0, 0, 0, 0.2);
+    height: 100%;
+    opacity: 0;
+  }
+
+  &.open &-bg {
+    opacity: 1;
+    transition: 500ms ease-out;
+  }
 }
 
 .burger {
-    display: none;
-    font-size: 8px;
-    justify-content: center;
+  display: none;
+  font-size: 8px;
+  justify-content: center;
 
-    @include media(tablet-down) {
-        display: flex;
-        flex-basis: 10%;
+  @include media(tablet-down) {
+    display: flex;
+    flex-basis: 10%;
 
-        .burger-lines,
-        .burger-lines:after,
-        .burger-lines:before {
-            background-color: black;
-            width: 3em;
-        }
+    .burger-lines,
+    .burger-lines:after,
+    .burger-lines:before {
+      background-color: black;
+      width: 3em;
     }
+  }
 }

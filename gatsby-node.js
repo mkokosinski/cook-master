@@ -81,13 +81,21 @@ module.exports.onCreateNode = async ({ node, actions, store, cache }) => {
     // download image and create a File node
     // with gatsby-transformer-sharp and gatsby-plugin-sharp
     // that node will become an ImageSharp
+
+    let img = `https://firebasestorage.googleapis.com/v0/b/cookmaster-9494a.appspot.com/o/img%2Fdinner_placeholder.png?alt=media&token=87d365a0-1984-40f4-8e99-9143b1bfadbc`
+
+    if (node.img && node.hasOwnProperty("img")) {
+      img = node.img
+    }
+
     const fileNode = await createRemoteFileNode({
-      url: node.img,
+      url: img,
       store,
       cache,
       createNode,
       createNodeId: id => `image-sharp-${id}`,
     })
+
     if (fileNode) {
       // link File node to DogImage node
       // at field image

@@ -1,0 +1,46 @@
+.buttons {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  padding: 20px;
+  .button {
+    align-items: center;
+    border-radius: 35px;
+    cursor: pointer;
+    display: flex;
+    flex-basis: 100%;
+    font-weight: 600;
+    justify-content: center;
+    padding: 16px;
+
+    &:disabled,
+    &[disabled] {
+      background: #dadada;
+      color: #bbbbbb;
+      cursor: not-allowed;
+    }
+
+    &--next {
+      background: #22dd60;
+      color: white;
+
+      &::after {
+        content: ">";
+        font-size: larger;
+        margin: 0 -10px 0 5px;
+      }
+    }
+    &--previous {
+      color: #22dd60;
+      &::before {
+        content: "<";
+        font-size: larger;
+        margin: 0 5px 0 -10px;
+      }
+    }
+    &--submit {
+      background: #1346bb;
+      color: white;
+    }
+  }
+}

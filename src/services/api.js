@@ -1,11 +1,14 @@
 // import db from "./services/firebase"
 import { getFirestore, getStorage, getAuth } from "./firebase"
+import uuid from "uuid";
 
 export const uploadImg = async file => {
   try {
     const storage = await getStorage()
     const storageRef = storage().ref()
-    const imgRef = storageRef.child("img/" + file.name)
+    console.log(`img/${uuid.v4()}_${file.name}`);
+    
+    const imgRef = storageRef.child(`img/${uuid.v4()}_${file.name}`)
     const uploadTask = await imgRef.put(file);
     return uploadTask.ref.getDownloadURL();
   } catch (error) {
@@ -19,8 +22,8 @@ export const addRecipe = async recipe => {
   const t = await firestore.collection("Recipes").add({
     name, desc, img
   }).then(ref => {
-    console.log('eeeeeeee', ref);
-    ref.collection('steps').add({steps});
+    steps.map(step=>ref.collection('steps').add({...step}))
+    ingredients.map(ingredient=>ref.collection('ingredients').add({...ingredient}))
   })
   console.log(t)
   console.log(recipe);
