@@ -35,7 +35,7 @@ const Porady = ({location}) => {
   `)
   const tips = tipsQuery.allTip;
   return (
-    <GridView items={tips} CardComponent={Card} location={location} slug={'tips'}/>
+    <GridView items={tips} CardComponent={Card} location={location} slug={'Porady'}/>
   )
 }
 

@@ -31,7 +31,7 @@ const Przepisy = ({ location }) => {
   `)
 const recipes = recipeQuery.allRecipe;
   return (
-    <GridView items={recipes} location={location} CardComponent={SimpleCard} slug={'recipes'}/>
+    <GridView items={recipes} location={location} CardComponent={SimpleCard} slug={'Przepisy'}/>
   )
 }
 

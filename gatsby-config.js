@@ -38,19 +38,12 @@ module.exports = {
         // mergeStyleHashes: true, // you can disable styles sha256 hashes
         // mergeDefaultDirectives: true,
         directives: {
-          'script-src': `'self' 'unsafe-inline' data: www.google-analytics.com`,
-          'style-src': `'self' 'unsafe-inline' fonts.googleapis.com fonts.gstatic.com`,
-          'img-src': `'self' data: www.google-analytics.com`,
-          'font-src': `'self' data: fonts.gstatic.com`,
+          "script-src": "'self' www.google-analytics.com",
+          "style-src": "'self' 'unsafe-inline'",
+          "img-src": "'self' data: www.google-analytics.com"
           // you can add your directives or override defaults
         }
       }
-    },
-    {
-      resolve: `gatsby-plugin-env-variables`,
-      options: {
-        whitelist: ["MY_VAR", "MY_OTHER_VAR"],
-      },
     },
     {
       resolve: `gatsby-plugin-create-client-paths`,

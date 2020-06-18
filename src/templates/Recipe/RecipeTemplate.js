@@ -39,6 +39,9 @@ export const query = graphql`
         quantity
         unit
       }
+      childrenRates {
+        rate
+      }
       childrenStep {
         desc
         id
@@ -72,16 +75,25 @@ const Recipe = ({ data, location }) => {
     image,
     childrenStep : steps,
     childrenIngredient: ingredients,
+    childrenRates: rates,
   } = data.recipe
 
   sort(steps).asc(step => step.step)
 
-  useEffect(() => {
-    console.log(isLoggedIn)
+  console.log("rates", typeof rates.reduce)
 
-    getRecipeRate(id, user.uid).then(rate => {
-      setCurrentUserRate(rate)
-    })
+  const formattedRates = rates.map(node => node.rate)
+  const ratesAvg =
+    formattedRates.reduce((a, b) => a + b, 0) / formattedRates.length
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      getRecipeRate(id, user.uid)
+        .then(rate => {
+          setCurrentUserRate(rate)
+        })
+        .catch(err => console.log(err))
+    }
 
     window.addEventListener("resize", getPageSize)
     getPageSize()
@@ -119,15 +131,12 @@ const Recipe = ({ data, location }) => {
                   />
                 </div>
               </div>
-
+              {ratesAvg}
               {isLoggedIn ? (
                 <div className={styles.rating}>
                   <div className={styles.ratingLabel}>Oceń:</div>
                   <div className={styles.ratingIcons}>
-                    <RatingStars
-                      rating={currentUserRate}
-                      saveRate={saveRate}
-                    />
+                    <RatingStars rating={currentUserRate} saveRate={saveRate} />
                   </div>
                 </div>
               ) : null}
