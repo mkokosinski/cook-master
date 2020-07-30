@@ -3,31 +3,29 @@ import { getFirestore, getStorage, getAuth } from "./firebase"
 import uuid from "uuid";
 
 export const uploadImg = async file => {
-  try {
     const storage = await getStorage()
     const storageRef = storage().ref()
-    console.log(`img/${uuid.v4()}_${file.name}`);
-    
-    const imgRef = storageRef.child(`img/${uuid.v4()}_${file.name}`)
-    const uploadTask = await imgRef.put(file);
-    return uploadTask.ref.getDownloadURL();
-  } catch (error) {
-    console.log("api err: ", error)
-  }
+    const correctTypes = ['image/bmp', 'image/jpeg', 'image/png'];
+
+    if (correctTypes.includes(file.type)) {
+      const imgRef = storageRef.child(`img/${uuid.v4()}_${file.name}`)
+      const uploadTask = await imgRef.put(file);
+      return uploadTask.ref.getDownloadURL();
+    }
+    else{
+      throw new Error({message:'Niepoprawny format obrazu'});
+    }
 }
 
 export const addRecipe = async recipe => {
   const firestore = await getFirestore()
-  const {name, desc, img, steps, ingredients} = recipe;
+  const { name, desc, img, steps, ingredients } = recipe;
   const t = await firestore.collection("Recipes").add({
     name, desc, img
   }).then(ref => {
-    steps.map(step=>ref.collection('steps').add({...step}))
-    ingredients.map(ingredient=>ref.collection('ingredients').add({...ingredient}))
+    steps.map(step => ref.collection('steps').add({ ...step }))
+    ingredients.map(ingredient => ref.collection('ingredients').add({ ...ingredient }))
   })
-  console.log(t)
-  console.log(recipe);
-  
 }
 
 export const getAutoCompleteList = async () => {
@@ -102,20 +100,18 @@ export const saveRacipeRate = async doc => {
 }
 
 export const getRecipeRate = async (recipeId, userId) => {
-  console.log(recipeId, userId);
-  
   let recipeRate = 1;
   const previousRate = await getPreviousRate(recipeId, userId);
 
   if (previousRate.isExists) {
 
     const firestore = await getFirestore()
-    
+
     const rate = await firestore
-    .collection("Recipes")
-    .doc(recipeId)
-    .collection("rates")
-    .doc(previousRate.rateId).get()
+      .collection("Recipes")
+      .doc(recipeId)
+      .collection("rates")
+      .doc(previousRate.rateId).get()
 
     recipeRate = rate.data().rate;
   }

@@ -2,6 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from "react"
 
 import * as styles from './MultistepForm.module.scss'
 
+
 const MultistepContext = createContext({
   currentStep: 1,
   setCurrentStep: () => { },
@@ -50,27 +51,35 @@ const Buttons = ({ handleSubmit }) => {
   const isLastStep = currentStep === registeredSteps.length
   const isFirstStep = currentStep === 1;
   return (
-    <div className={styles.buttons}>
+    <div className={`buttons is-centered ${styles.buttons}`}>
       {!isFirstStep &&
         <div
-          className={`${styles.button} ${styles.buttonPrevious}`}
+          className={`button is-rounded is-white`}
           onClick={!isFirstStep ? () => setCurrentStep(currentStep - 1) : null}
           disabled={isFirstStep}
         >
-          Wstecz
+          <span class="icon is-small ml-0">
+            <i class="fas fa-angle-left"></i></span>
+          <span>Wstecz</span>
       </div>
       }
       {!isLastStep &&
         <div
-          className={`${styles.button} ${styles.buttonNext}`}
+          className={`button is-rounded is-success`}
           onClick={!isLastStep ? () => setCurrentStep(currentStep + 1) : null}
           disabled={isLastStep}
         >
-          Dalej
-      </div>
+          <span>Dalej</span>
+          <span class="icon is-small">
+            <i class="fas fa-angle-right"></i></span>
+        </div>
       }
-      {isLastStep && <div className={`${styles.button} ${styles.buttonSubmit}`} onClick={handleSubmit} >
-      Zatwierdź <i class="fa fa-check" aria-hidden="true"></i>
+      {isLastStep && <div className={`button is-rounded is-link`} onClick={handleSubmit} >
+
+        <span class="icon is-small">
+          <i class="fas fa-check"></i>
+        </span>
+        <span>Zatwierdź</span>
       </div>}
     </div>
   )

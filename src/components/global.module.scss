@@ -1,0 +1,44 @@
+@import "./style/basics.scss";
+
+:global {
+
+    .elo{
+        background-color: red;
+    }
+
+  .input--text {
+    input {
+      height: 100%;
+      width: 100%;
+    }
+
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+
+    outline: none;
+    padding: 10px 20px;
+    width: 100%;
+
+    @include media(mobile) {
+      flex-basis: 100%;
+    }
+
+    @include media(phablet) {
+      flex-basis: 100%;
+    }
+
+    &:focus {
+      box-shadow: 0 0 5px rgba(100, 150, 255, 0.7);
+      transition: 200ms;
+    }
+
+    &--open {
+      border: none;
+      box-shadow: 0 0 4px -1px rgba(0, 0, 0, 0.8);
+
+      &:focus {
+        box-shadow: 0 0 4px -1px rgba(0, 0, 0, 0.8);
+      }
+    }
+  }
+}
