@@ -40,6 +40,7 @@ const AddRecipeFormSchema = Yup.object().shape({
           .min(1, "Min: 1")
           .max(10000, "Max: 10000")
           .required("Podaj ilość"),
+        unit: Yup.string().oneOf(["ml", "g"]),
       })
     )
     .min(2, "Podaj przynajmniej 2 kroki!"),
@@ -52,17 +53,23 @@ export const AddRecipeForm = () => {
 
   const onSubmitHandler = async (values, { setSubmitting }) => {
     const { name, desc, steps, ingredients } = values
-    const savedImgPath =  await saveImg(uploadedImg)
-    const recipe = {
-      name,
-      desc,
-      img: savedImgPath,
-      steps,
-      ingredients,
-    }
-    console.log("Submit:", recipe)
 
-    const res = await addRecipe(recipe)
+    try {
+      const savedImgPath = await saveImg(uploadedImg)
+      const recipe = {
+        name,
+        desc,
+        img: savedImgPath,
+        steps,
+        ingredients,
+      }
+      console.log("Submit:", recipe)
+  
+      const res = await addRecipe(recipe)
+    } catch (error) {
+      console.log("Add recpie error:", error);
+    }
+   
     setSubmitting(false)
   }
 
@@ -100,8 +107,8 @@ export const AddRecipeForm = () => {
               { name: "step2", label: "Krok 2", desc: "" },
             ],
             ingredients: [
-              { name: "", label: "Składnik 1", quantity: "", unit: "" },
-              { name: "", label: "Składnik 2", quantity: "", unit: "" },
+              { name: "", label: "Składnik 1", quantity: "", unit: "g" },
+              { name: "", label: "Składnik 2", quantity: "", unit: "g" },
             ],
           }}
           validationSchema={AddRecipeFormSchema}
