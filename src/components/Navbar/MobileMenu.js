@@ -17,58 +17,61 @@ const MobileMenu = ({ burgerIsOpen, toggleBurger, items }) => {
   const { isLoggedIn } = useContext(AuthContext)
 
   const logOutHandler = () => {
-    logOut().then(resp => {
-      toast.success("Poprawnie wylogowano", {
-        position: toast.POSITION.BOTTOM_RIGHT,
-        autoClose: 2000,
+    logOut()
+      .then(resp => {
+        toast.success("Poprawnie wylogowano", {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 2000,
+        })
       })
-    }).catch(err => {
-      console.log(err)
-      toast.error("Nie udało się wylogować, szczegóły w konsoli...", {
-        position: toast.POSITION.BOTTOM_RIGHT,
-        autoClose: 2000,
+      .catch(err => {
+        console.log(err)
+        toast.error("Nie udało się wylogować, szczegóły w konsoli...", {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 2000,
+        })
       })
-    })
   }
 
   return (
-    <div className={`mobile-menu ${burgerIsOpen && "open"}`}>
-      <Link
-        onClick={toggleBurger}
-        className="nav-btn"
-        activeClassName="nav-btn--active"
-        to={"/" + tips.slug}
-      >
-        {tips.name}
-      </Link>
-      <Link
-        onClick={toggleBurger}
-        className="nav-btn"
-        activeClassName="nav-btn--active"
-        to={"/" + recipes.slug}
-      >
-        {recipes.name}
-      </Link>
-      {isLoggedIn ? (
-        <>
-          <Link
-            onClick={toggleBurger}
-            className="nav-btn"
-            activeClassName="nav-btn--active"
-            to={"/" + addRecipe.slug}
-          >
-            {addRecipe.name}
-          </Link>
-          <Link
-            onClick={toggleBurger}
-            className="nav-btn"
-            activeClassName="nav-btn--active"
-            onClick={logOutHandler}
-          >
-            {signOut.name}
-          </Link>
-        </>
-      ) : (
+    <>
+      <div className={`mobile-menu ${burgerIsOpen && "open"}`}>
+        <Link
+          onClick={toggleBurger}
+          className="nav-btn"
+          activeClassName="nav-btn--active"
+          to={"/" + tips.slug}
+        >
+          {tips.name}
+        </Link>
+        <Link
+          onClick={toggleBurger}
+          className="nav-btn"
+          activeClassName="nav-btn--active"
+          to={"/" + recipes.slug}
+        >
+          {recipes.name}
+        </Link>
+        {isLoggedIn ? (
+          <>
+            <Link
+              onClick={toggleBurger}
+              className="nav-btn"
+              activeClassName="nav-btn--active"
+              to={"/" + addRecipe.slug}
+            >
+              {addRecipe.name}
+            </Link>
+            <Link
+              onClick={toggleBurger}
+              className="nav-btn"
+              activeClassName="nav-btn--active"
+              onClick={logOutHandler}
+            >
+              {signOut.name}
+            </Link>
+          </>
+        ) : (
           <>
             <Link
               onClick={toggleBurger}
@@ -89,8 +92,9 @@ const MobileMenu = ({ burgerIsOpen, toggleBurger, items }) => {
           </>
         )}
 
-      <div className="mobile-menu-bg" onClick={toggleBurger}></div>
-    </div>
+        <div className="mobile-menu-bg" onClick={toggleBurger}></div>
+      </div>
+    </>
   )
 }
 

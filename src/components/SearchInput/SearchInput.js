@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react"
 import Autosuggest from "react-autosuggest"
-import magnifier from "../../images/magnifier.svg"
+import Magnifier from "../../images/magnifier.svg"
 import "./SearchInput.scss"
 import { Link, useStaticQuery, graphql } from "gatsby"
 
@@ -125,7 +125,7 @@ const SearchInput = () => {
         autoComplete='off'
         placeholder="Np. Hartowanie, przepis na żurek..." /> */}
       <div className="magnifier">
-        <img src={magnifier} alt="S" />
+        <Magnifier />
       </div>
     </div>
   )

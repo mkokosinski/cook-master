@@ -9,12 +9,12 @@ import "@animated-burgers/burger-rotate/dist/styles.css"
 
 import "./Navbar.scss"
 import Logo from "../Logo/Logo"
-import tipsIco from "../../images/chef.svg"
-import recipesIco from "../../images/recipe-book.svg"
+import TipsIco from "../../images/chef.svg"
+import RecipesIco from "../../images/recipe-book.svg"
 import MobileMenu from "./MobileMenu"
 import { AuthContext } from "../../services/auth"
 import { tips, recipes, signIn, signUp, signOut } from "../../helpers/menuLinks"
-import { signOutHandler } from "../Auth/SignOut"
+import { UserProfileButton } from "../UserProfile/ProfileButton"
 
 const Navbar = ({ location, items }) => {
   const [burgerIsOpen, setBurgerIsOpen] = useState(false)
@@ -23,8 +23,8 @@ const Navbar = ({ location, items }) => {
   const { isLoggedIn } = useContext(AuthContext)
 
   useEffect(() => {
-    console.log(isLoggedIn);
-    
+    console.log(isLoggedIn)
+
     window.addEventListener("scroll", onScrollHandler)
     return () => {
       window.removeEventListener("scroll", onScrollHandler)
@@ -63,7 +63,7 @@ const Navbar = ({ location, items }) => {
             to={"/" + tips.slug}
           >
             <div className="nav-btn__ico">
-              <img src={tipsIco} alt="Ico" />
+              <TipsIco />
             </div>
             <div className="nav-btn__txt">{tips.name}</div>
           </Link>
@@ -74,29 +74,20 @@ const Navbar = ({ location, items }) => {
             to={"/" + recipes.slug}
           >
             <div className="nav-btn__ico">
-              <img src={recipesIco} alt="Ico" />
+              <RecipesIco />
             </div>
             <div className="nav-btn__txt">{recipes.name}</div>
           </Link>
-          {isLoggedIn ? (
-            <Link
-              className="nav-btn--SignIn"
-              to={"/" + signOut.slug}
-              onClick={signOutHandler}
-            >
-              {signOut.name}
-            </Link>
-          ) : (
-            <>
-              <Link className="nav-btn--SignIn" to={"/" + signIn.slug}>
-                {signIn.name}
-              </Link>
-              <Link className="nav-btn--SignIn" to={"/" + signUp.slug}>
-                {signUp.name}
-              </Link>
-            </>
-          )}
+
+          <div className="nav-btn" activeClassName="nav-btn--active">
+            <div className="nav-btn__ico">
+              <UserProfileButton />
+            </div>
+            <div className="nav-btn__txt">Profil</div>
+          </div>
+
         </div>
+
         <Burger onClick={toggleBurger} isOpen={burgerIsOpen} />
       </nav>
       <MobileMenu toggleBurger={toggleBurger} burgerIsOpen={burgerIsOpen} />

@@ -40,21 +40,3 @@
         transition: 500ms ease-out;
     }
 }
-
-.burger {
-    display: none;
-    font-size: 8px;
-    justify-content: center;
-
-    @include media(tablet-down) {
-        display: flex;
-        flex-basis: 10%;
-
-        .burger-lines,
-        .burger-lines:after,
-        .burger-lines:before {
-            background-color: black;
-            width: 3em;
-        }
-    }
-}

@@ -35,7 +35,7 @@ nav {
     justify-content: center;
 
     @include media(tablet-down) {
-      flex-basis: 80%;
+      flex-basis: 60%;
       height: 90%;
     }
 
@@ -62,6 +62,7 @@ nav {
 
     .nav-btn {
       align-items: center;
+      cursor: pointer;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -70,13 +71,13 @@ nav {
 
       &:hover {
         background: $green-complementary;
-        
+
         .nav-btn__ico,
         .nav-btn__txt {
           filter: invert(1);
         }
       }
-      
+
       &--active {
         background: $green-secondary;
 
@@ -86,10 +87,21 @@ nav {
         }
       }
 
+      &__txt {
+        color: black;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+          "Helvetica Neue", sans-serif;
+      }
+
       &--SignIn {
         align-items: center;
         align-self: center;
-        background: linear-gradient(135deg, $green-complementary 0%, $green-secondary 100%);
+        background: linear-gradient(
+          135deg,
+          $green-complementary 0%,
+          $green-secondary 100%
+        );
         border: 1px solid $green-secondary;
         color: white;
         display: flex;
@@ -110,6 +122,33 @@ nav {
           filter: brightness(95%);
           transition: 100ms;
         }
+      }
+    }
+  }
+
+  .user-profile-button {
+    align-items: center;
+    color: black;
+    display: flex;
+    flex-basis: 10%;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .burger {
+    display: none;
+    font-size: 8px;
+    justify-content: center;
+
+    @include media(tablet-down) {
+      display: flex;
+      flex-basis: 10%;
+
+      .burger-lines,
+      .burger-lines:after,
+      .burger-lines:before {
+        background-color: black;
+        width: 3em;
       }
     }
   }

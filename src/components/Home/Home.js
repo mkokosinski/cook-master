@@ -4,8 +4,8 @@ import { graphql, useStaticQuery, Link } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
 import styles from "./HomePage.module.scss"
 
-import tipsImg from "../../images/chef.svg"
-import recipeImg from "../../images/recipe-book.svg"
+import TipsImg from "../../images/chef.svg"
+import RecipeImg from "../../images/recipe-book.svg"
 import { Newsletter } from "../Newsletter/Newsletter"
 import { tips, recipes } from "../../helpers/menuLinks"
 import Background from "../Background/Background"
@@ -64,13 +64,13 @@ const Home = () => {
     <>
       <div className="card">
         <Link className={styles.news} to={"/" + tips.slug}>
-          <img src={tipsImg} alt="Tips" />
+        <TipsImg />
           {tips.name}
         </Link>
       </div>
       <div className="card">
         <Link className={styles.news} to={"/" + recipes.slug}>
-          <img src={recipeImg} alt="Recipe" />
+          <RecipeImg />
           {recipes.name}
         </Link>
       </div>

@@ -57,6 +57,14 @@ module.exports = {
       options: { prefixes: [`/app/*`] },
     },
     {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /images/
+        }
+      }
+    },
+    {
       resolve: "@martinreiche/gatsby-firestore",
       options: {
         credential: require("./firebase.json"),
