@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react"
-import Layout from "../../components/layout"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Breadcrumb from "../../components/BreadCrumb/BreadCrumb"
@@ -74,10 +73,11 @@ const Recipe = ({ data, location }) => {
     id,
     name,
     image,
-    childrenStep: steps,
+    childrenStep : steps,
     childrenIngredient: ingredients,
     childrenRates: rates,
   } = data.recipe
+
   sort(steps).asc(step => step.step)
 
   console.log("rates", typeof rates.reduce)
@@ -112,7 +112,7 @@ const Recipe = ({ data, location }) => {
   }
 
   return (
-    <Layout>
+    <>
       <div className={styles.container}>
         <div className={styles.breadcrumbs}>
           <Breadcrumb pathname={location.pathname} />
@@ -201,7 +201,7 @@ const Recipe = ({ data, location }) => {
           )}
         </div>
       </div>
-    </Layout>
+    </>
   )
 }
 

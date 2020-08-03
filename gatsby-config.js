@@ -1,5 +1,4 @@
 let activeEnv = process.env.ACTIVE_ENV
-console.clear()
 if (!activeEnv) {
   activeEnv = "production"
 }
@@ -18,12 +17,7 @@ module.exports = {
     author: `@masterknightMK`,
   },
   plugins: [
-    {
-      resolve: `gatsby-plugin-env-variables`,
-      options: {
-        whitelist: ["MY_VAR", "MY_OTHER_VAR"],
-      },
-    },
+    `gatsby-plugin-layout`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -32,9 +26,8 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
-    `gatsby-transformer-remark`,
+    "gatsby-plugin-sharp",
     `gatsby-plugin-sass`,
     {
       resolve: `gatsby-plugin-csp`,
@@ -102,7 +95,7 @@ module.exports = {
               {
                 type: `Rates`,
                 collection: `rates`,
-                map: doc => ({...doc})
+                map: doc => ({ ...doc })
               }
             ],
           }
