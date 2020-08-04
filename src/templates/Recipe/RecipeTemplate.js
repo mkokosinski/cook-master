@@ -39,12 +39,11 @@ export const query = graphql`
         quantity
         unit
       }
-      childrenRates {
-        rate
-      }
       childrenStep {
         desc
         id
+        index
+        label
         image {
           childImageSharp {
             fluid(
@@ -57,7 +56,6 @@ export const query = graphql`
             }
           }
         }
-        step
       }
     }
   }
@@ -73,18 +71,18 @@ const Recipe = ({ data, location }) => {
     id,
     name,
     image,
-    childrenStep : steps,
+    childrenStep: steps,
     childrenIngredient: ingredients,
-    childrenRates: rates,
   } = data.recipe
 
-  sort(steps).asc(step => step.step)
+  sort(steps).asc(step => step.index)
 
-  console.log("rates", typeof rates.reduce)
 
-  const formattedRates = rates.map(node => node.rate)
-  const ratesAvg =
-    formattedRates.reduce((a, b) => a + b, 0) / formattedRates.length
+  // const formattedRates = rates.map(node => node.rate)
+  // const ratesAvg =
+  //   formattedRates.reduce((a, b) => a + b, 0) / formattedRates.length
+
+  const ratesAvg = 3
 
   useEffect(() => {
     if (isLoggedIn) {

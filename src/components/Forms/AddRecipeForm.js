@@ -46,6 +46,11 @@ const AddRecipeFormSchema = Yup.object().shape({
     .min(2, "Podaj przynajmniej 2 kroki!"),
 })
 
+const defaults = {
+  quantity: 0,
+  unit: "g",
+}
+
 export const AddRecipeForm = () => {
   const [previewSrc, setPreviewSrc] = useState(null)
   const [imgIsUploading, setImgIsUploading] = useState(false)
@@ -103,12 +108,22 @@ export const AddRecipeForm = () => {
             desc: "",
             img: "",
             steps: [
-              { name: "step1", label: "Krok 1", desc: "" },
-              { name: "step2", label: "Krok 2", desc: "" },
+              { name: "step1", label: "Krok 1", desc: "", index: 1 },
+              { name: "step2", label: "Krok 2", desc: "", index: 2 },
             ],
             ingredients: [
-              { name: "", label: "Składnik 1", quantity: "", unit: "g" },
-              { name: "", label: "Składnik 2", quantity: "", unit: "g" },
+              {
+                name: "",
+                label: "Składnik 1",
+                quantity: defaults.quantity,
+                unit: defaults.unit,
+              },
+              {
+                name: "",
+                label: "Składnik 2",
+                quantity: defaults.quantity,
+                unit: defaults.unit,
+              },
             ],
           }}
           validationSchema={AddRecipeFormSchema}
@@ -117,6 +132,9 @@ export const AddRecipeForm = () => {
           {({ values, setFieldValue, errors, touched, handleSubmit }) => (
             <Form>
               <MultistepForm.Form>
+                <div className={styles.progressBar}>
+                  <MultistepForm.ProgressBar />
+                </div>
                 <MultistepForm.Step step={1}>
                   <FieldWithErrors
                     type="text"
@@ -143,7 +161,9 @@ export const AddRecipeForm = () => {
                   />
 
                   <div className="file is-fullwidth">
-                    <label className="file-label">
+                    <label
+                      className={`file-label ${styles.chooseImgContainer}`}
+                    >
                       <Field
                         className={`file-input`}
                         accept="image/*"
@@ -154,9 +174,15 @@ export const AddRecipeForm = () => {
                           uploadImage(event.currentTarget.files[0])
                         }}
                       />
-                      <p class="help is-danger">
-                        <ErrorMessage name={"img"} />
-                      </p>
+                      {previewSrc && (
+                        <div className={styles.previewImg}>
+                          {imgIsUploading ? (
+                            <BallLoader />
+                          ) : (
+                            <img src={previewSrc} alt="Uploaded img preview" />
+                          )}
+                        </div>
+                      )}
                       <span className={`${styles.inputFileCta} file-cta`}>
                         <span className="file-icon">
                           <i className="fas fa-upload"></i>
@@ -166,14 +192,6 @@ export const AddRecipeForm = () => {
                         </span>
                       </span>
                     </label>
-
-                    {imgIsUploading && <BallLoader />}
-
-                    {previewSrc && (
-                      <div className={styles.previewImg}>
-                        <img src={previewSrc} alt="Uploaded img preview" />
-                      </div>
-                    )}
                   </div>
                 </MultistepForm.Step>
 
@@ -248,7 +266,7 @@ export const AddRecipeForm = () => {
                                   className="input"
                                   type="number"
                                   min="1"
-                                  max="10000"
+                                  max="9999"
                                   placeholder="Ilość"
                                   name={`ingredients[${index}].quantity`}
                                 />
@@ -292,7 +310,9 @@ export const AddRecipeForm = () => {
                                 name: "",
                                 label: `Składnik ${values.ingredients.length +
                                   1}`,
-                                quantity: "",
+                                quantity: defaults.quantity,
+                                unit: defaults.unit,
+                                index: values.ingredients.length + 1,
                               })
                             }
                           >

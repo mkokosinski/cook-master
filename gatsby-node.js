@@ -27,14 +27,8 @@ module.exports.createPages = async ({ graphql, actions }) => {
       allRecipe {
         edges {
           node {
-            childrenRates {
-              rate
-            }
             name
             id
-            childrenRates {
-              rate
-            }
           }
         }
       }
@@ -52,18 +46,18 @@ module.exports.createPages = async ({ graphql, actions }) => {
   })
 
   res.data.allRecipe.edges.forEach(edge => {
-    const { id, name, childrenRates } = edge.node
+    const { id, name } = edge.node
 
-    const formattedRates = childrenRates.map(node => node.rate)
-    const ratesAvg =
-      formattedRates.reduce((a, b) => a + b, 0) / formattedRates.length
+    // const formattedRates = childrenRates.map(node => node.rate)
+    // const ratesAvg =
+    //   formattedRates.reduce((a, b) => a + b, 0) / formattedRates.length
 
     createPage({
       component: recipeTemplate,
       path: "/Przepisy/" + name,
       context: {
-        id: id,
-        ratesAvg,
+        id: id
+        // ratesAvg,
       },
     })
   })

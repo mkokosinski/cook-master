@@ -1,14 +1,62 @@
 @import "../style/basics.scss";
-.input--file{
-  &--cta{
-    justify-content: center;
+.form-container {
+  max-width: 600px;
+  padding: 10px;
+  position: relative;
+
+  @include media(phablet) {
+    margin: 20px auto;
+  }
+}
+
+.form-content {
+  background: white;
+  padding: 16px 16px 26px;
+  position: relative;
+
+  @include media(phablet) {
+    padding: 30px 40px;
+  }
+
+  .progressBar{
+    height: 10px;
+    left: 0;
+    position: absolute;
+    top: 0;
     width: 100%;
   }
 }
+
+.preview-img {
+  width: 100%;
+  max-height: 200px;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+}
+
+.chooseImgContainer {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+
+  .input--file {
+    &--cta {
+      border: none;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      justify-content: center;
+      width: 100%;
+    }
+  }
+}
+
 .buttons {
   flex-wrap: nowrap;
   justify-content: center;
-  padding: 10px 0 26px;
+  padding: 10px;
+  
   .button {
     border: none;
     border-radius: 50%;
@@ -36,26 +84,5 @@
       @extend .button;
       color: rgb(200, 0, 0);
     }
-  }
-}
-
-.form-container {
-  padding: 10px;
-}
-.form-content {
-  background: white;
-  padding: 10px;
-}
-.test {
-}
-
-.preview-img {
-  width: 150px;
-  height: 150px;
-
-  img {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
   }
 }
