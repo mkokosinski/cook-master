@@ -1,26 +1,31 @@
 @import "../style/basics.scss";
 .home {
-  padding: 120px 10px 100px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: calc(100vh - 100px);
   width: 100%;
   @include media(tablet) {
-    padding: 160px 30px 100px;
-  }
-  @include media(laptop) {
-    padding: 180px 60px 100px;
+    min-height: calc(100vh + 140px);
   }
 
   .seachDialog {
+    flex: 1 1 100%;
     font-size: $font-size-xsmall;
     height: 120px;
+    max-width: 90%;
     padding: 20px;
+    transform: translateY(-200px);
+
     @include media(tablet) {
       padding: 30px 60px;
       height: 140px;
     }
     @include media(desktop) {
       font-size: $font-size-normal;
-      padding: 30px 60px;
       height: 170px;
+      max-width: 800px;
+      padding: 30px 60px;
       input {
         height: 50px;
       }
@@ -36,6 +41,11 @@
     }
   }
 
+  .background {
+    position: absolute;
+    top: 140px;
+  }
+
   .newses {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -43,6 +53,7 @@
     margin: 80px 5px 60px;
 
     @include media(tablet) {
+      display: none;
       grid-template: 160px/240px 240px;
       justify-content: space-around;
       width: 100%;
@@ -50,8 +61,8 @@
     @include media(desktop) {
       grid-template: 280px/280px 280px;
       justify-content: space-around;
-    margin: 140px 5px 60px;
-    width: 100%;
+      margin: 140px 5px 60px;
+      width: 100%;
     }
 
     .news {

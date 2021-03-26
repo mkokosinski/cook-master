@@ -1,0 +1,67 @@
+#bg-leg1-man,
+#bg-background,
+#bg-sticks-man,
+#bg-sticks-woman {
+  transform-box: fill-box;
+}
+
+#bg-background {
+  animation: bg 60s linear infinite alternate;
+  transform-origin: center;
+}
+@keyframes bg {
+  0% {
+    transform: scale(0.8, 0.6) rotate(0deg);
+  }
+  33% {
+    transform: scale(1, 1) rotate(20deg);
+  }
+  66% {
+    transform: scale(0.8, 0.6) rotate(40deg);
+  }
+  100% {
+    transform: scale(1, 1) rotate(60deg);
+  }
+}
+
+#bg-sticks-man {
+  animation: man-sticks 2s linear infinite alternate;
+  transform-origin: right top;
+}
+
+@keyframes man-sticks {
+  from {
+    transform: translate(2px, 0) rotate(3deg);
+  }
+  to {
+    transform: translate(-1px, 5px) rotate(0deg);
+  }
+}
+
+#bg-leg1-man {
+  animation: man-legs 2s linear infinite alternate;
+  transform-origin: right top;
+}
+
+@keyframes man-legs {
+  from {
+    transform: translate(0, 0) rotate(5deg);
+  }
+  to {
+    transform: translate(-1px, 5px) rotate(10deg);
+  }
+}
+
+#bg-sticks-woman {
+  animation: woman-sticks 2s linear infinite alternate;
+  transform-origin: left top;
+}
+
+@keyframes woman-sticks {
+  from {
+    transform: translate(2px, 0) rotate(3deg);
+  }
+  to {
+    transform: translate(-1px, 5px) rotate(-3deg);
+  }
+}

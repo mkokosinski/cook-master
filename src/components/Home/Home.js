@@ -2,30 +2,18 @@ import React from "react"
 import SearchInput from "../SearchInput/SearchInput"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
-import styles from "./HomePage.module.scss"
 
 import TipsImg from "../../images/chef.svg"
 import RecipeImg from "../../images/recipe-book.svg"
+import BackgoundImg from "../../images/bg.svg"
 import { Newsletter } from "../Newsletter/Newsletter"
 import { tips, recipes } from "../../helpers/menuLinks"
-import Background from "../Background/Background"
+import styles from "./HomePage.module.scss"
+import "./BackgroundAnimations.scss"
 
 const Home = () => {
   const data = useStaticQuery(graphql`
     query {
-      file(relativePath: { eq: "bg.png" }) {
-        childImageSharp {
-          fluid(
-            quality: 100
-            maxWidth: 5947
-            maxHeight: 3542
-            srcSetBreakpoints: [320, 600, 1200, 1920]
-          ) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-
       recipe {
         name
         image {
@@ -60,63 +48,32 @@ const Home = () => {
     }
   `)
 
-  const MobileTiles = () => (
-    <>
-      <div className="card">
-        <Link className={styles.news} to={"/" + tips.slug}>
-        <TipsImg />
-          {tips.name}
-        </Link>
-      </div>
-      <div className="card">
-        <Link className={styles.news} to={"/" + recipes.slug}>
-          <RecipeImg />
-          {recipes.name}
-        </Link>
-      </div>
-    </>
-  )
-  // const DesktopTiles = () => (
-  //   <>
-  //     {/* <SimpleCard
-  //       img={recipe.image}
-  //       content={recipe.desc}
-  //       title={recipe.name}
-  //       key={index + recipe.id}
-  //       link={"/Recipes/" + recipe.name}
-  //     />
-  //     <SimpleCard
-  //       img={recipe.image}
-  //       content={recipe.desc}
-  //       title={recipe.name}
-  //       key={index + recipe.id}
-  //       link={"/Recipes/" + recipe.name}
-  //     /> */}
-  //   </>
-  // )
-
-  console.log("data", data)
-
   return (
-    <BackgroundImage
-      fluid={data.file.childImageSharp.fluid}
-      imgStyle={{ objectFit: "cover" }}
-      style={{ height: "100%" }}
-    >
-        <div className={styles.home}>
-          <div className={`card ${styles.seachDialog}`}>
-            <label htmlFor="seachInput">Wpisz co Cię interesuje:</label>
-            <div className={styles.searchInput}>
-              <SearchInput />
-            </div>
-          </div>
-          <div className={styles.newses}>
-            {/* {PageSize <= 800 ? <MobileTiles /> : <DesktopTiles />} */}
-            <MobileTiles />
-          </div>
+    <div className={styles.home}>
+      <div className={styles.background}>
+        <BackgoundImg />
+      </div>
+      <div className={`card ${styles.seachDialog}`}>
+        <label htmlFor="seachInput">Wpisz co Cię interesuje:</label>
+        <div className={styles.searchInput}>
+          <SearchInput />
         </div>
-        <Newsletter />
-    </BackgroundImage>
+      </div>
+      <div className={styles.newses}>
+        <div className="card">
+          <Link className={styles.news} to={"/" + tips.slug}>
+            <TipsImg />
+            {tips.name}
+          </Link>
+        </div>
+        <div className="card">
+          <Link className={styles.news} to={"/" + recipes.slug}>
+            <RecipeImg />
+            {recipes.name}
+          </Link>
+        </div>
+      </div>
+    </div>
   )
 }
 
