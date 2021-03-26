@@ -56,7 +56,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
       component: recipeTemplate,
       path: "/Przepisy/" + name,
       context: {
-        id: id
+        id: id,
         // ratesAvg,
       },
     })
@@ -76,14 +76,14 @@ module.exports.onCreatePage = async ({ page, actions }) => {
     // Update the page.
   }
 
-  if (page.path === '/recipes/') {
-    page.path = '/Przepisy/'
-  }
-  
-  if (page.path === '/tips/') {
-    page.path = '/Porady/'
-  }
-  
+  // if (page.path === '/recipes/') {
+  //   page.path = '/Przepisy/'
+  // }
+
+  // if (page.path === '/tips/') {
+  //   page.path = '/Porady/'
+  // }
+
   createPage(page)
 }
 

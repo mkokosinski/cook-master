@@ -1,31 +1,37 @@
 // import db from "./services/firebase"
 import { getFirestore, getStorage, getAuth } from "./firebase"
-import uuid from "uuid";
+import { v4 as uuid } from "uuid"
 
 export const uploadImg = async file => {
-    const storage = await getStorage()
-    const storageRef = storage().ref()
-    const correctTypes = ['image/bmp', 'image/jpeg', 'image/png'];
+  const storage = await getStorage()
+  const storageRef = storage().ref()
+  const correctTypes = ["image/bmp", "image/jpeg", "image/png"]
 
-    if (correctTypes.includes(file.type)) {
-      const imgRef = storageRef.child(`img/${uuid.v4()}_${file.name}`)
-      const uploadTask = await imgRef.put(file);
-      return uploadTask.ref.getDownloadURL();
-    }
-    else{
-      throw new Error({message:'Niepoprawny format obrazu'});
-    }
+  if (correctTypes.includes(file.type)) {
+    const imgRef = storageRef.child(`img/${uuid.v4()}_${file.name}`)
+    const uploadTask = await imgRef.put(file)
+    return uploadTask.ref.getDownloadURL()
+  } else {
+    throw new Error({ message: "Niepoprawny format obrazu" })
+  }
 }
 
 export const addRecipe = async recipe => {
   const firestore = await getFirestore()
-  const { name, desc, img, steps, ingredients } = recipe;
-  const t = await firestore.collection("Recipes").add({
-    name, desc, img
-  }).then(ref => {
-    steps.map(step => ref.collection('steps').add({ ...step }))
-    ingredients.map(ingredient => ref.collection('ingredients').add({ ...ingredient }))
-  })
+  const { name, desc, img, steps, ingredients } = recipe
+  const t = await firestore
+    .collection("Recipes")
+    .add({
+      name,
+      desc,
+      img,
+    })
+    .then(ref => {
+      steps.map(step => ref.collection("steps").add({ ...step }))
+      ingredients.map(ingredient =>
+        ref.collection("ingredients").add({ ...ingredient })
+      )
+    })
 }
 
 export const getAutoCompleteList = async () => {
@@ -100,20 +106,20 @@ export const saveRacipeRate = async doc => {
 }
 
 export const getRecipeRate = async (recipeId, userId) => {
-  let recipeRate = 1;
-  const previousRate = await getPreviousRate(recipeId, userId);
+  let recipeRate = 1
+  const previousRate = await getPreviousRate(recipeId, userId)
 
   if (previousRate.isExists) {
-
     const firestore = await getFirestore()
 
     const rate = await firestore
       .collection("Recipes")
       .doc(recipeId)
       .collection("rates")
-      .doc(previousRate.rateId).get()
+      .doc(previousRate.rateId)
+      .get()
 
-    recipeRate = rate.data().rate;
+    recipeRate = rate.data().rate
   }
-  return recipeRate;
+  return recipeRate
 }
