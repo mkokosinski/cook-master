@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react"
 import Autosuggest from "react-autosuggest"
 import Magnifier from "../../images/magnifier.svg"
 import "./SearchInput.scss"
-import { Link, useStaticQuery, graphql } from "gatsby"
+import { Link, useStaticQuery, graphql, push, navigate } from "gatsby"
 
 const getSuggestionValue = suggestion => suggestion.label
 
@@ -12,7 +12,7 @@ const SearchInput = () => {
   const [suggestions, setSuggestions] = useState([])
   const [placeholderValue, setPlaceholderValue] = useState("")
 
-  const searchInputRef = useRef(null) 
+  const searchInputRef = useRef(null)
 
   const query = useStaticQuery(graphql`
     {
@@ -33,17 +33,7 @@ const SearchInput = () => {
     }
   `)
 
-  useEffect(() => {
-    window.addEventListener("resize", onWindowResize);
-    adjustPlaceholderToWidth();
-    getAutoCompleteList()
-
-    return () =>{
-      window.removeEventListener("resize", onWindowResize);
-    }
-  }, [])
-
-  let innerHeight = 0;
+  let innerHeight = 0
   const onWindowResize = e => {
     adjustPlaceholderToWidth()
   }
@@ -59,12 +49,12 @@ const SearchInput = () => {
 
   const getAutoCompleteList = () => {
     const tips = query.allTip.edges.map(egde => ({
-      category: "Tips",
+      category: "Porady",
       label: egde.node.label,
     }))
 
     const recipes = query.allRecipe.edges.map(egde => ({
-      category: "Recipes",
+      category: "Przepisy",
       label: egde.node.label,
     }))
     setSuggestions([...tips, ...recipes])
@@ -72,13 +62,24 @@ const SearchInput = () => {
   }
 
   const renderSuggestion = suggestion => (
-    <Link to={`${suggestion.category}/${suggestion.label}`}>
+    <Link to={`/${suggestion.category}/${suggestion.label}`}>
       {suggestion.label}
     </Link>
   )
 
   const onChange = (event, { newValue }) => {
     setValue(newValue)
+  }
+
+  const handleSubmit = () => {
+    if (!value || value.trim().length === 0) {
+      return
+    }
+    const selected = suggestions.find(suggestion => suggestion.label === value)
+
+    if (selected) {
+      navigate(`/${selected.category}/${selected.label}`)
+    }
   }
 
   const getSuggestions = value => {
@@ -92,12 +93,10 @@ const SearchInput = () => {
         )
   }
 
- 
-
   const inputProps = {
     placeholder: placeholderValue,
     value,
-    onChange
+    onChange,
   }
 
   const onSuggestionsFetchRequested = ({ value }) => {
@@ -108,6 +107,16 @@ const SearchInput = () => {
     setPrp([])
   }
 
+  useEffect(() => {
+    window.addEventListener("resize", onWindowResize)
+    adjustPlaceholderToWidth()
+    getAutoCompleteList()
+
+    return () => {
+      window.removeEventListener("resize", onWindowResize)
+    }
+  }, [])
+
   return (
     <div className="search-input" ref={searchInputRef}>
       <Autosuggest
@@ -116,15 +125,12 @@ const SearchInput = () => {
         onSuggestionsClearRequested={onSuggestionsClearRequested}
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
+        onSuggestionSelected={handleSubmit}
         inputProps={inputProps}
-        
+        alwaysRenderSuggestions={true}
       />
 
-      {/* <input type="text"
-        name="searchInput"
-        autoComplete='off'
-        placeholder="Np. Hartowanie, przepis na żurek..." /> */}
-      <div className="magnifier">
+      <div className="magnifier" onClick={handleSubmit}>
         <Magnifier />
       </div>
     </div>
