@@ -20,8 +20,6 @@ const Card = ({ type, title, img, content, link }) => {
     setIsMouseOver("")
   }
 
-  console.log(img)
-
   return (
     <div
       className={`card ${type}-card`}
@@ -43,7 +41,7 @@ const Card = ({ type, title, img, content, link }) => {
           Więcej...
         </button>
       </Link>
-    </div> 
+    </div>
   )
 }
 

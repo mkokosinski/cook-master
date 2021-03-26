@@ -1,15 +1,13 @@
 import React, { useState } from "react"
-import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik"
+import { Formik, Form, Field, FieldArray } from "formik"
 import "@fortawesome/fontawesome-free/css/all.min.css"
 import { uploadImg, addRecipe } from "../../services/api"
 import * as Yup from "yup"
-// import Textarea from 'react-textarea-autosize';
 
 import * as MultistepForm from "../MultistepForm/MultistepForm"
 import BallLoader from "../Loader/BallLoader"
 
 import styles from "./Forms.module.scss"
-// import globalStyles from "../style/layout.module.scss"
 
 import { FieldWithErrors } from "./FieldWithErrors"
 
@@ -68,11 +66,10 @@ export const AddRecipeForm = () => {
         steps,
         ingredients,
       }
-      console.log("Submit:", recipe)
 
-      const res = await addRecipe(recipe)
+      await addRecipe(recipe)
     } catch (error) {
-      console.log("Add recpie error:", error)
+      console.error("Add recpie error:", error)
     }
 
     setSubmitting(false)
@@ -83,7 +80,7 @@ export const AddRecipeForm = () => {
       const uploadedImgPath = await uploadImg(img)
       return uploadedImgPath
     } catch (error) {
-      console.log("Image upload error", error)
+      console.error("Image upload error", error)
     }
   }
 
@@ -95,7 +92,7 @@ export const AddRecipeForm = () => {
       setUploadedImg(img)
       setImgIsUploading(false)
     } catch (error) {
-      console.log("Image upload error", error)
+      console.error("Image upload error", error)
     }
   }
 

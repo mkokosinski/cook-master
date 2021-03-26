@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import { Link, navigate } from "gatsby"
+import { Link } from "gatsby"
 import {
   tips,
   recipes,
@@ -19,13 +19,14 @@ const MobileMenu = ({ burgerIsOpen, toggleBurger, items }) => {
   const logOutHandler = () => {
     logOut()
       .then(resp => {
+        toggleBurger()
         toast.success("Poprawnie wylogowano", {
           position: toast.POSITION.BOTTOM_RIGHT,
           autoClose: 2000,
         })
       })
       .catch(err => {
-        console.log(err)
+        console.error(err)
         toast.error("Nie udało się wylogować, szczegóły w konsoli...", {
           position: toast.POSITION.BOTTOM_RIGHT,
           autoClose: 2000,
@@ -63,7 +64,6 @@ const MobileMenu = ({ burgerIsOpen, toggleBurger, items }) => {
               {addRecipe.name}
             </Link>
             <Link
-              onClick={toggleBurger}
               className="nav-btn"
               activeClassName="nav-btn--active"
               onClick={logOutHandler}
@@ -92,7 +92,11 @@ const MobileMenu = ({ burgerIsOpen, toggleBurger, items }) => {
           </>
         )}
 
-        <div className="mobile-menu-bg" onClick={toggleBurger}></div>
+        <div
+          className="mobile-menu-bg"
+          onClick={toggleBurger}
+          role="none"
+        ></div>
       </div>
     </>
   )

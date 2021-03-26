@@ -1,9 +1,9 @@
 import React from "react"
 import { Link } from "gatsby"
 import styles from "./Footer.module.scss"
-import { tips, recipes,addRecipe } from "../../helpers/menuLinks"
+import { tips, recipes } from "../../helpers/menuLinks"
 
-export const FooterMenu = ({items}) => {
+export const FooterMenu = ({ items }) => {
   return (
     <div className={styles.menu}>
       <Link
@@ -17,8 +17,8 @@ export const FooterMenu = ({items}) => {
         className={styles.btn}
         activeClassName={styles.btnActive}
         to={"/" + recipes.slug}
-        >
-          {recipes.name}
+      >
+        {recipes.name}
       </Link>
     </div>
   )

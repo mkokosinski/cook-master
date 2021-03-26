@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react"
 import Autosuggest from "react-autosuggest"
 import Magnifier from "../../images/magnifier.svg"
 import "./SearchInput.scss"
-import { Link, useStaticQuery, graphql, push, navigate } from "gatsby"
+import { Link, useStaticQuery, graphql, navigate } from "gatsby"
 
 const getSuggestionValue = suggestion => suggestion.label
 
@@ -33,7 +33,6 @@ const SearchInput = () => {
     }
   `)
 
-  let innerHeight = 0
   const onWindowResize = e => {
     adjustPlaceholderToWidth()
   }
@@ -130,7 +129,7 @@ const SearchInput = () => {
         alwaysRenderSuggestions={true}
       />
 
-      <div className="magnifier" onClick={handleSubmit}>
+      <div className="magnifier" onClick={handleSubmit} role="none">
         <Magnifier />
       </div>
     </div>

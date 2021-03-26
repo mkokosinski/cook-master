@@ -1,11 +1,6 @@
 import React from "react"
-
-import styles from "./UserProfile.module.scss"
-import { signOut, signIn, signUp } from "../../helpers/menuLinks"
-import { signOutHandler } from "../Auth/SignOut"
-import { Link } from "gatsby"
-
 import Icon from "../../images/userProfile.svg"
+import styles from "./UserProfile.module.scss"
 
 export const UserProfile = () => {
   return <div></div>

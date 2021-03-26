@@ -39,11 +39,7 @@ const ProgressBar = () => {
   const { currentStep, registeredSteps } = useContext(MultistepContext)
 
   const value = Math.round((currentStep / registeredSteps.length) * 100)
-
-  const isCompleted = value >= 100;
-
-  console.log(value, currentStep, registeredSteps)
-
+  const isCompleted = value >= 100
   const barClasses = cx(`${styles.bar} progress`, {
     "is-success": !isCompleted,
     "is-link": isCompleted,
@@ -51,7 +47,7 @@ const ProgressBar = () => {
 
   return (
     <progress className={barClasses} value={value} max="100">
-     {currentStep} / {registeredSteps.length}
+      {currentStep} / {registeredSteps.length}
     </progress>
   )
 }
@@ -76,6 +72,7 @@ const Buttons = ({ handleSubmit }) => {
         <div
           className={`button is-rounded is-white`}
           onClick={!isFirstStep ? () => setCurrentStep(currentStep - 1) : null}
+          role="none"
           disabled={isFirstStep}
         >
           <span class="icon is-small ml-0">
@@ -88,6 +85,7 @@ const Buttons = ({ handleSubmit }) => {
         <div
           className={`button is-rounded is-success`}
           onClick={!isLastStep ? () => setCurrentStep(currentStep + 1) : null}
+          role="none"
           disabled={isLastStep}
         >
           <span>Dalej</span>
@@ -97,7 +95,11 @@ const Buttons = ({ handleSubmit }) => {
         </div>
       )}
       {isLastStep && (
-        <div className={`button is-rounded is-link`} onClick={handleSubmit}>
+        <div
+          className={`button is-rounded is-link`}
+          onClick={handleSubmit}
+          role="none"
+        >
           <span class="icon is-small">
             <i class="fas fa-check"></i>
           </span>

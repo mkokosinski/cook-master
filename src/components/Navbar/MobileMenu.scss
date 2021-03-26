@@ -53,7 +53,8 @@
 
   @include media(tablet-down) {
     display: flex;
-    flex-basis: 10%;
+    position: absolute;
+    right: 30px;
 
     .burger-lines,
     .burger-lines:after,

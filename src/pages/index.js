@@ -1,11 +1,8 @@
 import React from "react"
-import Home from '../components/Home/Home'
-import { Router } from "@reach/router"
+import Home from "../components/Home/Home"
 
 const HomePage = () => {
-  return (
-        <Home />
-  )
+  return <Home />
 }
 
 export default HomePage

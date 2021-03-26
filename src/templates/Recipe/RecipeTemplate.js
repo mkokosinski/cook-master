@@ -77,7 +77,6 @@ const Recipe = ({ data, location }) => {
 
   sort(steps).asc(step => step.index)
 
-
   // const formattedRates = rates.map(node => node.rate)
   // const ratesAvg =
   //   formattedRates.reduce((a, b) => a + b, 0) / formattedRates.length
@@ -90,7 +89,7 @@ const Recipe = ({ data, location }) => {
         .then(rate => {
           setCurrentUserRate(rate)
         })
-        .catch(err => console.log(err))
+        .catch(err => console.error(err))
     }
 
     window.addEventListener("resize", getPageSize)

@@ -2,9 +2,7 @@ import cx from "classnames"
 import { toast } from "react-toastify"
 import styles from "./RatingStars.module.scss"
 
-import React, { useState, useEffect, useContext } from "react"
-import { AuthContext } from "../../services/auth"
-
+import React, { useState, useEffect } from "react"
 
 const RatingStars = ({ rating, saveRate }) => {
   const [currentRateHover, setCurrentRateHover] = useState(rating)
@@ -53,6 +51,7 @@ const RatingStars = ({ rating, saveRate }) => {
           className={`${style} ${styles.star} fa-star`}
           onMouseEnter={() => setCurrentRateHover(i + 1)}
           onClick={() => onClickHandler(i + 1)}
+          role="none"
           onMouseLeave={() => setCurrentRateHover(touchedRate)}
         ></i>
       )
@@ -60,7 +59,7 @@ const RatingStars = ({ rating, saveRate }) => {
     return stars
   }
 
-  return <div>{createStars()}</div> 
+  return <div>{createStars()}</div>
 }
 
 export default RatingStars

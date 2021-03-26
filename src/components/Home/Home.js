@@ -1,53 +1,15 @@
 import React from "react"
 import SearchInput from "../SearchInput/SearchInput"
-import { graphql, useStaticQuery, Link } from "gatsby"
-import BackgroundImage from "gatsby-background-image"
+import { Link } from "gatsby"
 
 import TipsImg from "../../images/chef.svg"
 import RecipeImg from "../../images/recipe-book.svg"
 import BackgoundImg from "../../images/bg.svg"
-import { Newsletter } from "../Newsletter/Newsletter"
 import { tips, recipes } from "../../helpers/menuLinks"
 import styles from "./HomePage.module.scss"
 import "./BackgroundAnimations.scss"
 
 const Home = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      recipe {
-        name
-        image {
-          childImageSharp {
-            fluid(
-              quality: 100
-              maxWidth: 1600
-              maxHeight: 700
-              srcSetBreakpoints: [600]
-            ) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-      }
-
-      tip {
-        name
-        image {
-          childImageSharp {
-            fluid(
-              quality: 100
-              maxWidth: 1600
-              maxHeight: 700
-              srcSetBreakpoints: [600]
-            ) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-      }
-    }
-  `)
-
   return (
     <div className={styles.home}>
       <div className={styles.background}>

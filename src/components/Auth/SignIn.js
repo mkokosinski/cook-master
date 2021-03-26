@@ -1,21 +1,13 @@
-import React, { useState, useContext } from "react"
+import React, { useContext } from "react"
 import { useFormik } from "formik"
 import { navigate, Link } from "gatsby"
 import * as Yup from "yup"
 
-import {
-  // signUpWithEmail,
-  singUpGoogle,
-  // singUpFacebook,
-  // isLoggedIn,
-  AuthContext,
-  signInWithEmail,
-} from "../../services/auth"
+import { singUpGoogle, AuthContext, signInWithEmail } from "../../services/auth"
 
 import GoogleIcon from "../../images/google-icon.svg"
 import styles from "./Auth.module.scss"
-// import { ModalConfirm } from "../Modal/Modal"
-import { profile, signUp } from "../../helpers/menuLinks"
+import { signUp } from "../../helpers/menuLinks"
 
 import "@fortawesome/fontawesome-free/css/all.min.css"
 import { toast } from "react-toastify"
@@ -28,22 +20,18 @@ const validationSchema = Yup.object({
 })
 
 const SignUp = ({ location }) => {
-  const [isModalActive, setIsModalActive] = useState(false)
   const isLoggedIn = useContext(AuthContext)
 
   const onSubmitHandler = (values, { setSubmitting }) => {
     const { email, password } = values
-    console.log(location)
-
     const from = location.state !== null ? location.state.from : "/"
 
     signInWithEmail(email, password)
       .then(res => {
-        console.log("login completed", res)
-        showSuccessToast(from);
+        showSuccessToast(from)
       })
       .catch(err => {
-        console.log("error", err)
+        console.error("error", err)
         showErrorToast(err.message)
       })
   }
@@ -73,34 +61,34 @@ const SignUp = ({ location }) => {
 
     singUpGoogle()
       .then(res => {
-        console.log("login completed", res)
-
         if (isLoggedIn) {
-          console.log("nav to " + from)
           showSuccessToast(from)
         }
       })
       .catch(err => {
-        console.log("error", err)
+        console.error("error", err)
         showErrorToast(err.message)
       })
   }
 
   return (
     <div className={styles.container}>
-      {/* <ModalConfirm isActive={isModalActive} /> */}
-      <div className={styles.socialButton} onClick={signUpGoogleHandler}>
+      <div
+        className={styles.socialButton}
+        onClick={signUpGoogleHandler}
+        role="none"
+      >
         <img src={GoogleIcon} alt="Google" /> Logowanie przez Google
       </div>
-      {/* TODO: Add Facebook provider log in <div className={styles.socialButton} onClick={singUpFacebook} ><i class="fab fa-facebook"></i>Zarejestruj przez Facebook</div> */}
       <div className={`${styles.formCard}`}>
         <form onSubmit={formik.handleSubmit} className={styles.form}>
           <div className="field">
-            <label className="label" htmlFor="name">
+            <label className="label" htmlFor="email">
               Adres e-mail
             </label>
             <div className="control">
               <input
+                id="email"
                 className="input"
                 type="text"
                 placeholder="Adres e-mail"
@@ -114,9 +102,12 @@ const SignUp = ({ location }) => {
           </div>
 
           <div className="field">
-            <label className="label">Hasło</label>
+            <label className="label" htmlFor="password">
+              Hasło
+            </label>
             <div className="control">
               <input
+                id="password"
                 className="input"
                 placeholder="Hasło"
                 name="password"

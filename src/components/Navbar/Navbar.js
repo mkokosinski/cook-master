@@ -1,30 +1,23 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 import cx from "classnames"
-
-// React Component
 import Burger from "@animated-burgers/burger-rotate"
-// don't forget the styles
-import "@animated-burgers/burger-rotate/dist/styles.css"
 
-import "./Navbar.scss"
 import Logo from "../Logo/Logo"
 import TipsIco from "../../images/chef.svg"
 import RecipesIco from "../../images/recipe-book.svg"
 import MobileMenu from "./MobileMenu"
-import { AuthContext } from "../../services/auth"
-import { tips, recipes, signIn, signUp, signOut } from "../../helpers/menuLinks"
+import { tips, recipes } from "../../helpers/menuLinks"
 import { UserProfileButton } from "../UserProfile/ProfileButton"
+
+import "@animated-burgers/burger-rotate/dist/styles.css"
+import "./Navbar.scss"
 
 const Navbar = ({ location, items }) => {
   const [burgerIsOpen, setBurgerIsOpen] = useState(false)
   const [isScrolledDown, setIsScrolledDown] = useState(false)
 
-  const { isLoggedIn } = useContext(AuthContext)
-
   useEffect(() => {
-    console.log(isLoggedIn)
-
     window.addEventListener("scroll", onScrollHandler)
     return () => {
       window.removeEventListener("scroll", onScrollHandler)
@@ -85,7 +78,6 @@ const Navbar = ({ location, items }) => {
             </div>
             <div className="nav-btn__txt">Profil</div>
           </div>
-
         </div>
 
         <Burger onClick={toggleBurger} isOpen={burgerIsOpen} />

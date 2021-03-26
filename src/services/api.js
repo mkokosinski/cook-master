@@ -1,5 +1,4 @@
-// import db from "./services/firebase"
-import { getFirestore, getStorage, getAuth } from "./firebase"
+import { getFirestore, getStorage } from "./firebase"
 import { v4 as uuid } from "uuid"
 
 export const uploadImg = async file => {
@@ -19,7 +18,7 @@ export const uploadImg = async file => {
 export const addRecipe = async recipe => {
   const firestore = await getFirestore()
   const { name, desc, img, steps, ingredients } = recipe
-  const t = await firestore
+  await firestore
     .collection("Recipes")
     .add({
       name,

@@ -1,12 +1,11 @@
-import React, { useContext } from "react"
+import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 
-import "./Tips.scss"
 import Card from "../Cards/Card"
-import GridView from '../../templates/GridView/GridView'
-import { AuthContext } from "../../services/auth"
+import GridView from "../../templates/GridView/GridView"
+import "./Tips.scss"
 
-const Porady = ({location}) => {
+const Porady = ({ location }) => {
   const tipsQuery = useStaticQuery(graphql`
     {
       allTip {
@@ -33,9 +32,14 @@ const Porady = ({location}) => {
       }
     }
   `)
-  const tips = tipsQuery.allTip;
+  const tips = tipsQuery.allTip
   return (
-    <GridView items={tips} CardComponent={Card} location={location} slug={'Porady'}/>
+    <GridView
+      items={tips}
+      CardComponent={Card}
+      location={location}
+      slug={"Porady"}
+    />
   )
 }
 
