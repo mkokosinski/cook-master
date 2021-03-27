@@ -30,18 +30,18 @@ module.exports = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     `gatsby-plugin-sass`,
-    {
-      resolve: `gatsby-plugin-csp`,
-      options: {
-        directives: {
-          // "script-src":
-          //   "'self' www.google-analytics.com https://cdn.firebase.com https://*.firebaseio.com; object-src 'self'",
-          // "style-src": "'self' 'unsafe-inline'",
-          // "img-src": "'self' data: www.google-analytics.com",
-          // you can add your directives or override defaults
-        },
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-csp`,
+    //   options: {
+    //     directives: {
+    //       // "script-src":
+    //       //   "'self' www.google-analytics.com https://cdn.firebase.com https://*.firebaseio.com; object-src 'self'",
+    //       // "style-src": "'self' 'unsafe-inline'",
+    //       // "img-src": "'self' data: www.google-analytics.com",
+    //       // you can add your directives or override defaults
+    //     },
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-create-client-paths`,
       options: { prefixes: [`/app/*`] },
