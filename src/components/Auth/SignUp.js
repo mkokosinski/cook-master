@@ -23,11 +23,13 @@ const validationSchema = Yup.object({
     .required("Potwierdź hasło! "),
 })
 
-const SignUp = ({ sourceLink = profile.slug }) => {
+const SignUp = ({ sourceLink = profile.slug, location }) => {
+  const from = location?.state?.from || "/"
+
   const onSubmitHandler = (values, { setSubmitting }) => {
     const { email, password } = values
     signUpWithEmail(email, password).then(res => {
-      navigate("/app/")
+      navigate(from)
     })
   }
 
@@ -39,9 +41,7 @@ const SignUp = ({ sourceLink = profile.slug }) => {
 
   const signUpGoogleHandler = () => {
     singUpGoogle().then(res => {
-      if (isLoggedIn()) {
-        navigate("/app/")
-      }
+      navigate(from)
     })
   }
 
@@ -52,7 +52,8 @@ const SignUp = ({ sourceLink = profile.slug }) => {
         role="none"
         onClick={signUpGoogleHandler}
       >
-        <img src={GoogleIcon} alt="Google" /> Zarejestruj przez Google
+        <GoogleIcon />
+        <span style={{ marginLeft: "5px" }}>Zarejestruj przez Google</span>
       </div>
       <div className={`${styles.formCard}`}>
         <form onSubmit={formik.handleSubmit} className={styles.form}>

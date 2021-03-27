@@ -77,7 +77,7 @@ module.exports.onCreateNode = async ({ node, actions, store, cache }) => {
   const { type } = node.internal
   if (type === "Tip" || type === "Recipe" || type === "Step") {
     const { createNode } = actions
-    let img = `https://firebasestorage.googleapis.com/v0/b/cookmaster-9494a.appspot.com/o/img%2Fdinner_placeholder.png?alt=media&token=87d365a0-1984-40f4-8e99-9143b1bfadbc`
+    let img = `https://firebasestorage.googleapis.com/v0/b/cookmaster-9494a.appspot.com/o/img%2FdefaultRecipeImage.jpg?alt=media&token=1e253244-476a-4570-b5c5-4f62e7e1ec2e`
 
     if (node.img && node.hasOwnProperty("img")) {
       img = node.img

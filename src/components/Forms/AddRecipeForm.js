@@ -10,6 +10,9 @@ import BallLoader from "../Loader/BallLoader"
 import styles from "./Forms.module.scss"
 
 import { FieldWithErrors } from "./FieldWithErrors"
+import { toast } from "react-toastify"
+import { navigate } from "gatsby-link"
+import { recipes } from "../../helpers/menuLinks"
 
 const AddRecipeFormSchema = Yup.object().shape({
   name: Yup.string()
@@ -58,7 +61,7 @@ export const AddRecipeForm = () => {
     const { name, desc, steps, ingredients } = values
 
     try {
-      const savedImgPath = await saveImg(uploadedImg)
+      const savedImgPath = uploadedImg ? await saveImg(uploadedImg) : ""
       const recipe = {
         name,
         desc,
@@ -67,7 +70,12 @@ export const AddRecipeForm = () => {
         ingredients,
       }
 
-      await addRecipe(recipe)
+      addRecipe(recipe).then(res => {
+        toast.success(
+          "Poprawnie dodano przepis. Po przejściu weryfikacji i optymalizacji pojawi się w serwisie (zwykle do 5 minut)."
+        )
+        navigate(`/${recipes.slug}`)
+      })
     } catch (error) {
       console.error("Add recpie error:", error)
     }

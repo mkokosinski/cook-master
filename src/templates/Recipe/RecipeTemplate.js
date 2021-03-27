@@ -128,15 +128,14 @@ const Recipe = ({ data, location }) => {
                   />
                 </div>
               </div>
-              {ratesAvg}
-              {isLoggedIn ? (
+              {isLoggedIn && (
                 <div className={styles.rating}>
                   <div className={styles.ratingLabel}>Oceń:</div>
                   <div className={styles.ratingIcons}>
                     <RatingStars rating={currentUserRate} saveRate={saveRate} />
                   </div>
                 </div>
-              ) : null}
+              )}
 
               <Separator
                 direction={separatorDirection.horizontal}
@@ -165,14 +164,14 @@ const Recipe = ({ data, location }) => {
                 />
 
                 <div className={styles.buttons}>
-                  <button className="button">Zapisz PDF</button>
-                  <button className="button">Drukuj</button>
+                  {/* <button className="button">Zapisz PDF</button> */}
+                  {/* <button className="button">Drukuj</button> */}
                   <Listonic
                     className="button"
                     ingredients={ingredients}
                     recipeTitle={name}
                   />
-                  <button className="button">E-mail</button>
+                  {/* <button className="button">E-mail</button> */}
                 </div>
               </div>
             </div>

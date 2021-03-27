@@ -21,14 +21,15 @@ const validationSchema = Yup.object({
 
 const SignUp = ({ location }) => {
   const isLoggedIn = useContext(AuthContext)
+  const from = location?.state?.from || "/"
 
   const onSubmitHandler = (values, { setSubmitting }) => {
     const { email, password } = values
-    const from = location.state !== null ? location.state.from : "/"
 
     signInWithEmail(email, password)
       .then(res => {
         showSuccessToast(from)
+        navigate(from)
       })
       .catch(err => {
         console.error("error", err)
@@ -57,12 +58,11 @@ const SignUp = ({ location }) => {
   })
 
   const signUpGoogleHandler = () => {
-    const { from = "/" } = location.state
-
     singUpGoogle()
       .then(res => {
         if (isLoggedIn) {
           showSuccessToast(from)
+          navigate(from)
         }
       })
       .catch(err => {
@@ -78,7 +78,8 @@ const SignUp = ({ location }) => {
         onClick={signUpGoogleHandler}
         role="none"
       >
-        <img src={GoogleIcon} alt="Google" /> Logowanie przez Google
+        <GoogleIcon />
+        <span style={{ marginLeft: "5px" }}>Logowanie przez Google</span>
       </div>
       <div className={`${styles.formCard}`}>
         <form onSubmit={formik.handleSubmit} className={styles.form}>
@@ -122,7 +123,7 @@ const SignUp = ({ location }) => {
           <button type="submit" className="button is-success">
             Zaloguj
           </button>
-          <Link to={"/app/" + signUp.slug}>Nie mam jeszcze konta</Link>
+          <Link to={`/${signUp.slug}`}>Nie mam jeszcze konta</Link>
         </form>
       </div>
     </div>

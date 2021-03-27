@@ -10,29 +10,12 @@ import {
 } from "../../helpers/menuLinks"
 
 import "./MobileMenu.scss"
-import { logOut, AuthContext } from "../../services/auth"
-import { toast } from "react-toastify"
+import { AuthContext } from "../../services/auth"
+import { useLocation } from "@reach/router"
 
-const MobileMenu = ({ burgerIsOpen, toggleBurger, items }) => {
+const MobileMenu = ({ logOutHandler, burgerIsOpen, toggleBurger, items }) => {
+  const location = useLocation()
   const { isLoggedIn } = useContext(AuthContext)
-
-  const logOutHandler = () => {
-    logOut()
-      .then(resp => {
-        toggleBurger()
-        toast.success("Poprawnie wylogowano", {
-          position: toast.POSITION.BOTTOM_RIGHT,
-          autoClose: 2000,
-        })
-      })
-      .catch(err => {
-        console.error(err)
-        toast.error("Nie udało się wylogować, szczegóły w konsoli...", {
-          position: toast.POSITION.BOTTOM_RIGHT,
-          autoClose: 2000,
-        })
-      })
-  }
 
   return (
     <>
@@ -63,13 +46,13 @@ const MobileMenu = ({ burgerIsOpen, toggleBurger, items }) => {
             >
               {addRecipe.name}
             </Link>
-            <Link
+            <div
               className="nav-btn"
               activeClassName="nav-btn--active"
               onClick={logOutHandler}
             >
               {signOut.name}
-            </Link>
+            </div>
           </>
         ) : (
           <>
@@ -78,6 +61,7 @@ const MobileMenu = ({ burgerIsOpen, toggleBurger, items }) => {
               className="nav-btn"
               activeClassName="nav-btn--active"
               to={"/" + signIn.slug}
+              state={{ from: location.pathname }}
             >
               {signIn.name}
             </Link>
@@ -86,6 +70,7 @@ const MobileMenu = ({ burgerIsOpen, toggleBurger, items }) => {
               className="nav-btn"
               activeClassName="nav-btn--active"
               to={"/" + signUp.slug}
+              state={{ from: location.pathname }}
             >
               {signUp.name}
             </Link>

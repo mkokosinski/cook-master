@@ -15,23 +15,29 @@ export const uploadImg = async file => {
   }
 }
 
-export const addRecipe = async recipe => {
-  const firestore = await getFirestore()
-  const { name, desc, img, steps, ingredients } = recipe
-  await firestore
-    .collection("Recipes")
-    .add({
-      name,
-      desc,
-      img,
-    })
-    .then(ref => {
-      steps.map(step => ref.collection("steps").add({ ...step }))
-      ingredients.map(ingredient =>
-        ref.collection("ingredients").add({ ...ingredient })
-      )
-    })
-}
+export const addRecipe = async recipe =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const firestore = await getFirestore()
+      const { name, desc, img, steps, ingredients } = recipe
+      await firestore
+        .collection("Recipes")
+        .add({
+          name,
+          desc,
+          img,
+        })
+        .then(ref => {
+          steps.map(step => ref.collection("steps").add({ ...step }))
+          ingredients.map(ingredient =>
+            ref.collection("ingredients").add({ ...ingredient })
+          )
+          resolve(true)
+        })
+    } catch (error) {
+      reject(error)
+    }
+  })
 
 export const getAutoCompleteList = async () => {
   const firestore = await getFirestore()

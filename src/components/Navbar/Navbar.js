@@ -1,21 +1,35 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { Link } from "gatsby"
 import cx from "classnames"
+import "@animated-burgers/burger-rotate/dist/styles.css"
 import Burger from "@animated-burgers/burger-rotate"
 
 import Logo from "../Logo/Logo"
 import TipsIco from "../../images/chef.svg"
 import RecipesIco from "../../images/recipe-book.svg"
+import AddRecipeIco from "../../images/addRecipe.svg"
 import MobileMenu from "./MobileMenu"
-import { tips, recipes } from "../../helpers/menuLinks"
+import {
+  tips,
+  recipes,
+  signUp,
+  signIn,
+  signOut,
+  addRecipe,
+} from "../../helpers/menuLinks"
 import { UserProfileButton } from "../UserProfile/ProfileButton"
+import { AuthContext, logOut } from "../../services/auth"
 
-import "@animated-burgers/burger-rotate/dist/styles.css"
 import "./Navbar.scss"
+import { useLocation } from "@reach/router"
+import { toast } from "react-toastify"
 
-const Navbar = ({ location, items }) => {
+const Navbar = ({ items }) => {
   const [burgerIsOpen, setBurgerIsOpen] = useState(false)
   const [isScrolledDown, setIsScrolledDown] = useState(false)
+
+  const location = useLocation()
+  const auth = useContext(AuthContext)
 
   useEffect(() => {
     window.addEventListener("scroll", onScrollHandler)
@@ -34,6 +48,23 @@ const Navbar = ({ location, items }) => {
   }
   const toggleBurger = () => {
     setBurgerIsOpen(!burgerIsOpen)
+  }
+
+  const logOutHandler = () => {
+    logOut()
+      .then(resp => {
+        toast.success("Poprawnie wylogowano", {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 2000,
+        })
+      })
+      .catch(err => {
+        console.error(err)
+        toast.error("Nie udało się wylogować, szczegóły w konsoli...", {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 2000,
+        })
+      })
   }
 
   const navCx = cx({ "is-scrolled-down": isScrolledDown })
@@ -72,17 +103,51 @@ const Navbar = ({ location, items }) => {
             <div className="nav-btn__txt">{recipes.name}</div>
           </Link>
 
-          <div className="nav-btn" activeClassName="nav-btn--active">
-            <div className="nav-btn__ico">
-              <UserProfileButton />
-            </div>
-            <div className="nav-btn__txt">Profil</div>
-          </div>
+          {auth.isLoggedIn ? (
+            <>
+              <Link
+                className="nav-btn"
+                activeClassName="nav-btn--active"
+                to={"/" + addRecipe.slug}
+              >
+                <div className="nav-btn__ico">
+                  <AddRecipeIco />
+                </div>
+                <div className="nav-btn__txt">{addRecipe.name}</div>
+              </Link>
+              <div
+                className="nav-btn"
+                activeClassName="nav-btn--active"
+                onClick={logOutHandler}
+              >
+                <div className="nav-btn__ico">
+                  <UserProfileButton />
+                </div>
+                <div className="nav-btn__txt"> {signOut.name}</div>
+              </div>
+            </>
+          ) : (
+            <Link
+              className="nav-btn"
+              activeClassName="nav-btn--active"
+              to={"/" + signIn.slug}
+              state={{ from: location.pathname }}
+            >
+              <div className="nav-btn__ico">
+                <UserProfileButton />
+              </div>
+              <div className="nav-btn__txt"> {signIn.name}</div>
+            </Link>
+          )}
         </div>
 
         <Burger onClick={toggleBurger} isOpen={burgerIsOpen} />
       </nav>
-      <MobileMenu toggleBurger={toggleBurger} burgerIsOpen={burgerIsOpen} />
+      <MobileMenu
+        toggleBurger={toggleBurger}
+        logOutHandler={logOutHandler}
+        burgerIsOpen={burgerIsOpen}
+      />
     </>
   )
 }

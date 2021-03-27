@@ -27,7 +27,7 @@ $spaces: 20px;
 
     @include media(tablet) {
       display: grid;
-      grid-template-columns: 45% auto auto;
+      grid-template-columns: 4fr 30px 5fr;
     }
     @include media(laptop) {
     }

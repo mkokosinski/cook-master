@@ -2,21 +2,19 @@ import React, { useState } from "react"
 import InfiniteScroll from "react-infinite-scroller"
 
 import Loader from "../../components/Loader/BallLoader"
-import BreadCrumb from '../../components/BreadCrumb/BreadCrumb'
+import BreadCrumb from "../../components/BreadCrumb/BreadCrumb"
 import SearchInput from "../../components/SearchInput/SearchInput"
 
-import styles from './GridView.module.scss'
+import styles from "./GridView.module.scss"
 
-
-const GridView = ({ location, CardComponent, items, slug}) => {
+const GridView = ({ location, CardComponent, items, slug }) => {
   const [cards, setCards] = useState([])
   const [limit, setLimit] = useState(5)
   const [hasMore, setHasMore] = useState(true)
   const span = 5
 
   const loadMore = () => {
-    let { edges, totalCount } = items;
-    edges = [...edges, ...edges, ...edges, ...edges, ...edges, ...edges, ...edges]
+    let { edges, totalCount } = items
 
     totalCount = 48
 
@@ -56,8 +54,7 @@ const GridView = ({ location, CardComponent, items, slug}) => {
 
       {/* </div> */}
     </div>
- 
- )
+  )
 }
 
 export default GridView
