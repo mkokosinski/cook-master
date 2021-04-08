@@ -41,7 +41,7 @@ const AddRecipeFormSchema = Yup.object().shape({
           .min(1, "Min: 1")
           .max(10000, "Max: 10000")
           .required("Podaj ilość"),
-        unit: Yup.string().oneOf(["ml", "g"]),
+        unit: Yup.string(),
       })
     )
     .min(2, "Podaj przynajmniej 2 kroki!"),
@@ -253,7 +253,7 @@ export const AddRecipeForm = () => {
                     {({ push, remove }) => (
                       <>
                         {values.ingredients.map((ingredient, index) => (
-                          <>
+                          <React.Fragment key={`ingr_${index}`}>
                             <label className="label" htmlFor="name">
                               {ingredient.label}
                             </label>
@@ -286,12 +286,16 @@ export const AddRecipeForm = () => {
                                     >
                                       <option value="g">g</option>
                                       <option value="ml">ml</option>
+                                      <option value="szt">szt.</option>
+                                      <option value="cup">szklan.</option>
+                                      <option value="box">opak.</option>
+                                      <option value="spoon">łyżek</option>
                                     </Field>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </>
+                          </React.Fragment>
                         ))}
                         <div className={`${styles.buttons} buttons`}>
                           {values.ingredients.length > 2 && (
@@ -302,7 +306,6 @@ export const AddRecipeForm = () => {
                                 remove(values.ingredients.length - 1)
                               }}
                             >
-                              {" "}
                               -
                             </button>
                           )}

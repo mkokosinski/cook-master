@@ -87,6 +87,7 @@ const Recipe = ({ data, location }) => {
     if (isLoggedIn) {
       getRecipeRate(id, user.uid)
         .then(rate => {
+          console.log(rate)
           setCurrentUserRate(rate)
         })
         .catch(err => console.error(err))
@@ -123,11 +124,12 @@ const Recipe = ({ data, location }) => {
                 <div className={styles.img}>
                   <Img
                     fluid={image.childImageSharp.fluid}
-                    imgStyle={{ objectFit: "cover" }}
+                    imgStyle={{ objectFit: "cover", objectPosition: "center" }}
                     style={{ height: "100%" }}
                   />
                 </div>
               </div>
+
               {isLoggedIn && (
                 <div className={styles.rating}>
                   <div className={styles.ratingLabel}>Oceń:</div>
@@ -136,6 +138,16 @@ const Recipe = ({ data, location }) => {
                   </div>
                 </div>
               )}
+              <div className={styles.buttons}>
+                {/* <button className="button">Zapisz PDF</button> */}
+                {/* <button className="button">Drukuj</button> */}
+                <Listonic
+                  className="button"
+                  ingredients={ingredients}
+                  recipeTitle={name}
+                />
+                {/* <button className="button">E-mail</button> */}
+              </div>
 
               <Separator
                 direction={separatorDirection.horizontal}
@@ -157,22 +169,6 @@ const Recipe = ({ data, location }) => {
                     ))}
                   </ul>
                 </div>
-
-                <Separator
-                  direction={separatorDirection.vertical}
-                  className={styles.separatorV}
-                />
-
-                <div className={styles.buttons}>
-                  {/* <button className="button">Zapisz PDF</button> */}
-                  {/* <button className="button">Drukuj</button> */}
-                  <Listonic
-                    className="button"
-                    ingredients={ingredients}
-                    recipeTitle={name}
-                  />
-                  {/* <button className="button">E-mail</button> */}
-                </div>
               </div>
             </div>
 
@@ -183,18 +179,13 @@ const Recipe = ({ data, location }) => {
 
             <div className={styles.steps}>
               <h2 className={styles.title}>Przygotowanie</h2>
-              {steps.map(step => (
-                <Step key={step.name} className={styles.step} {...step} />
-              ))}
+              {steps
+                .sort((a, b) => a.label.localeCompare(b.label))
+                .map(step => (
+                  <Step key={step.name} className={styles.step} {...step} />
+                ))}
             </div>
           </div>
-
-          {PageSize <= 600 && (
-            <div>
-              <MobileButton>t1 </MobileButton>
-              <MobileButton>t2 </MobileButton>
-            </div>
-          )}
         </div>
       </div>
     </>

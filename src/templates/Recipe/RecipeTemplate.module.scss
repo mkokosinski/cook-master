@@ -27,9 +27,10 @@ $spaces: 20px;
 
     @include media(tablet) {
       display: grid;
-      grid-template-columns: 4fr 30px 5fr;
+      grid-template-columns: 300px 30px 1fr;
     }
     @include media(laptop) {
+      grid-template-columns: 450px 30px 1fr;
     }
 
     .left {
@@ -60,11 +61,12 @@ $spaces: 20px;
         margin: 0;
         left: 0;
         top: 0;
-        right: -$spaces/2;
+        right: 0;
         z-index: 1;
 
         @include media(tablet) {
           background: none;
+          right: -$spaces/2;
           color: rgb(70, 70, 70);
           position: relative;
         }
@@ -76,7 +78,7 @@ $spaces: 20px;
       }
 
       .imgContainer {
-        height: 160px;
+        height: 260px;
         width: calc(100% + #{$spaces}* 2);
         position: relative;
         top: -$spaces;
@@ -129,28 +131,29 @@ $spaces: 20px;
             }
           }
         }
-        .buttons {
-          grid-column: 3/4;
-          padding: 10px;
+      }
+    }
 
-          button {
-            background: linear-gradient(
-              135deg,
-              $green-main 0%,
-              $green-secondary 100%
-            );
-            color: white;
-            margin: 10px 0;
-            transition: filter 0.1s;
-            width: 100%;
+    .buttons {
+      grid-column: 3/4;
+      padding: 10px;
 
-            &:hover {
-              filter: brightness(1.1);
-            }
-            &:active {
-              filter: brightness(0.95);
-            }
-          }
+      button {
+        background: linear-gradient(
+          135deg,
+          $green-main 0%,
+          $green-secondary 100%
+        );
+        color: white;
+        margin: 10px 0;
+        transition: filter 0.1s;
+        width: 100%;
+
+        &:hover {
+          filter: brightness(1.1);
+        }
+        &:active {
+          filter: brightness(0.95);
         }
       }
     }

@@ -1,37 +1,35 @@
 @import "../style/basics.scss";
 .home {
-  align-content: flex-start;
   align-items: center;
   display: flex;
-  flex-wrap: wrap;
-  gap: 100px;
+  flex-direction: column;
   justify-content: center;
-  min-height: calc(100vh - 200px);
+  gap: 80px;
+  padding: 20% 0;
+  position: relative;
   width: 100%;
-
-  @include media(desktop) {
-    flex-wrap: nowrap;
+  @include media(tablet) {
+    min-height: 100vh;
+    padding: 0;
   }
 
   .seachDialog {
-    flex: 1 1 100%;
     font-size: $font-size-xsmall;
-    height: 120px;
-    max-width: 90%;
-    margin-top: 100px;
     padding: 20px;
+    max-width: 900px;
+    width: 90%;
 
     @include media(tablet) {
-      padding: 30px 60px;
-      height: 140px;
+      transform: translateY(-20vh);
+
+      padding: 20px 40px;
     }
+
     @include media(desktop) {
       font-size: $font-size-normal;
-      height: 170px;
-      flex: 1 1 80%;
-      max-width: 1200px;
-      padding: 30px 60px;
-      transform: translateY(-200px);
+      width: 80%;
+      max-width: 1400px;
+
       input {
         height: 50px;
       }
@@ -50,13 +48,16 @@
   .background {
     position: absolute;
     width: 100%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
 
     svg {
       width: 100%;
     }
 
     @include media(tablet) {
-      top: 140px;
+      transform: translateY(-55%);
     }
   }
 
@@ -66,6 +67,7 @@
     justify-content: center;
     padding: 0 10%;
     gap: 60px;
+    width: 100%;
 
     & > * {
       width: 100%;

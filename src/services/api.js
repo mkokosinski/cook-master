@@ -4,10 +4,10 @@ import { v4 as uuid } from "uuid"
 export const uploadImg = async file => {
   const storage = await getStorage()
   const storageRef = storage().ref()
-  const correctTypes = ["image/bmp", "image/jpeg", "image/png"]
+  const correctTypes = ["image/bmp", "image/jpeg", "image/png", "image/webp"]
 
   if (correctTypes.includes(file.type)) {
-    const imgRef = storageRef.child(`img/${uuid.v4()}_${file.name}`)
+    const imgRef = storageRef.child(`img/${uuid()}_${file.name}`)
     const uploadTask = await imgRef.put(file)
     return uploadTask.ref.getDownloadURL()
   } else {
@@ -111,20 +111,24 @@ export const saveRacipeRate = async doc => {
 }
 
 export const getRecipeRate = async (recipeId, userId) => {
-  let recipeRate = 1
-  const previousRate = await getPreviousRate(recipeId, userId)
+  try {
+    let recipeRate = 1
+    const previousRate = await getPreviousRate(recipeId, userId)
 
-  if (previousRate.isExists) {
-    const firestore = await getFirestore()
+    if (previousRate.isExists) {
+      const firestore = await getFirestore()
 
-    const rate = await firestore
-      .collection("Recipes")
-      .doc(recipeId)
-      .collection("rates")
-      .doc(previousRate.rateId)
-      .get()
+      const rate = await firestore
+        .collection("Recipes")
+        .doc(recipeId)
+        .collection("rates")
+        .doc(previousRate.rateId)
+        .get()
 
-    recipeRate = rate.data().rate
+      recipeRate = rate.data().rate
+    }
+    return recipeRate
+  } catch (error) {
+    console.error(error)
   }
-  return recipeRate
 }
