@@ -1,97 +1,65 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
+<br />
+
 <p align="center">
-  <a href="https://www.gatsbyjs.org">
-    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
+  <a href="https://mkokosinski.github.io/e-widencja">
+    <img src="https://firebasestorage.googleapis.com/v0/b/e-widencja.appspot.com/o/LogoMDWhite.png?alt=media&token=641be6a2-3606-431f-afcd-e3650c6277c3" alt="Logo" width=400>
   </a>
 </p>
-<h1 align="center">
-  Gatsby's default starter
-</h1>
+<br />
 
-Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+</div>
 
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.org/docs/gatsby-starters/)._
 
-## 🚀 Quick start
+ <img src="https://firebasestorage.googleapis.com/v0/b/cookmaster-9494a.appspot.com/o/testCook.png?alt=media&token=b972c48d-d47b-4acb-9761-09c8d07cd478" alt="Logo" width=600>
+ 
 
-1.  **Create a Gatsby site.**
+## General Info
 
-    Use the Gatsby CLI to create a new site, specifying the default starter.
+The e-widencja application has been created to keep records of the journeys of company vehicles for the purposes of VAT settlement
 
-    ```sh
-    # create a new Gatsby site using the default starter
-    gatsby new my-default-starter https://github.com/gatsbyjs/gatsby-starter-default
-    ```
 
-1.  **Start developing.**
+## Demo
 
-    Navigate into your new site’s directory and start it up.
+**Working live demo is avaible [here](https://mkokosinski.github.io/e-widencja/)**
 
-    ```sh
-    cd my-default-starter/
-    gatsby develop
-    ```
+**Demo credentials:**
 
-1.  **Open the source code and start editing!**
+| Role  |     Login     | Password |
+| :---: | :-----------: | :------: |
+| Admin | admin@demo.pl | Demo123  |
+| User  | user@demo.pl  | Demo123  |
 
-    Your site is now running at `http://localhost:8000`!
+## Features
 
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
+<br/>
 
-    Open the `my-default-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+**Dynamically converted values and destinations**
 
-## 🧐 What's inside?
+  ![Mileage](https://firebasestorage.googleapis.com/v0/b/e-widencja.appspot.com/o/Mileage.gif?alt=media&token=ce9808c8-57ab-4331-82be-bbd32edad638 'Mileage')<br/><br/>
 
-A quick look at the top-level files and directories you'll see in a Gatsby project.
+**Save your trip as a template**<br/>
 
-    .
-    ├── node_modules
-    ├── src
-    ├── .gitignore
-    ├── .prettierrc
-    ├── gatsby-browser.js
-    ├── gatsby-config.js
-    ├── gatsby-node.js
-    ├── gatsby-ssr.js
-    ├── LICENSE
-    ├── package-lock.json
-    ├── package.json
-    └── README.md
+  ![SaveAsTemplate](https://firebasestorage.googleapis.com/v0/b/e-widencja.appspot.com/o/SaveTemplate.gif?alt=media&token=418cf4b3-30b4-445c-afea-b3f99d243991 'SaveAsTemplate') <br/><br/>
+  
+**Customize the application to your requirements**
 
-1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
+  ![Settings](https://firebasestorage.googleapis.com/v0/b/e-widencja.appspot.com/o/Settings.gif?alt=media&token=026f73d8-56a8-411b-a1bb-aa67d085aeb0 'Settings')<br/><br/>
 
-2.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
+### To Do
 
-3.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
+- Theme customization
+- Interface customization
+- Extensive permission system
+- Unit tests
+- Notification system
+- More reports
 
-4.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
+## Technologies
 
-5.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.org/docs/browser-apis/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
+- <img src='https://miro.medium.com/fit/c/184/184/1*K0a7xINk0RM5gfXGSN68cw.png' width="24" height="24" />&nbsp;React
 
-6.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. (Check out the [config docs](https://www.gatsbyjs.org/docs/gatsby-config/) for more detail).
+- &nbsp;<img src='https://cdn.iconscout.com/icon/free/png-256/redux-283024.png' width="18" height="18"  />   &nbsp;Redux and Redux toolkit
 
-7.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.org/docs/node-apis/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
+- <img src='https://miro.medium.com/max/318/1*7jRD5QhgARucFKvRHFxpOg.png' width="24" height="24" /> &nbsp;Styled-components
 
-8.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.org/docs/ssr-apis/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
-
-9.  **`LICENSE`**: Gatsby is licensed under the MIT license.
-
-10. **`package-lock.json`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly).**
-
-11. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
-
-12. **`README.md`**: A text file containing useful reference information about your project.
-
-## 🎓 Learning Gatsby
-
-Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.org/). Here are some places to start:
-
-- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.org/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
-
-- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.org/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
-
-## 💫 Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
-
-<!-- AUTO-GENERATED-CONTENT:END -->
+- <img src='https://www.gstatic.com/mobilesdk/160503_mobilesdk/logo/2x/firebase_28dp.png' width="24" height="24" /> &nbsp;Firebase
