@@ -1,16 +1,14 @@
 <br />
 
 <p align="center">
-  <a href="https://mkokosinski.github.io/e-widencja">
-    <img src="https://firebasestorage.googleapis.com/v0/b/e-widencja.appspot.com/o/LogoMDWhite.png?alt=media&token=641be6a2-3606-431f-afcd-e3650c6277c3" alt="Logo" width=400>
-  </a>
+ <img src="https://firebasestorage.googleapis.com/v0/b/cookmaster-9494a.appspot.com/o/testCook.png?alt=media&token=b972c48d-d47b-4acb-9761-09c8d07cd478" alt="Logo" width=600>
+
 </p>
 <br />
 
 </div>
 
 
- <img src="https://firebasestorage.googleapis.com/v0/b/cookmaster-9494a.appspot.com/o/testCook.png?alt=media&token=b972c48d-d47b-4acb-9761-09c8d07cd478" alt="Logo" width=600>
  
 
 ## General Info
