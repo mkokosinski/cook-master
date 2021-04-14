@@ -13,35 +13,38 @@
 
 ## General Info
 
-The e-widencja application has been created to keep records of the journeys of company vehicles for the purposes of VAT settlement
+The cook-master application has been created for beginner chefs and people looking for ideas for dinner.
 
 
 ## Demo
 
-**Working live demo is avaible [here](https://mkokosinski.github.io/e-widencja/)**
+**Working live demo is avaible [here](https://cook-master.netlify.app/)**
 
 **Demo credentials:**
 
-| Role  |     Login     | Password |
-| :---: | :-----------: | :------: |
-| Admin | admin@demo.pl | Demo123  |
-| User  | user@demo.pl  | Demo123  |
+|      Login     | Password |
+| :-----------: | :------: |
+| admin@demo.pl | Demo123  |
 
 ## Features
 
 <br/>
 
-**Dynamically converted values and destinations**
+**Fast, intuitive grid layout with lazy loaded images**
 
-  ![Mileage](https://firebasestorage.googleapis.com/v0/b/e-widencja.appspot.com/o/Mileage.gif?alt=media&token=ce9808c8-57ab-4331-82be-bbd32edad638 'Mileage')<br/><br/>
+  ![LazyImages](https://firebasestorage.googleapis.com/v0/b/cookmaster-9494a.appspot.com/o/cook-lazy.gif?alt=media&token=94438a39-ce86-4b01-a461-b8659652f07b 'LazyImages')<br/><br/>
 
-**Save your trip as a template**<br/>
+**Export your shopping list to listonic**<br/>
 
-  ![SaveAsTemplate](https://firebasestorage.googleapis.com/v0/b/e-widencja.appspot.com/o/SaveTemplate.gif?alt=media&token=418cf4b3-30b4-445c-afea-b3f99d243991 'SaveAsTemplate') <br/><br/>
+  ![Listonic](https://firebasestorage.googleapis.com/v0/b/cookmaster-9494a.appspot.com/o/cook-listonic2.gif?alt=media&token=9f035879-ad5c-4f0b-9c71-de192a46c407 'Listonic') <br/><br/>
+  
+**Rate your favorite dishes**
+
+  ![Rating](https://firebasestorage.googleapis.com/v0/b/cookmaster-9494a.appspot.com/o/cook-rating.gif?alt=media&token=660b2c3f-de43-4f2f-a5cd-91386a7245be 'Rating')<br/><br/>
   
 **Customize the application to your requirements**
 
-  ![Settings](https://firebasestorage.googleapis.com/v0/b/e-widencja.appspot.com/o/Settings.gif?alt=media&token=026f73d8-56a8-411b-a1bb-aa67d085aeb0 'Settings')<br/><br/>
+  ![Listonic](https://firebasestorage.googleapis.com/v0/b/cookmaster-9494a.appspot.com/o/cook-listonic-small.gif?alt=media&token=9049bb83-c393-4fa9-9caa-c50b971cd6da 'Listonic')<br/><br/>
 
 ### To Do
 
