@@ -1,7 +1,7 @@
 <br />
 
 <p align="center">
- <img src="https://firebasestorage.googleapis.com/v0/b/cookmaster-9494a.appspot.com/o/testCook.png?alt=media&token=b972c48d-d47b-4acb-9761-09c8d07cd478" alt="Logo" width=600>
+ <img src="https://firebasestorage.googleapis.com/v0/b/cookmaster-9494a.appspot.com/o/cook.png?alt=media&token=0902c3be-896a-4d8f-ad49-16abfc1d992b" alt="Logo" width=600>
 
 </p>
 <br />
