@@ -36,30 +36,32 @@ The cook-master application has been created for beginner chefs and people looki
 
 **Export your shopping list to listonic**<br/>
 
-  ![Listonic](https://firebasestorage.googleapis.com/v0/b/cookmaster-9494a.appspot.com/o/cook-listonic2.gif?alt=media&token=9f035879-ad5c-4f0b-9c71-de192a46c407 'Listonic') <br/><br/>
+  ![Listonic](https://firebasestorage.googleapis.com/v0/b/cookmaster-9494a.appspot.com/o/cook-listonic2.gif?alt=media&token=9f035879-ad5c-4f0b-9c71-de192a46c407 'Listonic') 
   
-**Rate your favorite dishes**
+**Add your own recipes - convenient and fast multi-step form**<br/>
+
+  ![Form](https://firebasestorage.googleapis.com/v0/b/cookmaster-9494a.appspot.com/o/cook-form.gif?alt=media&token=bd9436fa-4ce2-4bd7-93d3-6363a9c6aee5 'Form') 
+  
+**Rate your favorite dishes**<br/>
 
   ![Rating](https://firebasestorage.googleapis.com/v0/b/cookmaster-9494a.appspot.com/o/cook-rating.gif?alt=media&token=660b2c3f-de43-4f2f-a5cd-91386a7245be 'Rating')<br/><br/>
   
-**Customize the application to your requirements**
+**Take your app as shopping list**<br/>
 
-  ![Listonic](https://firebasestorage.googleapis.com/v0/b/cookmaster-9494a.appspot.com/o/cook-listonic-small.gif?alt=media&token=9049bb83-c393-4fa9-9caa-c50b971cd6da 'Listonic')<br/><br/>
-
+  ![List](https://firebasestorage.googleapis.com/v0/b/cookmaster-9494a.appspot.com/o/cook-products.gif?alt=media&token=f393a1d2-f078-4498-9a30-fb736564964b 'List')<br/><br/>
+<br/><br/>
 ### To Do
 
-- Theme customization
-- Interface customization
-- Extensive permission system
-- Unit tests
-- Notification system
-- More reports
+- Save favorites
+- Difficulty level
+- Rating and level on recipes grid
+- Profile page
 
 ## Technologies
 
 - <img src='https://miro.medium.com/fit/c/184/184/1*K0a7xINk0RM5gfXGSN68cw.png' width="24" height="24" />&nbsp;React
 
-- &nbsp;<img src='https://cdn.iconscout.com/icon/free/png-256/redux-283024.png' width="18" height="18"  />   &nbsp;Redux and Redux toolkit
+- &nbsp;<img src='https://firebasestorage.googleapis.com/v0/b/cookmaster-9494a.appspot.com/o/gatsby.png?alt=media&token=79d6b392-8a8d-48ce-8ca0-fc494e720204' width="18" height="18"  />   &nbsp;Gatsby
 
 - <img src='https://miro.medium.com/max/318/1*7jRD5QhgARucFKvRHFxpOg.png' width="24" height="24" /> &nbsp;Styled-components
 
