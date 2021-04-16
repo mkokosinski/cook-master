@@ -63,6 +63,6 @@ The cook-master application has been created for beginner chefs and people looki
 
 - &nbsp;<img src='https://firebasestorage.googleapis.com/v0/b/cookmaster-9494a.appspot.com/o/gatsby.png?alt=media&token=79d6b392-8a8d-48ce-8ca0-fc494e720204' width="18" height="18"  />   &nbsp;Gatsby
 
-- <img src='https://miro.medium.com/max/318/1*7jRD5QhgARucFKvRHFxpOg.png' width="24" height="24" /> &nbsp;Styled-components
+- <img src='https://raw.githubusercontent.com/css-modules/logos/master/css-modules-logo.png' width="24" height="24" /> &nbsp;CSS Modules
 
 - <img src='https://www.gstatic.com/mobilesdk/160503_mobilesdk/logo/2x/firebase_28dp.png' width="24" height="24" /> &nbsp;Firebase
